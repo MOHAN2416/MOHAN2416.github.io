@@ -12,23 +12,23 @@
     <div class="portfolio-grid">
       <!-- Achievements -->
       <div class="portfolio-item" data-category="achievements">
-        <a href="tantrotstav.jpg" target="_blank" class="portfolio-link">
+        <a href="tantrotstav.jpg" target="_blank">
           <img src="tantrotstav.jpg" alt="Hackathon Winner">
-          <div class="text-below">
-            <h3>National Hackathon Winner</h3>
-            <p>Won a national-level app-building hackathon.</p>
-          </div>
+        </a>
+        <a href="tantrotstav.jpg" target="_blank" class="text-below">
+          <h3>National Hackathon Winner</h3>
+          <p>Won a national-level app-building hackathon.</p>
         </a>
       </div>
 
       <!-- Certifications -->
       <div class="portfolio-item" data-category="certifications">
-        <a href="c++_certificate.jpg" target="_blank" class="portfolio-link">
+        <a href="c++_certificate.jpg" target="_blank">
           <img src="c++_certificate.jpg" alt="C++ Certification">
-          <div class="text-below">
-            <h3>Coding for Everyone: C & C++</h3>
-            <p>Certified by the University of California, Santa Cruz.</p>
-          </div>
+        </a>
+        <a href="c++_certificate.jpg" target="_blank" class="text-below">
+          <h3>Coding for Everyone: C & C++</h3>
+          <p>Certified by the University of California, Santa Cruz.</p>
         </a>
       </div>
     </div>
@@ -117,14 +117,6 @@
     margin-bottom: 5px;
   }
 
-  .portfolio-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
   .portfolio-item img {
     width: 100%;
     height: 160px;
@@ -133,8 +125,7 @@
     transition: transform 0.3s ease-in-out;
   }
 
-  .portfolio-item:hover img,
-  .portfolio-item:hover .text-below {
+  .portfolio-item img:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
   }
@@ -145,16 +136,24 @@
     background: rgba(0, 0, 0, 0.85);
     padding: 10px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
   }
 
   .text-below h3 {
     margin: 5px 0;
     font-size: 1rem;
     font-weight: bold;
+    text-align: center;
   }
 
   .text-below p {
     font-size: 0.8rem;
+    text-align: center;
   }
 
   @media (max-width: 768px) {
