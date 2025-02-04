@@ -10,31 +10,32 @@
     </div>
 
     <div class="portfolio-grid">
-      <!-- Projects -->
-      
       <!-- Achievements -->
       <div class="portfolio-item" data-category="achievements">
-        <img src="tantrotstav.jpg" alt="Hackathon Winner">
-        <div class="overlay">
-          <h3>National Hackathon Winner</h3>
-          <p>Won a national-level app-building hackathon.</p>
-        </div>
+        <a href="tantrotstav.jpg" target="_blank" class="portfolio-link">
+          <img src="tantrotstav.jpg" alt="Hackathon Winner">
+          <div class="text-below">
+            <h3>National Hackathon Winner</h3>
+            <p>Won a national-level app-building hackathon.</p>
+          </div>
+        </a>
       </div>
 
       <!-- Certifications -->
       <div class="portfolio-item" data-category="certifications">
-        <img src="c++_certificate.jpg" alt="C++ Certification">
-        <div class="overlay">
-          <h3>Coding for Everyone: C & C++</h3>
-          <p>Certified by the University of California, Santa Cruz.</p>
-        </div>
+        <a href="c++_certificate.jpg" target="_blank" class="portfolio-link">
+          <img src="c++_certificate.jpg" alt="C++ Certification">
+          <div class="text-below">
+            <h3>Coding for Everyone: C & C++</h3>
+            <p>Certified by the University of California, Santa Cruz.</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 </div>
 
 <style>
-  /* General Styles */
   body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -45,9 +46,9 @@
   }
 
   .container {
-    width: 80%;
-    margin: 40px auto;
-    padding: 30px;
+    width: 95%;
+    margin: 10px auto;
+    padding: 20px;
     background: #1E1E1E;
     border: 2px solid #4CAF50;
     border-radius: 12px;
@@ -63,12 +64,11 @@
     display: inline-block;
   }
 
-  /* Filter Buttons */
   .filter-buttons {
-    margin: 20px 0;
+    margin: 10px 0;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
   }
 
   .filter-btn {
@@ -86,17 +86,17 @@
     font-size: 1.2rem;
     color: #ffffff;
   }
-  .filter-btn.active{
-      color: #4CAF50;
+
+  .filter-btn.active {
+    color: #4CAF50;
   }
 
-  /* Portfolio Grid */
   .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-    padding: 0 20px;
+    grid-template-columns: repeat(5, 5fr);
+    gap: 2px;
+    margin-top: 10px;
+    padding: 0 2px;
   }
 
   .portfolio-item {
@@ -104,47 +104,59 @@
     overflow: hidden;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    text-align: center;
+    width: 240px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #2A2A2A;
+    padding: 5px;
+    margin-right: 1.5px;
+    margin-bottom: 5px;
+  }
+
+  .portfolio-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .portfolio-item img {
-    width: 50px;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
   }
 
-  .portfolio-item:hover img {
-    transform: scale(1.05);
+  .portfolio-item:hover img,
+  .portfolio-item:hover .text-below {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
   }
 
-  /* Overlay Effect */
-  .overlay {
-    position: absolute;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
+  .text-below {
     width: 100%;
-    padding: 15px;
-    transition: all 0.3s ease-in-out;
-    opacity: 0;
+    margin-top: 5px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 10px;
+    border-radius: 8px;
   }
 
-  .portfolio-item:hover {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.9);
-    color: #ffffff;
-  }
-
-  .overlay h3 {
+  .text-below h3 {
     margin: 5px 0;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: bold;
   }
 
-  .overlay p {
-    font-size: 0.7rem;
+  .text-below p {
+    font-size: 0.8rem;
   }
 
-  /* Mobile Responsive */
   @media (max-width: 768px) {
     .portfolio-grid {
       grid-template-columns: 1fr;
@@ -161,7 +173,7 @@
       let filter = button.getAttribute('data-filter');
       document.querySelectorAll('.portfolio-item').forEach(item => {
         if (filter === 'all' || item.getAttribute('data-category') === filter) {
-          item.style.display = 'block';
+          item.style.display = 'flex';
           item.style.opacity = 0;
           setTimeout(() => { item.style.opacity = 1; }, 200);
         } else {
