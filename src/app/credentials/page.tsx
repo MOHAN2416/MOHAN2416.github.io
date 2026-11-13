@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { CERTIFICATIONS, SKILL_CATEGORIES, Certification } from "@/lib/data";
 import { Award, ShieldCheck, X, CheckCircle2, ArrowRight, ExternalLink, Download, Copy, Check, Eye } from "lucide-react";
+import { SpotlightCard } from "@/components/SpotlightCard";
 
 const CATEGORIES = ["All (8)", "Systems & C/C++", "AI & ML", "Hackathon & Honors", "Software Engineering"];
 
@@ -112,59 +113,62 @@ export default function CredentialsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredCerts.map((cert) => (
-            <div
+          {filteredCerts.map((cert, idx) => (
+            <SpotlightCard
               key={cert.id}
+              index={idx}
               onClick={() => setSelectedCert(cert)}
-              className="p-6 rounded-xl bg-white border border-zinc-200 shadow-xs flex flex-col justify-between space-y-4 hover:border-zinc-300 hover:shadow-card transition-all cursor-pointer group"
+              className="cursor-pointer group"
             >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
-                    <ShieldCheck className="w-3 h-3 text-emerald-600" />
-                    <span>Verified Credential</span>
-                  </span>
-                  <span className="font-mono text-zinc-400">{cert.date}</span>
-                </div>
-
-                <div>
-                  <h3 className="text-base font-bold font-heading text-zinc-900 group-hover:text-cobalt-600 transition-colors">
-                    {cert.title}
-                  </h3>
-                  <div className="text-xs font-mono text-zinc-500 mt-0.5">{cert.issuer}</div>
-                  <p className="text-xs text-zinc-600 mt-2 line-clamp-2 leading-relaxed font-sans">
-                    {cert.highlight}
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-3 border-t border-zinc-100 space-y-3">
-                {cert.credentialId && (
-                  <div className="text-[11px] font-mono text-zinc-400 truncate flex items-center justify-between">
-                    <span>ID: <strong className="text-zinc-800 font-semibold">{cert.credentialId}</strong></span>
-                  </div>
-                )}
-
-                <div className="flex flex-wrap gap-1">
-                  {cert.skills.slice(0, 3).map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-100 text-zinc-600 border border-zinc-200"
-                    >
-                      {skill}
+              <div className="p-6 space-y-4 flex flex-col justify-between h-full">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                      <span>Verified Credential</span>
                     </span>
-                  ))}
+                    <span className="font-mono text-zinc-400">{cert.date}</span>
+                  </div>
+
+                  <div className="pt-2">
+                    <h3 className="text-base font-bold font-heading text-zinc-900 group-hover:text-cobalt-600 transition-colors leading-snug">
+                      {cert.title}
+                    </h3>
+                    <div className="text-xs font-mono text-zinc-500 mt-1">{cert.issuer}</div>
+                    <p className="text-xs text-zinc-600 mt-2 line-clamp-2 leading-relaxed font-sans">
+                      {cert.highlight}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="pt-2 flex items-center justify-between border-t border-zinc-100 text-xs font-medium text-cobalt-600">
-                  <span className="inline-flex items-center gap-1.5 font-semibold group-hover:underline">
-                    <Eye className="w-3.5 h-3.5" />
-                    <span>Preview Certificate</span>
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cobalt-600 transition-colors" />
+                <div className="pt-3 border-t border-zinc-100 space-y-3">
+                  {cert.credentialId && (
+                    <div className="text-[11px] font-mono text-zinc-400 truncate flex items-center justify-between">
+                      <span>ID: <strong className="text-zinc-800 font-semibold">{cert.credentialId}</strong></span>
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap gap-1">
+                    {cert.skills.slice(0, 3).map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-100 text-zinc-600 border border-zinc-200"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="pt-2 flex items-center justify-between border-t border-zinc-100 text-xs font-medium text-cobalt-600">
+                    <span className="inline-flex items-center gap-1.5 font-semibold group-hover:underline">
+                      <Eye className="w-3.5 h-3.5" />
+                      <span>Preview Certificate</span>
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cobalt-600 transition-colors" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
       </section>

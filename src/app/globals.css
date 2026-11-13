@@ -102,3 +102,21 @@ code, pre, kbd {
 .pulse-emerald {
   animation: light-pulse 2s infinite;
 }
+
+/* Animated Gradient Text Shimmer */
+@keyframes text-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 6s ease-in-out infinite;
+}

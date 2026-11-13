@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { PROJECTS } from "@/lib/data";
 import { GitBranch, ArrowRight, Cpu, Shield, Ship, Layers } from "lucide-react";
+import { SpotlightCard } from "@/components/SpotlightCard";
 
 const CATEGORIES = ["All (6)", "AI Agents & LLMs", "Systems & Security", "Optimization & Full-Stack"];
 
@@ -65,12 +66,14 @@ export default function ProjectsDirectoryPage() {
         </div>
       </div>
 
-      {/* 2-Column Grid of 6 Projects */}
+      {/* 2-Column Grid of 6 Projects with Mouse Spotlight */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-        {filteredProjects.map((project) => (
-          <div
+        {filteredProjects.map((project, idx) => (
+          <SpotlightCard
             key={project.id}
-            className="rounded-xl bg-white border border-zinc-200 shadow-xs flex flex-col justify-between overflow-hidden hover:border-zinc-300 hover:shadow-card transition-all"
+            index={idx}
+            data-cursor="view"
+            className="flex flex-col justify-between h-full"
           >
             <div className="p-6 sm:p-7 space-y-5">
               {/* Category & GitHub Icon */}
@@ -111,13 +114,13 @@ export default function ProjectsDirectoryPage() {
 
               {/* Top 3 Verified Benchmark Badges */}
               <div className="grid grid-cols-3 gap-2.5 pt-1 text-xs font-mono">
-                {project.cardMetrics.map((m, idx) => (
-                  <div key={idx} className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
+                {project.cardMetrics.map((m, mIdx) => (
+                  <div key={mIdx} className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
                     <div className="text-[10px] text-zinc-400 uppercase tracking-tight">{m.label}</div>
-                    <div className="font-bold text-zinc-900 truncate mt-0.5 text-xs">
+                    <div className="font-bold text-zinc-900 mt-0.5 text-xs leading-tight">
                       {m.value}
                     </div>
-                    <div className="text-[10px] text-zinc-500 truncate mt-0.5">
+                    <div className="text-[10px] text-zinc-500 mt-0.5 leading-tight">
                       {m.sub}
                     </div>
                   </div>
@@ -154,7 +157,7 @@ export default function ProjectsDirectoryPage() {
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
-          </div>
+          </SpotlightCard>
         ))}
       </div>
     </div>

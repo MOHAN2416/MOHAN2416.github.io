@@ -6,6 +6,8 @@ import { Footer } from "./Footer";
 import { ResumeModal } from "./ResumeModal";
 import { CommandPalette } from "./CommandPalette";
 import { AiAssistantDrawer } from "./AiAssistantDrawer";
+import { CustomCursor } from "./CustomCursor";
+import { InteractiveBackground } from "./InteractiveBackground";
 import { Sparkles } from "lucide-react";
 
 export function GlobalShell({ children }: { children: React.ReactNode }) {
@@ -26,35 +28,41 @@ export function GlobalShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA] text-zinc-900 font-sans selection:bg-cobalt-100 selection:text-cobalt-900">
-      {/* Persistent Sticky Navbar */}
+    <div className="relative min-h-screen flex flex-col bg-transparent text-zinc-900 font-sans selection:bg-cobalt-100 selection:text-cobalt-900">
+      {/* 1. Global Custom Cursor (Desktop-Only, Fluid Spring Inertia) */}
+      <CustomCursor />
+
+      {/* 2. Interactive Canvas Matrix & Ambient Mesh Orbs */}
+      <InteractiveBackground />
+
+      {/* 3. Persistent Sticky Navbar */}
       <Navbar
         onOpenResume={() => setResumeModalOpen(true)}
         onOpenCommandPalette={() => setCommandPaletteOpen(true)}
       />
 
-      {/* Main Page Route Content */}
+      {/* 4. Main Page Route Content */}
       <main className="flex-1">
         {children}
       </main>
 
-      {/* Clean Multi-Column Footer */}
+      {/* 5. Clean Multi-Column Footer */}
       <Footer />
 
-      {/* Light-Themed Global Command Palette (⌘K) */}
+      {/* 6. Light-Themed Global Command Palette (⌘K) */}
       <CommandPalette
         isOpen={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
         onOpenResume={() => setResumeModalOpen(true)}
       />
 
-      {/* Floating AI Assistant Drawer */}
+      {/* 7. Floating AI Assistant Drawer */}
       <AiAssistantDrawer
         isOpen={aiAssistantOpen}
         onClose={() => setAiAssistantOpen(false)}
       />
 
-      {/* Floating Bottom-Right Trigger Pill */}
+      {/* 8. Floating Bottom-Right Trigger Pill */}
       {!aiAssistantOpen && (
         <button
           onClick={() => setAiAssistantOpen(true)}
@@ -69,7 +77,7 @@ export function GlobalShell({ children }: { children: React.ReactNode }) {
         </button>
       )}
 
-      {/* Global Resume Viewer / PDF Export Modal */}
+      {/* 9. Global Resume Viewer / PDF Export Modal */}
       <ResumeModal
         isOpen={resumeModalOpen}
         onClose={() => setResumeModalOpen(false)}

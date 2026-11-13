@@ -45,37 +45,31 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
           : "bg-white/95 backdrop-blur-sm border-b border-zinc-200/60 py-3.5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         {/* Brand Monogram & Name */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-white font-mono font-bold text-xs shadow-xs transition-transform group-hover:scale-105">
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-white font-mono font-bold text-xs shadow-xs transition-transform group-hover:scale-105 shrink-0">
             MS
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-sm sm:text-base text-zinc-900 tracking-tight font-heading group-hover:text-cobalt-600 transition-colors">
-                Mutyala Mohan Surendra
-              </span>
-              <span className="hidden xl:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-emerald" />
-                Available for Roles
-              </span>
-            </div>
-            <div className="text-[11px] text-zinc-500 hidden sm:block font-sans">
+          <div className="whitespace-nowrap">
+            <span className="font-semibold text-sm sm:text-base text-zinc-900 tracking-tight font-heading group-hover:text-cobalt-600 transition-colors block whitespace-nowrap">
+              Mutyala Mohan Surendra
+            </span>
+            <span className="text-[11px] text-zinc-500 hidden xl:block font-sans whitespace-nowrap">
               AI Systems Engineer & Full-Stack Developer
-            </div>
+            </span>
           </div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-1 font-sans text-xs">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 font-sans text-xs shrink-0">
           {NAV_LINKS.map((link) => {
             const active = isActive(link.href);
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-1.5 rounded-md font-medium transition-colors ${
+                className={`px-2.5 xl:px-3 py-1.5 rounded-md font-medium transition-colors whitespace-nowrap ${
                   active
                     ? "text-cobalt-600 bg-cobalt-50/70 border border-cobalt-200/50"
                     : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/70"
@@ -88,7 +82,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
         </nav>
 
         {/* Right Action Buttons */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
           {/* Command Palette Trigger */}
           <button
             onClick={onOpenCommandPalette}
