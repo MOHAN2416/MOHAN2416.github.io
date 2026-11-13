@@ -37,7 +37,7 @@ export default function HomePage() {
             {CANDIDATE_PROFILE.name.split(" ").map((word, i) => (
               <motion.span
                 key={i}
-                initial={{ opacity: 0, y: 18 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.5,
@@ -53,7 +53,7 @@ export default function HomePage() {
 
           {/* Subtitle with Animated Gradient Shimmer */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.28 }}
           >
@@ -64,7 +64,7 @@ export default function HomePage() {
 
           {/* Bio Description */}
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35 }}
             className="text-lg sm:text-xl text-zinc-600 leading-relaxed font-sans max-w-4xl"
@@ -74,7 +74,7 @@ export default function HomePage() {
 
           {/* Action CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.42 }}
             className="flex flex-wrap items-center gap-3.5 pt-3"
