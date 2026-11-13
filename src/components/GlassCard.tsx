@@ -77,7 +77,7 @@ export function GlassCard({
           transformStyle: "preserve-3d",
           ...props.style,
         }}
-        className={`group relative rounded-2xl bg-white/35 backdrop-blur-2xl backdrop-saturate-[200%] border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_2px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(37,99,235,0.08),0_16px_36px_-8px_rgba(15,23,42,0.12),0_4px_12px_-2px_rgba(37,99,235,0.08)] hover:bg-white/45 hover:shadow-[inset_0_1px_2px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(37,99,235,0.12),0_24px_48px_-10px_rgba(15,23,42,0.16),0_6px_16px_-2px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300 overflow-hidden ${className}`}
+        className={`group relative rounded-2xl bg-white/35 backdrop-blur-2xl backdrop-saturate-[200%] border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_2px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(37,99,235,0.08),0_16px_36px_-8px_rgba(15,23,42,0.12),0_4px_12px_-2px_rgba(37,99,235,0.08)] hover:bg-white/45 hover:shadow-[inset_0_1px_2px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(37,99,235,0.12),0_24px_48px_-10px_rgba(15,23,42,0.16),0_6px_16px_-2px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full flex flex-col ${className}`}
         {...props}
       >
         {/* Layer 1: Diagonal Glossy Surface Sheen (Always Visible, Even Without Hover) */}
@@ -112,7 +112,7 @@ export function GlassCard({
         />
 
         {/* Layer 4: Inner Card Content */}
-        <div className="relative z-10 w-full h-full flex flex-col justify-between">
+        <div className="relative z-10 w-full h-full flex flex-col flex-1 justify-between">
           {children}
         </div>
       </motion.div>

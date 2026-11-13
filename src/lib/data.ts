@@ -341,13 +341,13 @@ export const PROJECTS: Project[] = [
     testsCount: "78 / 78 Tests",
     passRate: "100% Passing",
     latencyHeadline: "~800 ms Total Cold Auth",
-    techStack: ["C (pam_blink.so)", "Python 3.12", "ONNX Runtime (AVX2)", "YuNet", "ArcFace 512-d", "MiniFASNetV2", "OpenCV V4L2", "PySide6 HUD", "Systemd"],
+    techStack: ["C (pam_blink.so)", "Python 3.12", "ONNX Runtime", "PySide6 & V4L2", "YuNet", "ArcFace 512-d", "MiniFASNetV2", "Systemd"],
     summary:
-      "A biometric security suite that integrates directly with Linux PAM (Pluggable Authentication Modules) for sudo and GDM login, utilizing hardware-accelerated ONNX inference, 3-tier Presentation Attack Detection (PAD), and AES-256-GCM encrypted embedding vaults.",
+      "Native Linux biometric security suite integrating directly with PAM (sudo & GDM), combining AVX2-accelerated ONNX inference, 3-tier anti-spoofing (PAD), and AES-256-GCM encrypted embedding vaults.",
     cardMetrics: [
-      { label: "Auth Latency", value: "~800 ms", sub: "< 15 ms fail-safe fallback" },
-      { label: "Test Suite", value: "78 Passing Tests", sub: "Pytest + PAM harness" },
-      { label: "Security", value: "3-Tier PAD", sub: "ONNX + 2D FFT + AES-256-GCM" },
+      { label: "Auth Latency", value: "~800 ms", sub: "< 15 ms fallback" },
+      { label: "Test Suite", value: "78 Passing", sub: "Pytest + PAM" },
+      { label: "Security", value: "3-Tier PAD", sub: "ONNX + 2D FFT" },
     ],
     architectureHighlights: [
       "Native Linux pam_blink.so written in C communicating via UNIX domain sockets to an isolated daemon.",
@@ -897,7 +897,7 @@ export const ENGINEERING_PILLARS = [
     tagline: "Deterministic Local Agency",
     description:
       "Architecting AI agents that refuse hallucination through AST symbol indexing, strict permission-gated code synthesis proposals, and physical byte-level verification.",
-    featuredProjects: ["VIDURA (22.4k SLOC)", "NanoCoder (12.29M GPT)"],
+    featuredProjects: ["VIDURA (22.4k SLOC)", "NanoCoder (12.29M)"],
     color: "bg-blue-50 border-blue-200 text-blue-700",
   },
   {
@@ -906,7 +906,7 @@ export const ENGINEERING_PILLARS = [
     tagline: "Low-Latency PAM & Biometrics",
     description:
       "Writing native C Linux Pluggable Authentication Modules (PAM) and ONNX AVX2 pipelines that authenticate users in under 800ms with 3-tier presentation attack detection.",
-    featuredProjects: ["BLINK (C-PAM pam_blink.so)", "KavachAI (pHash & Crypto Logs)"],
+    featuredProjects: ["BLINK (pam_blink.so)", "KavachAI"],
     color: "bg-emerald-50 border-emerald-200 text-emerald-700",
   },
   {
@@ -915,7 +915,7 @@ export const ENGINEERING_PILLARS = [
     tagline: "Zero-Wrapper Architecture",
     description:
       "Implementing decoder-only autoregressive GPT Transformers directly in PyTorch with custom Byte-Level BPE tokenization and bfloat16 FlashAttention.",
-    featuredProjects: ["NanoCoder (PyTorch GPT)", "LiveAI Fine-Tuning"],
+    featuredProjects: ["NanoCoder (GPT)", "LiveAI Fine-Tuning"],
     color: "bg-purple-50 border-purple-200 text-purple-700",
   },
   {
@@ -924,7 +924,7 @@ export const ENGINEERING_PILLARS = [
     tagline: "Operations Research & Streaming",
     description:
       "Formulating mixed-integer linear programming (MILP) fleet schedules with the SciPy HiGHS solver and executing 10,000-run vectorized Monte Carlo risk engines.",
-    featuredProjects: ["VARUNA ($3.94/MT MAE)", "Clover CRM (SSE & Triggers)"],
+    featuredProjects: ["VARUNA (MILP)", "Clover CRM"],
     color: "bg-amber-50 border-amber-200 text-amber-700",
   },
 ];

@@ -125,8 +125,8 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {ENGINEERING_PILLARS.map((pillar, idx) => (
-            <GlassCard key={idx} index={idx}>
-              <div className="p-8 sm:p-9 space-y-6 flex flex-col justify-between h-full">
+            <GlassCard key={idx} index={idx} className="h-full flex flex-col">
+              <div className="p-8 sm:p-9 flex flex-col h-full flex-1 justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="p-3 rounded-xl bg-white/45 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)]">
@@ -147,9 +147,9 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-zinc-200/50 flex items-center justify-between text-xs font-mono text-zinc-600">
+                <div className="mt-auto pt-4 border-t border-zinc-200/50 flex items-center justify-between text-xs font-mono text-zinc-600">
                   <span className="font-semibold text-zinc-800">Implementations:</span>
-                  <span className="text-cobalt-600 font-medium">{pillar.featuredProjects.join(" · ")}</span>
+                  <span className="text-cobalt-600 font-medium whitespace-nowrap">{pillar.featuredProjects.join(" · ")}</span>
                 </div>
               </div>
             </GlassCard>
@@ -183,8 +183,8 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {featuredProjects.map((project, idx) => (
-            <GlassCard key={project.id} index={idx} data-cursor="view">
-              <div className="p-7 sm:p-8 space-y-5">
+            <GlassCard key={project.id} index={idx} data-cursor="view" className="h-full flex flex-col">
+              <div className="p-7 sm:p-8 flex flex-col flex-1">
                 <div className="flex items-center justify-between">
                   <span className="px-3 py-1 rounded-lg text-[11px] font-mono font-medium bg-white/45 backdrop-blur-md text-zinc-900 border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_1px_rgba(255,255,255,0.95)]">
                     {project.badge}
@@ -200,53 +200,56 @@ export default function HomePage() {
                   </a>
                 </div>
 
-                <div>
+                <div className="mt-4">
                   <h3 className="text-2xl font-bold font-heading text-zinc-900">
                     {project.title}
                   </h3>
                   <div className="text-xs font-mono text-cobalt-600 font-semibold mt-1 leading-snug">
                     {project.tagline}
                   </div>
-                  <p className="text-sm text-slate-800 mt-3 leading-relaxed font-sans">
+                  <p className="text-sm text-slate-800 mt-3 leading-relaxed font-sans min-h-[5rem]">
                     {project.summary}
                   </p>
                 </div>
 
-                {/* 3 Authentic Empirical Metrics in Frosted Glass Boxes */}
-                <div className="grid grid-cols-3 gap-2.5 pt-1 font-mono text-xs">
-                  {project.cardMetrics.map((m, mIdx) => (
-                    <div
-                      key={mIdx}
-                      className="p-3 rounded-xl bg-white/40 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] flex flex-col justify-between"
-                    >
-                      <div className="text-[10px] text-zinc-500 uppercase tracking-tight font-semibold">
-                        {m.label}
+                {/* BOTTOM BLOCK: Wrap in mt-auto pt-5 container for perfect baseline alignment */}
+                <div className="mt-auto pt-5 space-y-4">
+                  {/* 3 Authentic Empirical Metrics in Recessed Frosted Sub-Glass Boxes */}
+                  <div className="grid grid-cols-3 gap-2.5 font-mono text-xs">
+                    {project.cardMetrics.map((m, mIdx) => (
+                      <div
+                        key={mIdx}
+                        className="p-3 rounded-xl bg-white/35 backdrop-blur-md border border-white/75 shadow-[inset_0_1px_1px_rgba(255,255,255,0.85)] flex flex-col justify-between"
+                      >
+                        <div className="text-[10px] text-zinc-500 uppercase tracking-tight font-semibold">
+                          {m.label}
+                        </div>
+                        <div className="font-bold text-zinc-950 mt-1 text-xs leading-tight">
+                          {m.value}
+                        </div>
+                        <div className="text-[10px] text-zinc-600 mt-0.5 leading-tight truncate">
+                          {m.sub}
+                        </div>
                       </div>
-                      <div className="font-bold text-zinc-950 mt-1 text-xs leading-tight">
-                        {m.value}
-                      </div>
-                      <div className="text-[10px] text-zinc-600 mt-0.5 leading-tight">
-                        {m.sub}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
 
-                {/* Tech Chips */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {project.techStack.slice(0, 4).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-white/40 backdrop-blur-md text-slate-800 border-t border-l border-white/85 border-r border-b border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  {/* Tech Chips */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.techStack.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-white/40 backdrop-blur-md text-slate-800 border-t border-l border-white/85 border-r border-b border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Bottom Actions Bar */}
-              <div className="p-4 sm:p-5 bg-white/25 backdrop-blur-md border-t border-white/60 flex items-center justify-between">
+              <div className="mt-auto p-4 sm:p-5 bg-white/25 backdrop-blur-md border-t border-white/60 flex items-center justify-between">
                 <Link
                   href={`/projects/${project.slug}`}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-cobalt-600 hover:text-cobalt-700"

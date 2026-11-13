@@ -73,9 +73,9 @@ export default function ProjectsDirectoryPage() {
             key={project.id}
             index={idx}
             data-cursor="view"
-            className="flex flex-col justify-between h-full"
+            className="h-full flex flex-col"
           >
-            <div className="p-7 sm:p-8 space-y-5">
+            <div className="p-7 sm:p-8 flex flex-col flex-1">
               {/* Category & GitHub Icon */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -100,53 +100,56 @@ export default function ProjectsDirectoryPage() {
               </div>
 
               {/* Title & Tagline */}
-              <div>
+              <div className="mt-4">
                 <h2 className="text-2xl font-bold font-heading text-zinc-900">
                   {project.title}
                 </h2>
                 <div className="text-xs font-mono font-semibold text-cobalt-600 mt-1">
                   {project.tagline}
                 </div>
-                <p className="text-xs sm:text-sm text-slate-800 font-sans mt-3 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-800 font-sans mt-3 leading-relaxed min-h-[5rem]">
                   {project.summary}
                 </p>
               </div>
 
-              {/* Top 3 Verified Benchmark Badges */}
-              <div className="grid grid-cols-3 gap-2.5 pt-1 text-xs font-mono">
-                {project.cardMetrics.map((m, mIdx) => (
-                  <div
-                    key={mIdx}
-                    className="p-3 rounded-xl bg-white/40 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] flex flex-col justify-between"
-                  >
-                    <div className="text-[10px] text-zinc-500 uppercase tracking-tight font-semibold">
-                      {m.label}
+              {/* BOTTOM BLOCK: Wrap in mt-auto pt-5 container so all metrics, chips, and links align */}
+              <div className="mt-auto pt-5 space-y-4">
+                {/* Top 3 Verified Benchmark Badges in Recessed Frosted Sub-Glass Boxes */}
+                <div className="grid grid-cols-3 gap-2.5 text-xs font-mono">
+                  {project.cardMetrics.map((m, mIdx) => (
+                    <div
+                      key={mIdx}
+                      className="p-3 rounded-xl bg-white/35 backdrop-blur-md border border-white/75 shadow-[inset_0_1px_1px_rgba(255,255,255,0.85)] flex flex-col justify-between"
+                    >
+                      <div className="text-[10px] text-zinc-500 uppercase tracking-tight font-semibold">
+                        {m.label}
+                      </div>
+                      <div className="font-bold text-zinc-950 mt-1 text-xs leading-tight">
+                        {m.value}
+                      </div>
+                      <div className="text-[10px] text-zinc-600 mt-0.5 leading-tight truncate">
+                        {m.sub}
+                      </div>
                     </div>
-                    <div className="font-bold text-zinc-950 mt-1 text-xs leading-tight">
-                      {m.value}
-                    </div>
-                    <div className="text-[10px] text-zinc-600 mt-0.5 leading-tight">
-                      {m.sub}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              {/* Tech Stack Chips */}
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-white/40 backdrop-blur-md text-slate-800 border-t border-l border-white/85 border-r border-b border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                {/* Tech Stack Chips (concise 4 pills) */}
+                <div className="flex flex-wrap gap-1.5">
+                  {project.techStack.slice(0, 4).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-white/40 backdrop-blur-md text-slate-800 border-t border-l border-white/85 border-r border-b border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Bottom Actions Bar */}
-            <div className="p-4 sm:p-5 bg-white/25 backdrop-blur-md border-t border-white/60 flex items-center justify-between">
+            <div className="mt-auto p-4 sm:p-5 bg-white/25 backdrop-blur-md border-t border-white/60 flex items-center justify-between">
               <Link
                 href={`/playground?tab=${project.demoType}`}
                 className="text-xs font-mono text-zinc-700 hover:text-zinc-950 transition-colors px-2.5 py-1 rounded-md bg-white/40 hover:bg-white/60 border-t border-l border-white/80 border-r border-b border-white/40 shadow-xs"

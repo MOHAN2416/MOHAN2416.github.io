@@ -175,11 +175,14 @@ export function InteractiveBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none bg-gradient-to-br from-[#DCE6F7] via-[#E4E9F8] to-[#D8E8F0]">
-      {/* 5 High-Contrast Translucent Color Ribbons & Orbs (blur-[95px], opacity-85) */}
+      {/* Ambient Gradient Mesh Refraction Ribbon */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#93C5FD]/45 via-[#A5B4FC]/40 to-[#6EE7B7]/35 blur-[90px] opacity-70 pointer-events-none" />
+
+      {/* 5 High-Contrast Translucent Color Ribbons & Orbs (blur-[90px], enriched vibrancy) */}
 
       {/* 1. Vibrant Glacial Cyan (#7DD3FC) at top-left */}
       <motion.div
-        className="absolute -top-[5%] left-[5%] w-[520px] h-[520px] rounded-full bg-[#7DD3FC] blur-[95px] opacity-85 pointer-events-none"
+        className="absolute -top-[5%] left-[5%] w-[540px] h-[540px] rounded-full bg-gradient-to-br from-[#7DD3FC] via-[#38BDF8] to-[#93C5FD] blur-[90px] opacity-90 pointer-events-none"
         animate={{
           x: [0, 40, -30, 0],
           y: [0, -35, 25, 0],
@@ -194,7 +197,7 @@ export function InteractiveBackground() {
 
       {/* 2. Rich Periwinkle Cobalt (#93C5FD / #818CF8) at top-right */}
       <motion.div
-        className="absolute top-[10%] right-[8%] w-[580px] h-[580px] rounded-full bg-gradient-to-br from-[#93C5FD] to-[#818CF8] blur-[95px] opacity-85 pointer-events-none"
+        className="absolute top-[8%] right-[8%] w-[580px] h-[580px] rounded-full bg-gradient-to-br from-[#93C5FD] via-[#818CF8] to-[#A5B4FC] blur-[90px] opacity-90 pointer-events-none"
         animate={{
           x: [0, -45, 30, 0],
           y: [0, 35, -30, 0],
@@ -209,7 +212,7 @@ export function InteractiveBackground() {
 
       {/* 3. Luminous Mint Emerald (#6EE7B7) at center-left */}
       <motion.div
-        className="absolute top-[42%] left-[12%] w-[500px] h-[500px] rounded-full bg-[#6EE7B7] blur-[95px] opacity-85 pointer-events-none"
+        className="absolute top-[40%] left-[10%] w-[520px] h-[520px] rounded-full bg-gradient-to-br from-[#6EE7B7] via-[#34D399] to-[#7DD3FC] blur-[90px] opacity-85 pointer-events-none"
         animate={{
           x: [0, 35, -40, 0],
           y: [0, -30, 40, 0],
@@ -224,7 +227,7 @@ export function InteractiveBackground() {
 
       {/* 4. Soft Violet Orchid (#C4B5FD) at center-right */}
       <motion.div
-        className="absolute top-[55%] right-[10%] w-[540px] h-[540px] rounded-full bg-[#C4B5FD] blur-[95px] opacity-85 pointer-events-none"
+        className="absolute top-[52%] right-[8%] w-[550px] h-[550px] rounded-full bg-gradient-to-br from-[#C4B5FD] via-[#A78BFA] to-[#93C5FD] blur-[90px] opacity-90 pointer-events-none"
         animate={{
           x: [0, -35, 35, 0],
           y: [0, 40, -25, 0],
@@ -239,7 +242,7 @@ export function InteractiveBackground() {
 
       {/* 5. Sky Azure (#60A5FA) at bottom-center */}
       <motion.div
-        className="absolute bottom-[5%] left-[30%] w-[600px] h-[450px] rounded-full bg-[#60A5FA] blur-[95px] opacity-85 pointer-events-none"
+        className="absolute bottom-[5%] left-[28%] w-[620px] h-[460px] rounded-full bg-gradient-to-br from-[#60A5FA] via-[#818CF8] to-[#6EE7B7] blur-[90px] opacity-85 pointer-events-none"
         animate={{
           x: [0, 45, -35, 0],
           y: [0, -25, 35, 0],
@@ -252,13 +255,13 @@ export function InteractiveBackground() {
         }}
       />
 
-      {/* Crisp Architectural Technical Blueprint Grid (48px lines in rgba(37, 99, 235, 0.08)) */}
+      {/* Crisp Architectural Technical Blueprint Grid (48px lines in rgba(37, 99, 235, 0.11)) */}
       <div
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px)
+            linear-gradient(to right, rgba(37, 99, 235, 0.11) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(37, 99, 235, 0.11) 1px, transparent 1px)
           `,
           backgroundSize: "48px 48px",
         }}
