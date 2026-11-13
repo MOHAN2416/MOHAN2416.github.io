@@ -74,10 +74,10 @@ ${CANDIDATE_PROFILE.summary}
             <a
               href="/Mutyala_Mohan_Surendra_Resume.pdf"
               download="Mutyala_Mohan_Surendra_Resume.pdf"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-mono shadow-xs transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-mono font-medium shadow-xs transition-all cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Download Official PDF</span>
+              <span>Download Official PDF (/Mutyala_Mohan_Surendra_Resume.pdf)</span>
             </a>
 
             <button

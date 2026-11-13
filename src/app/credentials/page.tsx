@@ -157,9 +157,9 @@ export default function CredentialsPage() {
                 </div>
 
                 <div className="pt-2 flex items-center justify-between border-t border-zinc-100 text-xs font-medium text-cobalt-600">
-                  <span className="inline-flex items-center gap-1 group-hover:underline">
+                  <span className="inline-flex items-center gap-1.5 font-semibold group-hover:underline">
                     <Eye className="w-3.5 h-3.5" />
-                    <span>Preview Document</span>
+                    <span>Preview Certificate</span>
                   </span>
                   <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-cobalt-600 transition-colors" />
                 </div>
@@ -197,11 +197,11 @@ export default function CredentialsPage() {
               </button>
             </div>
 
-            {/* Document Viewer Frame */}
+            {/* Document Viewer Frame with Fallback Card */}
             {selectedCert.filePath ? (
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
-                  <span>Document Preview:</span>
+                  <span>Certificate Preview:</span>
                   <a
                     href={selectedCert.filePath}
                     download
@@ -229,7 +229,19 @@ export default function CredentialsPage() {
                   )}
                 </div>
               </div>
-            ) : null}
+            ) : (
+              <div className="p-8 rounded-xl border border-dashed border-zinc-300 bg-zinc-50 text-center space-y-3 font-sans">
+                <div className="w-12 h-12 rounded-full bg-cobalt-50 text-cobalt-600 flex items-center justify-center mx-auto">
+                  <Award className="w-6 h-6" />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="font-bold text-sm text-zinc-900">{selectedCert.title}</h4>
+                  <p className="text-xs text-zinc-500 max-w-md mx-auto">
+                    Verified electronic credential issued by {selectedCert.issuer}. Official authenticated record is verifiable on the portal below.
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Details & Verification Actions */}
             <div className="space-y-3.5 text-xs text-zinc-700 pt-1">
