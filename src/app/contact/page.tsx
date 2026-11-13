@@ -365,7 +365,7 @@ export default function ContactPage() {
 
                 <div className="pt-2 flex items-center justify-between">
                   <span className="text-[11px] font-mono text-zinc-400">
-                    Direct SQLite &amp; Memory Logging
+                    Validated &amp; Serverless Ready
                   </span>
                   <button
                     type="submit"

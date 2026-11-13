@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-[#DCE6F7] text-zinc-900 scroll-smooth">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#DCE6F7] text-slate-800 min-h-screen bg-gradient-to-br from-[#DCE6F7] via-[#E4E9F8] to-[#D8E8F0]`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#DCE6F7] text-slate-800 min-h-screen bg-gradient-to-br from-[#DCE6F7] via-[#E4E9F8] to-[#D8E8F0] overflow-x-hidden`}
       >
         <GlobalShell>{children}</GlobalShell>
       </body>

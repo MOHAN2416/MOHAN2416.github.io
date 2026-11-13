@@ -272,6 +272,56 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Optional LLM enhancement if key is provided in environment
+    if (process.env.GEMINI_API_KEY) {
+      try {
+        const geminiRes = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [
+                {
+                  role: "user",
+                  parts: [
+                    {
+                      text: `You are Mohan's AI Assistant for his developer portfolio. Answer in clear, plain everyday English. Ground your answers strictly in his verified projects (VIDURA: 22,423 SLOC offline agent, 456 tests; NanoCoder: 12.29M PyTorch model; BLINK: ~800ms Linux face unlock; VARUNA: 177ms freight route planner; KavachAI: tamper-proof monitor; Clover CRM: sales hub).
+
+User Query: ${query}`
+                    }
+                  ]
+                }
+              ],
+              generationConfig: { maxOutputTokens: 400, temperature: 0.2 },
+            }),
+            signal: AbortSignal.timeout(4000),
+          }
+        );
+
+        if (geminiRes.ok) {
+          const geminiData = await geminiRes.json();
+          const generatedText = geminiData.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (generatedText && generatedText.trim().length > 20) {
+            return NextResponse.json({
+              answer: generatedText.trim(),
+              category: bestMatch ? bestMatch.category : "AI Assistant",
+              relevantProjects: bestMatch?.generateAnswer().relevantProjects || ["vidura", "blink"],
+              suggestedQuestions: bestMatch?.generateAnswer().suggestedQuestions || [
+                "How does VIDURA keep code running safely offline?",
+                "How does BLINK log into Linux using your face in ~800 ms?",
+                "Tell me about Mohan's LiveAI internship.",
+              ],
+              timestamp: new Date().toISOString(),
+              confidence: 0.99,
+            });
+          }
+        }
+      } catch {
+        // Seamless fallback to deterministic answers
+      }
+    }
+
     if (!bestMatch) {
       return NextResponse.json({
         answer: `Hello! I am **Mohan's AI Assistant**. I can answer any questions about his projects, skills, education, and internship experience.

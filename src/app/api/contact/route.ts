@@ -64,6 +64,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
+        status: "received",
         receiptId,
         timestamp: new Date().toISOString(),
         message: "Your message has been sent successfully. Mohan will get back to you shortly.",
