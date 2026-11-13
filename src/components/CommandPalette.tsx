@@ -27,7 +27,7 @@ interface CommandPaletteProps {
 
 interface CommandItem {
   id: string;
-  category: "Projects" | "Interactive Labs" | "Quick Actions" | "Navigation";
+  category: "Projects" | "Live Demos" | "Quick Actions" | "Navigation";
   title: string;
   subtitle: string;
   badge?: string;
@@ -55,24 +55,24 @@ export function CommandPalette({ isOpen, onClose, onOpenResume }: CommandPalette
     {
       id: "nav-home",
       category: "Navigation",
-      title: "Overview & Systems Architecture",
-      subtitle: "Executive summary, 4 engineering pillars, and flagship metrics",
+      title: "Home",
+      subtitle: "Overview, engineering focus areas, and key projects",
       icon: <Layers className="w-4 h-4 text-cobalt-600" />,
       action: () => router.push("/"),
     },
     {
       id: "nav-projects",
       category: "Navigation",
-      title: "All 6 Production Projects",
-      subtitle: "Filterable directory with verified empirical benchmarks",
+      title: "All Projects",
+      subtitle: "Browse all 6 projects with case studies and code",
       icon: <Layers className="w-4 h-4 text-cobalt-600" />,
       action: () => router.push("/projects"),
     },
     {
       id: "nav-playground",
       category: "Navigation",
-      title: "Interactive Systems Playground",
-      subtitle: "Hands-on browser simulators for all 6 architectures",
+      title: "Live Demos",
+      subtitle: "Interactive project simulations running in your browser",
       icon: <Terminal className="w-4 h-4 text-cobalt-600" />,
       action: () => router.push("/playground"),
     },
@@ -80,23 +80,23 @@ export function CommandPalette({ isOpen, onClose, onOpenResume }: CommandPalette
       id: "nav-experience",
       category: "Navigation",
       title: "Experience & Education",
-      subtitle: "LiveAI internship, B.Tech coursework, and 1st place hackathon",
+      subtitle: "LiveAI internship, university studies, and national hackathon win",
       icon: <GraduationCap className="w-4 h-4 text-cobalt-600" />,
       action: () => router.push("/experience"),
     },
     {
       id: "nav-credentials",
       category: "Navigation",
-      title: "Verified Credentials & Skills Matrix",
-      subtitle: "8 verified certificates and technical skills taxonomy",
+      title: "Skills & Certificates",
+      subtitle: "Technical skills and verified course certifications",
       icon: <Award className="w-4 h-4 text-cobalt-600" />,
       action: () => router.push("/credentials"),
     },
     {
       id: "nav-contact",
       category: "Navigation",
-      title: "Recruiter Transmission & Contact",
-      subtitle: "Schedule technical interview and direct channels",
+      title: "Get in Touch",
+      subtitle: "Send a message or find direct email and phone info",
       icon: <Mail className="w-4 h-4 text-cobalt-600" />,
       action: () => router.push("/contact"),
     },
@@ -112,12 +112,12 @@ export function CommandPalette({ isOpen, onClose, onOpenResume }: CommandPalette
       action: () => router.push(`/projects/${project.slug}`),
     })),
 
-    // 6 Interactive Labs
+    // 6 Live Demos
     ...PROJECTS.map((project) => ({
       id: `lab-${project.demoType}`,
-      category: "Interactive Labs" as const,
-      title: `${project.title} Interactive Sandbox`,
-      subtitle: `Simulate ${project.badge} runtime in browser`,
+      category: "Live Demos" as const,
+      title: `${project.title} Live Demo`,
+      subtitle: `Try ${project.title} right in your browser`,
       badge: project.demoType,
       icon: <Terminal className="w-4 h-4 text-emerald-600" />,
       action: () => router.push(`/playground?tab=${project.demoType}`),
@@ -244,7 +244,7 @@ export function CommandPalette({ isOpen, onClose, onOpenResume }: CommandPalette
               setQuery(e.target.value);
               setSelectedIndex(0);
             }}
-            placeholder="Search projects, labs, actions, or routes... (Type to filter)"
+            placeholder="Search projects, demos, actions, or pages... (Type to filter)"
             className="w-full bg-transparent text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none font-sans"
           />
           {query ? (
@@ -276,7 +276,7 @@ export function CommandPalette({ isOpen, onClose, onOpenResume }: CommandPalette
           {filteredItems.length === 0 ? (
             <div className="p-8 text-center text-xs text-zinc-500 space-y-1">
               <p>No matching commands found for &quot;{query}&quot;</p>
-              <p className="text-[11px] text-zinc-400 font-mono">Try searching for &quot;vidura&quot;, &quot;resume&quot;, &quot;lab&quot;, or &quot;c++&quot;</p>
+              <p className="text-[11px] text-zinc-400 font-mono">Try searching for &quot;vidura&quot;, &quot;resume&quot;, &quot;demo&quot;, or &quot;python&quot;</p>
             </div>
           ) : (
             filteredItems.map((item, idx) => {

@@ -48,7 +48,7 @@ export function VarunaSimDemo() {
               <Ship className="w-4 h-4" />
             </span>
             <h4 className="text-base font-bold font-heading text-zinc-900">
-              VARUNA MILP Fleet Scheduler &amp; 10k Monte Carlo Risk Estimator
+              VARUNA Shipping Cost Predictor &amp; Route Risk Estimator
             </h4>
           </div>
           <p className="text-xs text-zinc-500 mt-0.5 font-mono">

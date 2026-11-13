@@ -102,7 +102,7 @@ export function NanoCoderDemo() {
               <Cpu className="w-4 h-4" />
             </span>
             <h4 className="text-base font-bold font-heading text-zinc-900">
-              NanoCoder 12.29M Transformer Autoregressive Token Lab
+              NanoCoder 12.29M AI Model Code Generation Lab
             </h4>
           </div>
           <p className="text-xs text-zinc-500 mt-0.5 font-mono">

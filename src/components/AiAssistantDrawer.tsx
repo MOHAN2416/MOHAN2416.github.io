@@ -16,14 +16,14 @@ interface Message {
 const INITIAL_MESSAGES: Message[] = [
   {
     role: "assistant",
-    text: `Hello! I am **Mohan's Autonomous AI Twin**, pre-loaded with comprehensive technical knowledge of his 6 engineering repositories, systems architectures, measured benchmarks, and academic coursework.
+    text: `Hi! I am **Mohan's AI Assistant**. I can answer any questions about his 6 projects, technical skills, coursework, and internship experience.
 
-How can I assist in evaluating Mohan for your engineering team?`,
+How can I help you learn more about Mohan?`,
     suggestedQuestions: [
-      "Why hire Mohan for an AI Systems role?",
-      "How does VIDURA prevent unauthorized code execution?",
-      "Explain BLINK's 3-tier presentation attack detection.",
-      "Walk me through the VARUNA MILP & Monte Carlo pipeline.",
+      "Why should we hire Mohan for software or AI roles?",
+      "How does VIDURA keep code running safely offline?",
+      "How does BLINK stop photo spoofing during face login?",
+      "How does VARUNA find the best shipping routes and costs?",
     ],
     timestamp: "Now",
   },
@@ -85,7 +85,7 @@ export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
       console.error(err);
       const errorMessage: Message = {
         role: "assistant",
-        text: "I encountered a transient error querying Mohan's knowledge base. Please select one of the suggested prompts or query about VIDURA, BLINK, or VARUNA directly.",
+        text: "Sorry, I ran into an issue finding that information. Please try one of the suggested questions below or ask about projects like VIDURA, BLINK, or VARUNA directly.",
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -110,7 +110,7 @@ export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-emerald" />
             </div>
             <div className="text-[11px] text-zinc-500 font-sans">
-              Deterministic Knowledge Base &middot; 6 Repos
+              Portfolio Assistant &middot; 6 Projects &amp; Work
             </div>
           </div>
         </div>
@@ -201,7 +201,7 @@ export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
         {isLoading && (
           <div className="flex items-center gap-2 text-xs font-mono text-cobalt-600 p-2">
             <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-            <span>Retrieving verified architectural specifications...</span>
+            <span>Finding details from Mohan&apos;s portfolio...</span>
           </div>
         )}
         <div ref={messagesEndRef} />
@@ -220,7 +220,7 @@ export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
             type="text"
             value={inputQuery}
             onChange={(e) => setInputQuery(e.target.value)}
-            placeholder="Ask about VIDURA AST, BLINK PAM, VARUNA MILP, or LiveAI..."
+            placeholder="Ask about Mohan's projects, skills, or experience..."
             className="flex-1 px-3.5 py-2 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder-zinc-400 text-xs font-sans focus:outline-none focus:border-cobalt-500 focus:bg-white transition-colors"
           />
           <button

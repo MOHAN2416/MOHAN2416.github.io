@@ -16,28 +16,28 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mutyala Mohan Surendra | AI Systems Engineer & Full-Stack Developer",
+  title: "Mutyala Mohan Surendra | Software & AI Developer",
   description:
-    "Engineering portfolio and case studies of Mutyala Mohan Surendra (Amrita Vishwa Vidyapeetham, Chennai). Deterministic local-first AI agents, Linux biometric security, PyTorch Transformers from scratch, and MILP operations research.",
+    "Portfolio of Mutyala Mohan Surendra (Amrita Vishwa Vidyapeetham, Chennai). Building practical software—offline AI coding helpers, instant Linux face-unlock security, and lightweight tools that run without cloud servers.",
   keywords: [
     "Mutyala Mohan Surendra",
     "Mohan Surendra",
-    "AI Systems Engineer",
-    "Deep Learning Researcher",
+    "Software Developer",
+    "AI Developer",
     "Full-Stack Developer",
-    "VIDURA Agent",
-    "BLINK Linux PAM",
-    "VARUNA Maritime MILP",
-    "NanoCoder PyTorch Transformer",
+    "VIDURA AI",
+    "BLINK Linux Face Unlock",
+    "VARUNA Ship Route Planner",
+    "NanoCoder PyTorch",
     "Amrita Vishwa Vidyapeetham",
     "FLASH National Hackathon Winner",
   ],
   authors: [{ name: "Mutyala Mohan Surendra" }],
   creator: "Mutyala Mohan Surendra",
   openGraph: {
-    title: "Mutyala Mohan Surendra | AI Systems Engineer & Full-Stack Developer",
+    title: "Mutyala Mohan Surendra | Software & AI Developer",
     description:
-      "Deterministic local-first AI agents, low-latency Linux biometric security systems, from-scratch PyTorch Transformers, and explainable quantitative decision engines.",
+      "Building practical, reliable software—including offline AI coding helpers, instant face-unlock security for Linux laptops, and lightweight tools that run without expensive cloud servers.",
     type: "website",
     locale: "en_US",
   },

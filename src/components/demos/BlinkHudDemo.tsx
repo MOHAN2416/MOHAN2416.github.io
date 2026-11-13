@@ -12,11 +12,11 @@ interface PipelineStageState {
 }
 
 const INITIAL_STAGES: PipelineStageState[] = [
-  { name: "Camera Acquisition (V4L2)", expectedMs: 110, status: "idle", details: "Frame capture from sensor stream" },
-  { name: "Face Detection (YuNet ONNX)", expectedMs: 32, status: "idle", details: "AVX2 SIMD bounding box extraction" },
-  { name: "Presentation Attack Detection", expectedMs: 48, status: "idle", details: "MiniFASNetV2 + 2D FFT Moiré spectrum" },
-  { name: "Feature Extraction (ArcFace)", expectedMs: 65, status: "idle", details: "512-d float32 normalized embedding" },
-  { name: "Vault Cosine Matching", expectedMs: 2, status: "idle", details: "AES-256-GCM encrypted database match" },
+  { name: "Camera Acquisition (V4L2)", expectedMs: 110, status: "idle", details: "Snaps image from sensor (~110 ms)" },
+  { name: "Face Detection (YuNet ONNX)", expectedMs: 32, status: "idle", details: "Locates face in camera frame (~32 ms)" },
+  { name: "Presentation Attack Detection", expectedMs: 48, status: "idle", details: "Checks for real face vs. screen or photo spoof (~48 ms)" },
+  { name: "Feature Extraction (ArcFace)", expectedMs: 65, status: "idle", details: "Extracts facial feature measurements (~65 ms)" },
+  { name: "Vault Cosine Matching", expectedMs: 2, status: "idle", details: "Matches features against encrypted profile (< 2 ms)" },
 ];
 
 export function BlinkHudDemo() {
@@ -85,7 +85,7 @@ export function BlinkHudDemo() {
               <Eye className="w-4 h-4" />
             </span>
             <h4 className="text-base font-bold font-heading text-zinc-900">
-              BLINK Linux PAM Sensor &amp; Anti-Spoofing Pipeline
+              BLINK Linux Face Login &amp; Fake-Face Defense Simulator
             </h4>
           </div>
           <p className="text-xs text-zinc-500 mt-0.5 font-mono">

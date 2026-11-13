@@ -66,7 +66,7 @@ export function KavachAuditDemo() {
               <Shield className="w-4 h-4" />
             </span>
             <h4 className="text-base font-bold font-heading text-zinc-900">
-              KavachAI Perceptual Hashing &amp; Cryptographic Audit Ledger
+              KavachAI Website Change &amp; Tamper-Proof Audit Monitor
             </h4>
           </div>
           <p className="text-xs text-zinc-500 mt-0.5 font-mono">

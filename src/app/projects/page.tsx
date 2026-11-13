@@ -41,10 +41,10 @@ export default function ProjectsDirectoryPage() {
 
         <div className="space-y-2">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-zinc-900 tracking-tight">
-            Production Engineering Showcase
+            Featured Projects Showcase
           </h1>
           <p className="text-sm sm:text-base text-zinc-600 max-w-4xl font-sans">
-            Deep-dive case studies for all 6 production systems. Each project is backed by verified automated test suites, measured physical hardware latency, and public open-source repositories.
+            Explore all 6 projects with interactive simulations, verified test results, and public open-source repositories on GitHub.
           </p>
         </div>
 
@@ -154,14 +154,14 @@ export default function ProjectsDirectoryPage() {
                 href={`/playground?tab=${project.demoType}`}
                 className="text-xs font-mono text-zinc-700 hover:text-zinc-950 transition-colors px-2.5 py-1 rounded-md bg-white/40 hover:bg-white/60 border-t border-l border-white/80 border-r border-b border-white/40 shadow-xs"
               >
-                Test in Playground &rarr;
+                Try Live Demo &rarr;
               </Link>
 
               <Link
                 href={`/projects/${project.slug}`}
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-cobalt-600 hover:bg-cobalt-700 text-white text-xs font-semibold shadow-[0_2px_8px_-2px_rgba(37,99,235,0.35)] transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span>Open Case Study</span>
+                <span>Read Case Study</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

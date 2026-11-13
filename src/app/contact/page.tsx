@@ -106,10 +106,10 @@ export default function ContactPage() {
 
         <div className="space-y-2">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-zinc-900 tracking-tight">
-            Recruiter Inquiry &amp; Technical Interview Scheduling
+            Get in Touch
           </h1>
           <p className="text-sm sm:text-base text-zinc-600 max-w-4xl font-sans">
-            Available for 2026 / 2027 AI Systems, Deep Learning, and Full-Stack Engineering Internships &amp; Roles. Transmissions are validated, acknowledged with receipt codes, and stored securely.
+            Looking for a software or AI intern for 2026 / 2027? Send a message below or reach out directly by email, phone, or LinkedIn.
           </p>
         </div>
       </div>
@@ -121,10 +121,10 @@ export default function ContactPage() {
           <GlassCard className="p-7 sm:p-8 space-y-6">
             <div>
               <h2 className="text-lg font-bold font-heading text-zinc-900">
-                Direct Channels
+                Direct Contact Channels
               </h2>
               <p className="text-xs text-zinc-500 mt-1">
-                Reach out directly via email, LinkedIn, phone, or schedule a technical discussion.
+                Reach out directly via email, phone, LinkedIn, or send a message using the form.
               </p>
             </div>
 
@@ -231,10 +231,10 @@ export default function ContactPage() {
             <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200/80 text-xs font-sans text-emerald-900 space-y-1 shadow-xs">
               <div className="font-bold flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>2026 / 2027 Engagement Scope</span>
+                <span>Internship Availability</span>
               </div>
               <p className="text-xs text-zinc-600 leading-relaxed">
-                Available for 2026 / 2027 AI Systems, Deep Learning, and Full-Stack Engineering Internships &amp; Roles.
+                Open to 2026 / 2027 Software and AI Engineering Internships &amp; Roles.
               </p>
             </div>
           </GlassCard>
@@ -246,7 +246,7 @@ export default function ContactPage() {
             <div className="flex items-center justify-between pb-3 border-b border-zinc-200">
               <div className="text-xs font-mono font-semibold text-zinc-900 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-600 pulse-emerald" />
-                <span>Recruiter Transmission Terminal</span>
+                <span>Send a Message</span>
               </div>
               <span className="text-[11px] font-mono text-zinc-400">POST /api/contact</span>
             </div>

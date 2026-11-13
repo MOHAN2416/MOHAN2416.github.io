@@ -33,15 +33,15 @@ export default function CredentialsPage() {
         <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
           <Link href="/" className="hover:text-cobalt-600 transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-zinc-900 font-medium">Credentials &amp; Skills</span>
+          <span className="text-zinc-900 font-medium">Skills &amp; Certificates</span>
         </div>
 
         <div className="space-y-2">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-zinc-900 tracking-tight">
-            Verified Credentials &amp; Technical Skills Matrix
+            Skills &amp; Certificates
           </h1>
           <p className="text-sm sm:text-base text-zinc-600 max-w-4xl font-sans">
-            Formal certifications and competency verifications covering C/C++ systems engineering, GPU language model fine-tuning, competitive algorithms, and full-stack software architecture.
+            Programming languages, AI tools, and verified course and internship certificates.
           </p>
         </div>
       </div>
@@ -50,10 +50,10 @@ export default function CredentialsPage() {
       <section className="space-y-6">
         <div className="space-y-1 border-b border-zinc-200/60 pb-3">
           <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900">
-            Categorized Technical Skills Matrix
+            Technical Skills Matrix
           </h2>
           <p className="text-xs sm:text-sm text-zinc-500 font-sans">
-            Core toolsets, frameworks, compilers, and hardware targets utilized across production systems.
+            Programming languages, AI frameworks, databases, and developer tools used across my projects.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export default function CredentialsPage() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-zinc-200/60 pb-4">
           <div className="space-y-1">
             <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900">
-              Verified Certifications Vault
+              Certifications &amp; Coursework
             </h2>
             <p className="text-xs sm:text-sm text-zinc-500 font-sans">
               Click any certificate card or &quot;Preview Document&quot; to inspect authentic issuance documents and validated credentials.

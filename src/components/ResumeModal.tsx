@@ -50,10 +50,10 @@ ${CANDIDATE_PROFILE.summary}
 ---
 
 ## FLAGSHIP PROJECTS
-1. **VIDURA** (https://github.com/MOHAN2416/VIDURA): Deterministic local-first self-developing AI assistant. 22,423 SLOC, 456/456 tests passing in 6.57s.
-2. **NanoCoder** (https://github.com/MOHAN2416/NanoCoder): 12.29M-parameter decoder-only GPT transformer built from scratch in PyTorch with FlashAttention. 21.48 ms/token CPU inference.
-3. **BLINK** (https://github.com/MOHAN2416/BLINK): Native C-PAM Linux biometric auth for Ubuntu 26.04. ~800ms cold auth, 3-tier presentation attack detection.
-4. **VARUNA** (https://github.com/MOHAN2416/VARUNA): Maritime freight forecasting & HiGHS MILP fleet scheduler with 10k Monte Carlo engine. $3.94/MT MAE, 176.99ms pipeline.
+1. **VIDURA** (https://github.com/MOHAN2416/VIDURA): Safe offline AI coding assistant. 22,423 lines of code, 456/456 tests passing in 6.57s.
+2. **NanoCoder** (https://github.com/MOHAN2416/NanoCoder): 12.29M-parameter AI coding model built from scratch in PyTorch. 21.48 ms/token CPU speed.
+3. **BLINK** (https://github.com/MOHAN2416/BLINK): Fast face login for Linux with photo-spoofing defense. ~800ms login, 78 tests passing.
+4. **VARUNA** (https://github.com/MOHAN2416/VARUNA): Maritime shipping cost predictor and route planner with 10k-scenario risk tests. 177ms pipeline, 273 tests passing.
 `;
     navigator.clipboard.writeText(md);
     setCopied(true);
@@ -199,7 +199,7 @@ ${CANDIDATE_PROFILE.summary}
                 🏆 Winner (1st Place out of 97 Teams) — FLASH National Hackathon (2024)
               </div>
               <p className="text-zinc-700">
-                Architected and deployed PillPal medication adherence and prescription tracking platform under 36-hour hackathon deadlines, ranking 1st among 97 competing engineering teams nationwide.
+                Built PillPal, a medicine reminder and automatic prescription reader app in 36 hours, winning 1st place out of 97 university teams across India.
               </p>
             </div>
           </div>
@@ -207,7 +207,7 @@ ${CANDIDATE_PROFILE.summary}
           {/* Flagship Projects Highlights */}
           <div className="space-y-2.5">
             <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-cobalt-700">
-              Core Production Repositories
+              Key Projects
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
               {PROJECTS.map((p) => (
@@ -243,7 +243,7 @@ ${CANDIDATE_PROFILE.summary}
 
         {/* Footer */}
         <div className="px-6 py-3 bg-zinc-50 border-t border-zinc-200 flex items-center justify-between text-xs font-mono text-zinc-500">
-          <span>Targeting: AI Systems Engineer, Deep Learning Researcher, Full-Stack Architect</span>
+          <span>Targeting: Software Engineer, AI Developer, Full-Stack Developer Internships &amp; Roles</span>
           <button
             onClick={onClose}
             className="text-zinc-600 hover:text-zinc-900 font-medium cursor-pointer"

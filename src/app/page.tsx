@@ -69,7 +69,7 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.35 }}
             className="text-lg sm:text-xl text-zinc-600 leading-relaxed font-sans max-w-4xl"
           >
-            B.Tech Computer Science student at Amrita Vishwa Vidyapeetham (Chennai) building deterministic local-first LLM agents, low-latency Linux biometric authentication systems, and from-scratch PyTorch Transformers.
+            Computer Science student at Amrita Vishwa Vidyapeetham (Chennai). I build practical, reliable software—including offline AI coding helpers, instant face-unlock security for Linux laptops, and lightweight tools that run without expensive cloud servers.
           </motion.p>
 
           {/* Action CTAs */}
@@ -83,7 +83,7 @@ export default function HomePage() {
               href="/projects"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-cobalt-600 hover:bg-cobalt-700 text-white font-semibold text-sm shadow-[0_4px_14px_-2px_rgba(37,99,235,0.45)] transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              <span>Explore Engineering Projects</span>
+              <span>See My Projects</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 
@@ -92,7 +92,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/70 hover:bg-white/90 backdrop-blur-md text-zinc-800 font-mono text-sm border border-white/90 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_2px_8px_-2px_rgba(15,23,42,0.06)] transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               <Terminal className="w-4 h-4 text-cobalt-600" />
-              <span>Launch Interactive Labs</span>
+              <span>Try Live Demos</span>
             </Link>
 
             <a
@@ -109,17 +109,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. 4 CORE ENGINEERING PILLARS (SPACIOUS 2-COLUMN GRID WITH 3D GLASS TILT & ROOMY P-8) */}
+      {/* 2. WHAT I BUILD / CORE FOCUS AREAS */}
       <section className="w-full max-w-[1640px] mx-auto px-5 sm:px-8 lg:px-12 space-y-8">
         <div className="space-y-1 border-b border-zinc-200/60 pb-4">
           <div className="text-xs font-mono uppercase tracking-wider text-cobalt-600 font-bold">
-            Systems Architecture
+            WHAT I BUILD
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-heading text-zinc-900">
-            Core Engineering Pillars
+            Core Focus Areas
           </h2>
           <p className="text-sm sm:text-base text-zinc-600 max-w-3xl font-sans">
-            Spanning low-level Linux C PAM kernel hooks, mixed-integer linear programming, and deep learning models implemented from raw tensor math.
+            From fast face-login security and offline AI helpers to smart web apps that solve everyday problems.
           </p>
         </div>
 
@@ -148,7 +148,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="mt-auto pt-4 border-t border-zinc-200/50 flex items-center justify-between text-xs font-mono text-zinc-600">
-                  <span className="font-semibold text-zinc-800">Implementations:</span>
+                  <span className="font-semibold text-zinc-800">Built in:</span>
                   <span className="text-cobalt-600 font-medium whitespace-nowrap">{pillar.featuredProjects.join(" · ")}</span>
                 </div>
               </div>
@@ -157,18 +157,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. FEATURED FLAGSHIP PROJECTS (WIDE 3-COLUMN GRID WITH FROSTED GLASS & P-7 PADDING) */}
+      {/* 3. FEATURED PROJECTS */}
       <section className="w-full max-w-[1640px] mx-auto px-5 sm:px-8 lg:px-12 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-zinc-200/60 pb-4">
           <div className="space-y-1">
             <div className="text-xs font-mono uppercase tracking-wider text-cobalt-600 font-bold">
-              Production Showcase
+              FEATURED WORK
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-heading text-zinc-900">
-              Featured Flagship Projects
+              Featured Projects
             </h2>
             <p className="text-sm sm:text-base text-zinc-600 font-sans">
-              Selected systems built with uncompromising verification and empirical benchmarks.
+              Real-world software built with clean architecture, tested reliability, and measured performance.
             </p>
           </div>
 
@@ -254,7 +254,7 @@ export default function HomePage() {
                   href={`/projects/${project.slug}`}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-cobalt-600 hover:text-cobalt-700"
                 >
-                  <span>Case Study</span>
+                  <span>Read Case Study</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
 
@@ -263,7 +263,7 @@ export default function HomePage() {
                   className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-700 hover:text-zinc-950 px-2.5 py-1 rounded-md bg-white/40 hover:bg-white/60 border-t border-l border-white/80 border-r border-b border-white/40 shadow-xs"
                 >
                   <Terminal className="w-3 h-3 text-cobalt-600" />
-                  <span>Sandbox</span>
+                  <span>Live Demo</span>
                 </Link>
               </div>
             </GlassCard>
@@ -281,10 +281,10 @@ export default function HomePage() {
                 <span>National Hackathon Winner &amp; AI Industry Experience</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold font-heading text-zinc-900">
-                Proven Execution: 1st Place / 97 Teams &amp; LiveAI LLM Fine-Tuning
+                1st Place in National Hackathon &amp; AI Model Training Experience
               </h3>
               <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-sans">
-                Awarded 1st place in the FLASH National Hackathon for the PillPal medication platform. Experience fine-tuning Llama and Mistral LLMs using Hugging Face PEFT/LoRA on GPU clusters.
+                Won 1st place among 97 engineering teams in the FLASH National Hackathon for our healthcare platform. Experience fine-tuning open-source AI models like Llama and Mistral on cloud GPU clusters.
               </p>
             </div>
 
@@ -292,7 +292,7 @@ export default function HomePage() {
               href="/experience"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-mono font-semibold shadow-[0_4px_14px_-2px_rgba(15,23,42,0.35)] shrink-0 self-start md:self-center transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              <span>View Experience &amp; Honors</span>
+              <span>See Experience &amp; Awards</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

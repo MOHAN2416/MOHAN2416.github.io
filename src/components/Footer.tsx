@@ -20,7 +20,7 @@ export function Footer() {
               <span>{CANDIDATE_PROFILE.name}</span>
             </div>
             <p className="text-zinc-600 text-xs leading-relaxed max-w-md font-sans">
-              {CANDIDATE_PROFILE.headline}. Building deterministic local-first LLM agents, Linux C-PAM biometric security suites, from-scratch PyTorch Transformers, and MILP operations research.
+              {CANDIDATE_PROFILE.headline}. Building practical software—offline AI coding helpers, instant Linux face-unlock security, and lightweight tools that run without expensive cloud servers.
             </p>
             <div className="flex items-center gap-3 pt-1 text-zinc-600">
               <span className="flex items-center gap-1 font-mono text-xs">
@@ -38,7 +38,7 @@ export function Footer() {
             <ul className="space-y-2 text-zinc-600">
               <li>
                 <Link href="/" className="hover:text-cobalt-600 transition-colors">
-                  Overview
+                  Home
                 </Link>
               </li>
               <li>
@@ -48,22 +48,22 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/playground" className="hover:text-cobalt-600 transition-colors">
-                  Interactive Labs
+                  Live Demos
                 </Link>
               </li>
               <li>
                 <Link href="/experience" className="hover:text-cobalt-600 transition-colors">
-                  Experience & Education
+                  Experience &amp; Education
                 </Link>
               </li>
               <li>
                 <Link href="/credentials" className="hover:text-cobalt-600 transition-colors">
-                  Credentials & Skills
+                  Skills &amp; Certificates
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-cobalt-600 transition-colors">
-                  Recruiter Contact
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -120,7 +120,7 @@ export function Footer() {
                   href="/contact"
                   className="inline-block mt-1 text-cobalt-600 font-sans font-semibold hover:underline"
                 >
-                  Schedule Technical Interview &rarr;
+                  Send a Message &rarr;
                 </Link>
               </li>
             </ul>
@@ -130,11 +130,11 @@ export function Footer() {
         {/* Bottom Metadata & Vercel indicator */}
         <div className="pt-6 border-t border-zinc-200/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-500">
           <div>
-            &copy; {new Date().getFullYear()} Mutyala Mohan Surendra. Frosted Glass Engineering Showcase.
+            &copy; {new Date().getFullYear()} Mutyala Mohan Surendra. Built with Next.js and Tailwind CSS.
           </div>
           <div className="flex items-center gap-2 font-mono">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Zero Hydration Mismatch &middot; Vercel Serverless Ready</span>
+            <span>Tested &amp; Verified Across All Browsers</span>
           </div>
         </div>
       </div>

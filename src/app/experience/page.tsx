@@ -19,10 +19,10 @@ export default function ExperienceEducationPage() {
 
         <div className="space-y-2">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-zinc-900 tracking-tight">
-            Track Record &amp; Academic Credentials
+            Experience &amp; Education
           </h1>
           <p className="text-sm sm:text-base text-zinc-600 max-w-4xl font-sans">
-            Hands-on industry fine-tuning of open-source language models, a national 1st-place hackathon win out of 97 teams, and rigorous computer science coursework at Amrita Vishwa Vidyapeetham.
+            Hands-on AI internship experience, a 1st-place national hackathon win, and Computer Science studies at Amrita Vishwa Vidyapeetham.
           </p>
         </div>
       </div>
@@ -43,7 +43,7 @@ export default function ExperienceEducationPage() {
                 Winner (1st Place among 97 Teams) — FLASH National Hackathon
               </h2>
               <p className="text-sm text-zinc-700 max-w-3xl font-sans leading-relaxed">
-                Conceptualized, architected, and shipped <strong>PillPal</strong>—a full-stack medication adherence and automated prescription parsing platform under high-pressure 36-hour hackathon deadlines. Outperformed 96 competing university engineering teams nationwide on code architecture, deterministic parsing, and UX execution.
+                Built and launched <strong>PillPal</strong>—a medication reminder and prescription reading platform under a 36-hour deadline. Won 1st place overall out of 97 university teams nationwide for clean software design and user experience.
               </p>
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function ExperienceEducationPage() {
           <div className="p-2 rounded-xl bg-cobalt-50 text-cobalt-700 border border-cobalt-200/80 shadow-xs">
             <Briefcase className="w-5 h-5" />
           </div>
-          <h2>Professional Industry Experience</h2>
+          <h2>Professional Experience</h2>
         </div>
 
         <div className="space-y-6">
@@ -126,7 +126,7 @@ export default function ExperienceEducationPage() {
           <div className="p-2 rounded-xl bg-purple-50 text-purple-700 border border-purple-200/80 shadow-xs">
             <GraduationCap className="w-5 h-5" />
           </div>
-          <h2>Academic Foundation</h2>
+          <h2>Education &amp; Studies</h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

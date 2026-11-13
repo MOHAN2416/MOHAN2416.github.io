@@ -15,42 +15,42 @@ const LAB_TABS = [
   {
     id: "vidura-cli",
     title: "1. VIDURA CLI",
-    subtitle: "Permission-Gated Agent",
+    subtitle: "Safe AI Coding",
     icon: Terminal,
     color: "text-cobalt-600",
   },
   {
     id: "blink-hud",
-    title: "2. BLINK Biometrics",
-    subtitle: "Dual RGB/IR Failover",
+    title: "2. BLINK Unlock",
+    subtitle: "Face Login Demo",
     icon: Eye,
     color: "text-emerald-600",
   },
   {
     id: "varuna-sim",
-    title: "3. VARUNA Voyage & Risk",
-    subtitle: "MILP & 10k Monte Carlo",
+    title: "3. VARUNA Planner",
+    subtitle: "Ship Cost & Routes",
     icon: Ship,
     color: "text-amber-600",
   },
   {
     id: "nanocoder-lab",
     title: "4. NanoCoder Lab",
-    subtitle: "12.29M Transformer",
+    subtitle: "Offline AI Model",
     icon: Cpu,
     color: "text-purple-600",
   },
   {
     id: "kavach-audit",
-    title: "5. KavachAI Integrity",
-    subtitle: "Perceptual Hash Audit",
+    title: "5. KavachAI Monitor",
+    subtitle: "Website Security Scan",
     icon: Shield,
     color: "text-teal-600",
   },
   {
     id: "clover-stream",
     title: "6. Clover CRM",
-    subtitle: "SSE Token Streamer",
+    subtitle: "Live AI Email Writer",
     icon: Database,
     color: "text-emerald-600",
   },
@@ -94,15 +94,15 @@ function PlaygroundContent() {
         <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
           <Link href="/" className="hover:text-cobalt-600 transition-colors">Home</Link>
           <span>/</span>
-          <span className="text-zinc-900 font-medium">Interactive Labs</span>
+          <span className="text-zinc-900 font-medium">Live Demos</span>
         </div>
 
         <div className="space-y-2">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-zinc-900 tracking-tight">
-            Interactive Architecture Labs
+            Live Project Demos
           </h1>
           <p className="text-sm sm:text-base text-zinc-600 max-w-4xl font-sans">
-            Test-drive live browser simulations of Mohan&apos;s systems without installing runtime dependencies: permission-gated code generation, dual-sensor biometric failover, and maritime voyage optimization.
+            Test interactive simulations of my projects right in your browser—no installation or setup required.
           </p>
         </div>
 
@@ -142,10 +142,10 @@ function PlaygroundContent() {
       {/* Simulator Frame */}
       <div className="space-y-4">
         <div className="flex items-center justify-between text-xs font-mono text-zinc-500 px-1">
-          <span>Active Sandbox Environment &middot; Browser Execution</span>
+          <span>Interactive Simulation &middot; Runs directly in browser</span>
           <span className="text-emerald-700 font-semibold flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-emerald" />
-            Deterministic Mode
+            Live Simulation
           </span>
         </div>
 

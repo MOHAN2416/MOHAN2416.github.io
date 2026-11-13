@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         success: true,
         receiptId,
         timestamp: new Date().toISOString(),
-        message: "Your inquiry has been securely recorded. Mohan will respond promptly to discuss engineering opportunities.",
+        message: "Your message has been sent successfully. Mohan will get back to you shortly.",
       },
       { status: 201 }
     );

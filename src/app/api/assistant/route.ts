@@ -15,111 +15,112 @@ const KNOWLEDGE_BASE: KnowledgeMatch[] = [
     patterns: [/\b(vidura|ast|code proposal|self-develop|permission gate|5-tier)\b/i],
     category: "VIDURA Agent",
     generateAnswer: () => ({
-      answer: `### VIDURA — Local-First Self-Developing AI Assistant
+      answer: `### VIDURA — Offline AI Coding Assistant
 
-**VIDURA** is Mohan's flagship autonomous agent embodying deterministic engineering discipline over stochastic code generation:
+**VIDURA** is an AI coding assistant that runs completely on your own computer without sending your code or secrets to the cloud:
 
-* **AST Symbol Resolution:** Rather than passing unstructured text, VIDURA parses Python \`ast\` to index **1,433 unique symbols** (175 classes, 445 functions, 602 methods) across 98 modules with **45.44 ms** hybrid RAG retrieval latency.
-* **5-Tier Model Router:** Routes queries deterministically starting with local models (\`gemma4:e4b-it-qat\`) with real-time regex secret redaction before any cloud fallback.
-* **Permission Gate (\`CodeChangeProposal\`):** Code is never executed directly. Proposed diffs require an explicit \`/approve\` human authorization gate.
-* **Byte-for-Byte Disk Parity & Pytest Sandbox:** Following any approved change, the system performs a physical SHA-256 byte-level disk verification, AST syntax check, and triggers a sandboxed **456 / 456 automated test suite** running in **6.57s** (100% pass rate).
-* **Codebase Scale:** **22,423 total SLOC** (13,951 source + 8,472 test lines).
+* **Understands Real Code Structure:** Instead of guessing from raw text, VIDURA maps out Python functions, classes, and methods directly so it knows exactly how your project fits together.
+* **Smart Model Choice:** It runs small, fast local models first, and automatically hides sensitive API keys and passwords before ever talking to the cloud.
+* **Safety First (Approval Gate):** It never changes or runs code behind your back. Every edit is shown as an easy-to-read proposal that you must review and approve first.
+* **Automated Safety Checks:** Once approved, it verifies every file and automatically runs all 456 project tests in under 7 seconds to guarantee nothing broke.
+* **Project Scale:** Built with **22,423 lines of code** across 98 Python files.
 
-You can test-drive VIDURA in the **Interactive Labs** on \`/playground\`!`,
+Try it out in the **Live Demos** on \`/playground\`!`,
       relevantProjects: ["vidura"],
       suggestedQuestions: [
-        "How does BLINK's Linux PAM biometric authentication work?",
-        "Explain VARUNA's MILP fleet scheduler & Monte Carlo engine.",
-        "What did Mohan do during his LiveAI internship?",
+        "How does BLINK's Linux face login work?",
+        "Explain VARUNA's shipping route and cost planner.",
+        "What did Mohan work on during his LiveAI internship?",
       ],
     }),
   },
   {
     patterns: [/\b(blink|biometric|face|pam|linux|camera|ir|onnx|fasnet|arcface|anti-spoof)\b/i],
-    category: "BLINK Biometric Suite",
+    category: "BLINK Face Login",
     generateAnswer: () => ({
-      answer: `### BLINK — Native C-PAM Linux Biometric Facial Authentication
+      answer: `### BLINK — Fast Face Login for Linux
 
-**BLINK** replaces passwords on Ubuntu 26.04 LTS (\`sudo\` and GDM login) with sub-second biometric verification:
+**BLINK** lets Linux users log in and run system commands using their face instead of typing passwords:
 
-* **Native C-PAM Module:** Implemented in C as \`pam_blink.so\`, communicating over non-blocking UNIX domain sockets to an isolated daemon with a guaranteed **< 15 ms fallback** to password prompt if the daemon is offline.
-* **Sub-Second Hardware Pipeline (~800 ms total cold cycle):**
-  1. *Camera Acquisition (V4L2):* **~110 ms** (640x480 RGB or 640x360 IR)
-  2. *Face Detection (YuNet ONNX):* **~32 ms**
-  3. *Presentation Attack Detection (PAD):* **~48 ms** (MiniFASNetV2 + 2D FFT Moiré frequency analysis + blink tracking)
-  4. *Feature Extraction (ArcFace 512-d):* **~65 ms**
-  5. *Vault Cosine Matching:* **< 2 ms**
-* **Dynamic Zero-Light IR Failover:** When ambient luminance drops below **35**, the daemon automatically transitions from \`/dev/video0\` (RGB) to \`/dev/video2\` (Zero-Light Infrared).
-* **Cryptographic Vault:** Stored templates are **AES-256-GCM encrypted** 512-d float vectors—zero raw facial images are ever written to disk.
-* **Reliability:** **78 / 78 passing tests** covering PAM sandboxes and attack vectors.`,
+* **Works with Linux System Logins:** Plugs directly into standard Linux login screens (GDM) and terminal commands (\`sudo\`). If the camera is unavailable, it instantly switches back to normal password login in less than 15 milliseconds.
+* **Fast Face Unlock (~800 ms total cycle):**
+  1. *Camera Capture:* Opens camera and snaps an image (~110 ms)
+  2. *Finds Your Face:* Locates your face in the frame (~32 ms)
+  3. *Stops Fake Faces:* Checks if you are a real person instead of a phone screen or printed photo (~48 ms)
+  4. *Checks Identity:* Matches your face features against your profile (~65 ms)
+  5. *Instant Unlock:* Confirms match in under 2 ms
+* **Works in the Dark:** If the room is dark, it switches automatically to an infrared camera.
+* **Safe & Private:** Never saves raw photos to disk. It only stores encrypted math numbers using military-grade AES-256 encryption.
+* **Tested & Reliable:** Covered by **78 automated tests** checking security and fake-face detection.`,
       relevantProjects: ["blink"],
       suggestedQuestions: [
-        "How does VIDURA enforce deterministic code generation?",
-        "Tell me about the 10,000 Monte Carlo simulations in VARUNA.",
-        "What is Mohan's educational background and CGPA?",
+        "How does VIDURA keep code running safely offline?",
+        "Tell me about the shipping route simulator in VARUNA.",
+        "What is Mohan's educational background?",
       ],
     }),
   },
   {
     patterns: [/\b(varuna|maritime|freight|milp|highs|monte carlo|var|cvar|coal|hay point)\b/i],
-    category: "VARUNA Decision Engine",
+    category: "VARUNA Shipping Planner",
     generateAnswer: () => ({
-      answer: `### VARUNA — Maritime Freight Forecasting & MILP Decision-Support System
+      answer: `### VARUNA — Shipping Cost Predictor & Route Planner
 
-**VARUNA** is an offline-first maritime decision engine uniting quantitative economics with operations research:
+**VARUNA** helps maritime shipping companies find the cheapest cargo routes and manage fuel price risks:
 
-* **ML Rate Forecasting:** Ridge regression model delivering **$3.94 / MT Test MAE** (8.52% sMAPE, 89.42% out-of-sample empirical residual coverage).
-* **Mean 176.99 ms End-to-End Decision Pipeline:**
-  * Feasibility filtering: **1.06 ms**
-  * Ridge ML Rate inference: **9.87 ms**
-  * HiGHS Mixed-Integer Linear Programming (MILP) solver: **128.73 ms** (assigns optimal vessel from 200 candidates)
-  * Vectorized 10,000 Monte Carlo risk simulation: **36.57 ms**
-  * Governance & Pydantic validation: **0.76 ms**
-* **Risk Engine:** Computes 95% Value-at-Risk (**$2,438,207**) and 95% Conditional VaR (**$2,453,868**) across bunker fuel and demurrage volatility.
-* **Global Scale:** Pre-loaded with **3,630 ports**, **200 vessels**, and **9 trade corridors** with **273 automated tests** (254 Pytest + 19 Vitest).`,
+* **Predicts Freight Rates:** Uses machine learning to forecast shipping costs accurately across major global trade routes.
+* **Instant Decision Pipeline (~177 ms):**
+  * Checks route feasibility in ~1 ms.
+  * Predicts market rates in ~10 ms.
+  * Tests 200 candidate ships to pick the single most profitable vessel in ~128 ms.
+  * Runs 10,000 what-if scenarios in ~37 ms to check fuel price and delay risks.
+* **Risk Management:** Estimates the worst-case financial losses so charterers know their maximum budget risk before booking.
+* **Global Scale:** Pre-loaded with **3,630 ports**, **200 cargo vessels**, and **9 international trade corridors**, backed by **273 automated tests**.`,
       relevantProjects: ["varuna"],
       suggestedQuestions: [
-        "Tell me about NanoCoder 12.29M Transformer built from scratch.",
-        "Why is Mohan a strong candidate for an AI Systems Engineer role?",
-        "What did Mohan build for the FLASH National Hackathon?",
+        "Tell me about NanoCoder, the small AI model built from scratch.",
+        "Why should we hire Mohan for software or AI engineering roles?",
+        "What did Mohan build to win the FLASH National Hackathon?",
       ],
     }),
   },
   {
     patterns: [/\b(nanocoder|transformer|gpt|bfloat16|flashattention|pytorch|bpe|from scratch)\b/i],
-    category: "NanoCoder GPT",
+    category: "NanoCoder AI Model",
     generateAnswer: () => ({
-      answer: `### NanoCoder — 12.29M-Parameter GPT Transformer From Scratch
+      answer: `### NanoCoder — Lightweight Code AI Model Built from Scratch
 
-**NanoCoder** is a decoder-only autoregressive language model built directly in PyTorch without high-level wrappers:
+**NanoCoder** is a compact AI coding model built from the ground up using PyTorch without relying on pre-built libraries:
 
-* **Architecture:** 12.29M parameters across **6 layers, 6 causal heads, 384 embedding dimension**, and a **256 context window**.
-* **Modern Attention:** Implemented with PyTorch \`scaled_dot_product_attention\` (FlashAttention) with **bfloat16** mixed precision.
-* **Custom Tokenizer:** Trained a custom **4,096-token Byte-Level BPE** tokenizer tailored for code syntax.
-* **Inference Speed:** **21.48 ms / token** on standard laptop CPU (~**46.6 tokens/sec** throughput).
-* **Validation:** Trained on an NVIDIA T4 GPU reducing cross-entropy loss from **8.3789 to 2.0731**, achieving **60.0% Bash syntax validity** (\`bash -n\`) and **45.0% Python AST validity** (\`ast.parse\`).`,
+* **Compact Architecture:** 12.29 million parameters across 6 transformer layers and a 256-word context window.
+* **Modern AI Tech:** Uses FlashAttention and mixed-precision math so it trains faster and uses minimal memory.
+* **Custom Vocabulary:** Trained with a custom 4,096-token vocabulary designed specifically for programming languages like Python and Bash.
+* **Fast on Normal Laptops:** Generates code at **21.48 ms per token** (~46 tokens per second) directly on a regular computer processor without needing a dedicated graphics card.
+* **Tested on Real Code:** Generates syntactically correct Bash commands 60% of the time and valid Python code 45% of the time.`,
       relevantProjects: ["nanocoder"],
       suggestedQuestions: [
-        "How does VIDURA compare with standard LLM coding agents?",
+        "How does VIDURA keep code safe while running offline?",
         "Tell me about Mohan's LiveAI internship.",
-        "What are Mohan's contact details?",
+        "How can I contact Mohan?",
       ],
     }),
   },
   {
     patterns: [/\b(kavach|kavachai|defacement|phash|ssrf|audit log|tamper|cryptographic)\b/i],
-    category: "KavachAI Integrity Monitor",
+    category: "KavachAI Website Monitor",
     generateAnswer: () => ({
-      answer: `### KavachAI — Continuous Web Asset Integrity & Tamper-Evident Monitor
+      answer: `### KavachAI — Website Security & Defacement Monitor
 
-* **Perceptual Image Hashing:** Leverages Playwright headless capture and pHash algorithms to detect visual defacements regardless of subtle pixel anti-aliasing differences.
-* **Cryptographic Audit Chaining:** Events are linked using **SHA-256 hash chains** (\`prev_hash\`), ensuring audit records cannot be altered retroactively without detection.
-* **Strict SSRF Mitigation:** Protects internal cloud infrastructures by blacklisting RFC 1918 private subnets and cloud metadata endpoints (\`169.254.169.254\`).
-* **Stack:** Node.js 20 LTS, TypeScript, Express, React SPA, Playwright, SQLite, Docker, with 54 passing automated tests.`,
+**KavachAI** watches websites continuously to alert administrators if a site gets hacked, defaced, or altered:
+
+* **Visual Comparison:** Takes screenshots of web pages and uses visual image hashing to detect unauthorized design or content changes even if pixels shift slightly.
+* **Tamper-Proof Audit History:** Links every event log using cryptographic SHA-256 chains, making it impossible for attackers to secretly modify past logs.
+* **Network Attack Protection:** Blocks requests to private networks and internal cloud metadata so attackers cannot use the monitor to snoop on internal servers.
+* **Stack:** Built with Node.js, TypeScript, Express, React, Playwright, SQLite, and Docker, with **54 passing automated tests**.`,
       relevantProjects: ["kavachai"],
       suggestedQuestions: [
-        "How does Clover CRM implement local AI streaming?",
-        "What is Mohan's experience with Linux C programming?",
+        "How does Clover CRM stream AI suggestions in real time?",
+        "What is Mohan's experience with C and Linux programming?",
         "Can I download Mohan's resume?",
       ],
     }),
@@ -128,17 +129,19 @@ You can test-drive VIDURA in the **Interactive Labs** on \`/playground\`!`,
     patterns: [/\b(clover|crm|mysql|trigger|sse|qwen|multi-tenant)\b/i],
     category: "Clover CRM",
     generateAnswer: () => ({
-      answer: `### Clover CRM — Multi-Tenant Hub with MySQL Triggers & Local AI Streaming
+      answer: `### Clover CRM — Multi-Company Sales Hub with Live AI Assistant
 
-* **Local AI Streaming:** Real-time Server-Sent Events (SSE) token streaming from local **Qwen 2.5 3B** instances with < 25 ms chunk latency.
-* **Native Database Triggers:** Utilizes native MySQL \`AFTER INSERT/UPDATE/DELETE\` triggers for zero-overhead immutable compliance auditing.
-* **Multi-Tenant Security:** Row-level organization partitioning, Werkzeug PBKDF2 password hashing, and background connection pool watchdog.
-* **Test Suite:** 62 / 62 automated tests covering auth, tenant isolation, and streaming resilience.`,
+**Clover CRM** is a customer relationship manager with built-in live AI assistance:
+
+* **Live AI Email & Note Drafting:** Streams AI responses word-by-word in real time (under 25 ms per chunk) using a local 3-billion-parameter model to help draft customer follow-ups quickly.
+* **Automatic Audit Tracking:** Uses native database triggers inside MySQL to automatically record every change to contacts and deals with zero speed penalty.
+* **Company Data Separation:** Ensures each business's data is strictly isolated with row-level security and strong password encryption.
+* **Tested & Reliable:** Covered by **62 automated tests** for authentication, security, and live AI streaming.`,
       relevantProjects: ["clover-crm"],
       suggestedQuestions: [
-        "Tell me about Mohan's work at LiveAI.",
+        "Tell me about Mohan's AI internship at LiveAI.",
         "What is Mohan's educational background?",
-        "What awards or hackathons has Mohan won?",
+        "What awards has Mohan won?",
       ],
     }),
   },
@@ -146,17 +149,17 @@ You can test-drive VIDURA in the **Interactive Labs** on \`/playground\`!`,
     patterns: [/\b(liveai|internship|lora|peft|fine-tuning|mistral|llama|sft|gpu)\b/i],
     category: "LiveAI Internship",
     generateAnswer: () => ({
-      answer: `### AI Research & Engineering Internship @ LiveAI (02/2025 – 04/2025)
+      answer: `### AI Research & Engineering Internship @ LiveAI (Feb 2025 – Apr 2025)
 
-At **LiveAI**, Mohan worked on production fine-tuning pipelines for open-source Large Language Models:
+During his internship at **LiveAI**, Mohan trained and fine-tuned open-source AI language models:
 
-* **Parameter-Efficient Fine-Tuning (PEFT & LoRA):** Conducted experiments fine-tuning **Llama 3** and **Mistral** on domain-specific corpora using Google Colab & GPU runtimes, cutting active training VRAM requirements by over 60%.
-* **GPU Pipeline Engineering:** Constructed end-to-end tokenization, dataset preparation, and supervised fine-tuning (SFT) workflows on GPU runtimes.
-* **Evaluation & Benchmarking:** Monitored training loss convergence, evaluation perplexity, and structured JSON tool-call adherence.`,
+* **Efficient Model Fine-Tuning:** Fine-tuned **Llama 3** and **Mistral** models on specialized datasets using techniques that cut GPU memory usage by over 60%.
+* **Automated Data Pipelines:** Built automated workflows on GPUs to clean, format, and tokenize datasets for AI training.
+* **Quality & Accuracy Checks:** Monitored training progress to ensure the models followed instructions accurately and produced clean, structured outputs.`,
       suggestedQuestions: [
-        "What is Mohan's background and education?",
-        "Tell me about Mohan's hackathon win.",
-        "How can I contact Mohan for an interview?",
+        "What is Mohan's background and college education?",
+        "Tell me about Mohan's national hackathon win.",
+        "How can I contact Mohan?",
       ],
     }),
   },
@@ -168,32 +171,32 @@ At **LiveAI**, Mohan worked on production fine-tuning pipelines for open-source 
 
 * **Amrita Vishwa Vidyapeetham, Chennai, India**
   * **Degree:** B.Tech in Computer Science and Engineering (2nd Year, 2024–2028)
-  * **Academic Standing:** CGPA: **7.02 / 10.0**
-  * **Key Coursework:** Machine Learning, Deep Learning, Natural Language Processing, Operating Systems, Computer Networks, Database Management Systems (DBMS), Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), Cloud Computing, Robotics (ROS2).
+  * **Grade:** CGPA: **7.02 / 10.0**
+  * **Key Subjects:** Machine Learning, Deep Learning, Natural Language Processing, Operating Systems, Computer Networks, Databases (DBMS), Data Structures & Algorithms, Object-Oriented Programming, Cloud Computing, and Robotics.
 * **Sri Chaitanya Junior College, Hyderabad, India**
-  * **Class XII (MPC, 2023–2024):** Aggregate **88.7%**`,
+  * **High School (Math, Physics, Chemistry, 2023–2024):** **88.7%**`,
       suggestedQuestions: [
-        "Tell me about the FLASH National Hackathon 1st place win.",
-        "What certifications does Mohan have?",
-        "What roles is Mohan targeting?",
+        "Tell me about the 1st place national hackathon win.",
+        "What certificates has Mohan earned?",
+        "What types of roles is Mohan looking for?",
       ],
     }),
   },
   {
     patterns: [/\b(hackathon|flash|winner|award|competition|tantrotsav|pillpal)\b/i],
-    category: "Hackathon & Honors",
+    category: "Hackathons & Awards",
     generateAnswer: () => ({
-      answer: `### Hackathon Achievements & Honors
+      answer: `### Hackathon Achievements & Awards
 
-* 🏆 **Winner (1st Place among 97 Teams) — FLASH National Hackathon (2024):**
-  * Conceptualized and built **PillPal**, a full-stack medication adherence and automated prescription parsing platform under tight 36-hour hackathon deadlines.
-  * Outranked 96 other university engineering teams nationwide based on code architecture, real-time UX, and technical execution.
+* 🏆 **1st Place Winner (out of 97 Teams) — FLASH National Hackathon (2024):**
+  * Designed and built **PillPal**, a medicine reminder and automatic prescription reader app within a tight 36-hour deadline.
+  * Ranked #1 out of 97 university teams across India for reliable code architecture, clean user experience, and practical real-world impact.
 * 🎖️ **Tantrotsav Technical Fest Recognition:**
-  * Honored at Amrita Vishwa Vidyapeetham for high-performance algorithm implementation and systems problem solving.`,
+  * Recognized at Amrita Vishwa Vidyapeetham for fast problem solving and algorithms.`,
       suggestedQuestions: [
-        "Show me Mohan's verified certifications.",
+        "What certifications does Mohan have?",
         "Why should our team hire Mohan?",
-        "What projects demonstrate his systems programming skills?",
+        "What projects show his systems programming skills?",
       ],
     }),
   },
@@ -203,21 +206,21 @@ At **LiveAI**, Mohan worked on production fine-tuning pipelines for open-source 
     generateAnswer: () => ({
       answer: `### Why Hire Mutyala Mohan Surendra?
 
-1. **Rare Full-Spectrum Systems Depth:** Unlike typical web developers or theoretical ML practitioners, Mohan codes across the entire abstraction hierarchy:
-   * **Low-Level Systems:** Native Linux C PAM modules (\`pam_blink.so\`), V4L2 kernel sensor streams, POSIX IPC, and AVX2 SIMD acceleration.
-   * **Deep Learning From Scratch:** Custom 12.29M PyTorch GPT Transformer, Byte-Level BPE tokenizer, and FlashAttention without wrapper libraries.
-   * **Autonomous Agents & Verification:** Deterministic Python AST parsing, 5-tier local model routing, and \`CodeChangeProposal\` permission gates in **VIDURA** (22.4k SLOC, 456 tests).
-   * **Quantitative Optimization:** SciPy HiGHS MILP fleet solvers and 10,000-iteration Monte Carlo risk simulation in **VARUNA**.
-2. **Empirical Verification Mindset:**
-   * **807+ automated tests** with 100% pass rates across his repositories.
-   * Measured microsecond and millisecond hardware latency profiles on real devices.
-3. **Proven Execution Under Pressure:**
-   * Ranked **1st Place out of 97 teams** in the FLASH National Hackathon.
-   * Hands-on industry LLM fine-tuning experience at LiveAI.`,
+1. **Builds Across the Whole Stack:**
+   * **Low-Level Systems:** Native Linux C modules (\`pam_blink.so\`), camera drivers, and fast hardware acceleration in **BLINK**.
+   * **AI from the Ground Up:** Built a 12.29M-parameter GPT model in PyTorch from scratch (**NanoCoder**).
+   * **Safe AI Helpers:** Built **VIDURA** (22,423 lines of code, 456 tests), an AI assistant that checks code safety offline.
+   * **Smart Business Software:** Built freight planners (**VARUNA**) and customer management platforms (**Clover CRM**).
+2. **Commitment to Thorough Testing:**
+   * Over **800 automated tests** passing across his projects with 100% pass rates.
+   * Measures real speeds and latency on actual hardware rather than making estimates.
+3. **Proven Execution:**
+   * Won **1st place out of 97 teams** in a national hackathon.
+   * Practical industry experience fine-tuning AI models during his internship at LiveAI.`,
       suggestedQuestions: [
-        "Tell me about his Linux C-PAM project BLINK.",
+        "Tell me about his Linux face login project BLINK.",
         "How does VIDURA work?",
-        "How can I set up an interview?",
+        "How can I set up an interview with Mohan?",
       ],
     }),
   },
@@ -225,15 +228,15 @@ At **LiveAI**, Mohan worked on production fine-tuning pipelines for open-source 
     patterns: [/\b(contact|email|phone|interview|reach|location|availability|call|schedule)\b/i],
     category: "Contact & Availability",
     generateAnswer: () => ({
-      answer: `### Contact Mutyala Mohan Surendra
+      answer: `### Contact Information & Availability
 
-* **Status:** 🟢 **Open to AI/ML & Systems Software Engineering Internships / Roles**
+* **Status:** 🟢 **Open to 2026 / 2027 Software & AI Engineering Internships & Roles**
 * **Email:** [mohana21062007@gmail.com](mailto:mohana21062007@gmail.com)
 * **Phone:** [+91 7671074608](tel:+917671074608)
 * **GitHub:** [github.com/MOHAN2416](https://github.com/MOHAN2416)
-* **Location:** Chennai / Hyderabad, India (Open to on-site, hybrid, and remote opportunities)
+* **Location:** Chennai / Hyderabad, India (Open to on-site, hybrid, and remote work)
 
-You can also send a direct recruiter message via the **/contact** page!`,
+You can also send a direct message on the **/contact** page!`,
       suggestedQuestions: [
         "What are Mohan's top technical skills?",
         "Tell me about VIDURA.",
@@ -271,24 +274,24 @@ export async function POST(request: NextRequest) {
 
     if (!bestMatch) {
       return NextResponse.json({
-        answer: `Hello! I am **Mohan's Autonomous AI Twin**, trained on his complete technical portfolio, code repositories, benchmark measurements, and research.
+        answer: `Hello! I am **Mohan's AI Assistant**. I can answer any questions about his projects, skills, education, and internship experience.
 
-Mutyala Mohan Surendra is an **AI Systems Engineer & Full-Stack Developer** based in Chennai / Hyderabad, India.
+Mutyala Mohan Surendra is a **Software & AI Developer** based in Chennai and Hyderabad, India.
 
-His work spans four core pillars:
-1. **Deterministic AI Agents:** [VIDURA](/projects/vidura) (22,423 SLOC, 456 automated tests, AST symbol resolution, 5-tier router).
-2. **Linux Biometrics & PAM:** [BLINK](/projects/blink) (Native C \`pam_blink.so\`, ONNX Runtime AVX2, ~800ms cold auth, 3-tier anti-spoofing).
-3. **Quantitative Optimization:** [VARUNA](/projects/varuna) (Ridge ML rate model, HiGHS MILP fleet solver, 10,000 Monte Carlo risk simulations).
-4. **PyTorch Transformers From Scratch:** [NanoCoder](/projects/nanocoder) (12.29M parameters, bfloat16 FlashAttention, 21.48 ms/token).
+Here are a few highlights of his work:
+1. **Safe Offline AI Coding:** [VIDURA](/projects/vidura) — An AI coding assistant with 22,423 lines of code and 456 automated tests that runs safely offline.
+2. **Fast Face Login for Linux:** [BLINK](/projects/blink) — Unlocks Linux systems with your face in ~800 milliseconds and stops fake photo spoofing.
+3. **Shipping Routes & Cost Planner:** [VARUNA](/projects/varuna) — Predicts freight costs and tests 10,000 risk scenarios in ~177 milliseconds.
+4. **AI Model Built from Scratch:** [NanoCoder](/projects/nanocoder) — A lightweight 12.29-million parameter AI coding model built in PyTorch.
 
-Feel free to ask me any technical question about his projects, architecture designs, benchmark numbers, or availability!`,
+Feel free to ask any question about his projects, skills, or internship availability!`,
         category: "General Overview",
         relevantProjects: ["vidura", "blink", "varuna", "nanocoder"],
         suggestedQuestions: [
-          "Explain the architecture of VIDURA.",
-          "How does BLINK achieve ~800ms Linux biometric authentication?",
-          "Walk me through VARUNA's 10,000 Monte Carlo simulations.",
-          "Why hire Mohan for an AI Systems role?",
+          "How does VIDURA keep code running safely offline?",
+          "How does BLINK log into Linux using your face in ~800 ms?",
+          "How does VARUNA find the best shipping routes?",
+          "Why should we hire Mohan for software or AI roles?",
         ],
         timestamp: new Date().toISOString(),
       });

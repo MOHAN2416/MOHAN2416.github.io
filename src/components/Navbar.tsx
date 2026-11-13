@@ -25,11 +25,11 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
   }, []);
 
   const NAV_LINKS = [
-    { label: "Overview", href: "/" },
+    { label: "Home", href: "/" },
     { label: "Projects", href: "/projects" },
-    { label: "Interactive Labs", href: "/playground" },
+    { label: "Live Demos", href: "/playground" },
     { label: "Experience & Education", href: "/experience" },
-    { label: "Credentials", href: "/credentials" },
+    { label: "Skills & Certificates", href: "/credentials" },
   ];
 
   const isActive = (href: string) => {
@@ -54,7 +54,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
               Mutyala Mohan Surendra
             </span>
             <span className="text-[11px] text-zinc-600 hidden xl:block font-sans whitespace-nowrap">
-              AI Systems Engineer & Full-Stack Developer
+              Software &amp; AI Developer
             </span>
           </div>
         </Link>

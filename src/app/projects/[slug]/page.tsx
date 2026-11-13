@@ -89,7 +89,7 @@ export default async function ProjectCaseStudyPage({
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/45 hover:bg-white/70 backdrop-blur-md text-cobalt-600 font-mono text-xs font-semibold border-t border-l border-white/90 border-r border-b border-white/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <Terminal className="w-4 h-4" />
-            <span>Test in Interactive Playground</span>
+            <span>Try Live Demo</span>
           </Link>
         </div>
 
@@ -106,27 +106,27 @@ export default async function ProjectCaseStudyPage({
         </div>
       </div>
 
-      {/* 2. Structured Engineering Breakdown */}
+      {/* 2. Structured Breakdown in Plain English */}
       <div className="space-y-12 text-zinc-800 leading-relaxed">
         {/* Section 1: Problem Statement */}
         <section className="space-y-3">
           <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900 flex items-center gap-2">
             <span className="text-cobalt-600 font-mono text-lg">01.</span>
-            <span>Problem Statement &amp; Motivation</span>
+            <span>Why I Built This</span>
           </h2>
           <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-sans max-w-4xl">
             {project.caseStudy.problemStatement}
           </p>
         </section>
 
-        {/* Section 2: System Architecture */}
+        {/* Section 2: How It Works */}
         <section className="space-y-4">
           <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900 flex items-center gap-2">
             <span className="text-cobalt-600 font-mono text-lg">02.</span>
-            <span>System Architecture</span>
+            <span>How It Works</span>
           </h2>
           <p className="text-xs sm:text-sm text-zinc-600 max-w-3xl">
-            End-to-end dataflow pipeline enforcing deterministic gates, non-blocking execution, and verification invariants:
+            A step-by-step diagram showing how data moves safely through the system:
           </p>
 
           <div className="p-6 sm:p-8 rounded-2xl bg-white/40 backdrop-blur-2xl border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_2px_rgba(255,255,255,1),0_16px_36px_-8px_rgba(15,23,42,0.1)] overflow-x-auto">
@@ -136,11 +136,11 @@ export default async function ProjectCaseStudyPage({
           </div>
         </section>
 
-        {/* Section 3: Core Technical Implementation */}
+        {/* Section 3: Key Features & Implementation */}
         <section className="space-y-4">
           <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900 flex items-center gap-2">
             <span className="text-cobalt-600 font-mono text-lg">03.</span>
-            <span>Core Technical Implementation</span>
+            <span>Key Features &amp; Implementation</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {project.caseStudy.technicalImplementation.map((impl, idx) => (
@@ -150,7 +150,7 @@ export default async function ProjectCaseStudyPage({
               >
                 <div className="flex items-center gap-2 text-xs font-mono font-bold text-zinc-900">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Invariant Stage #{idx + 1}</span>
+                  <span>Feature #{idx + 1}</span>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-800 leading-relaxed">
                   {impl}
@@ -160,15 +160,15 @@ export default async function ProjectCaseStudyPage({
           </div>
         </section>
 
-        {/* Section 4: Measured Benchmarks & Verification Table */}
+        {/* Section 4: Key Results & Benchmarks */}
         <section className="space-y-4">
           <div className="space-y-1">
             <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900 flex items-center gap-2">
               <span className="text-cobalt-600 font-mono text-lg">04.</span>
-              <span>Empirical Hardware Benchmarks &amp; Verification</span>
+              <span>Key Results &amp; Benchmarks</span>
             </h2>
             <p className="text-xs sm:text-sm text-zinc-600">
-              Measured physical latency, memory footprint, and test suite verification numbers:
+              Real measured speed, test coverage, and performance benchmarks:
             </p>
           </div>
 
@@ -176,10 +176,10 @@ export default async function ProjectCaseStudyPage({
             <table className="w-full text-left text-xs font-mono">
               <thead>
                 <tr className="bg-white/60 border-b border-zinc-200/60 text-zinc-700 font-semibold uppercase tracking-wider">
-                  <th className="py-3.5 px-5">Subsystem</th>
-                  <th className="py-3.5 px-5">Metric</th>
-                  <th className="py-3.5 px-5">Measured Value</th>
-                  <th className="py-3.5 px-5">Methodology &amp; Verification</th>
+                  <th className="py-3.5 px-5">Category</th>
+                  <th className="py-3.5 px-5">Test / Metric</th>
+                  <th className="py-3.5 px-5">Result</th>
+                  <th className="py-3.5 px-5">How It Was Tested</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200/50">
@@ -196,11 +196,11 @@ export default async function ProjectCaseStudyPage({
           </div>
         </section>
 
-        {/* Section 5: Repository Structure & Limitations */}
+        {/* Section 5: Code Structure & Current Limits */}
         <section className="space-y-5">
           <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900 flex items-center gap-2">
             <span className="text-cobalt-600 font-mono text-lg">05.</span>
-            <span>Repository Structure &amp; Known Limitations</span>
+            <span>Code Structure &amp; Current Limits</span>
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -208,7 +208,7 @@ export default async function ProjectCaseStudyPage({
             <div className="lg:col-span-7 p-6 rounded-2xl bg-white/40 backdrop-blur-2xl border-t border-l border-white/95 border-r border-b border-white/45 font-mono text-xs overflow-x-auto shadow-xs">
               <div className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
                 <FileCode className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Codebase Tree</span>
+                <span>File Layout</span>
               </div>
               <pre className="text-zinc-900 leading-snug whitespace-pre font-medium">
                 {project.caseStudy.repositoryStructure}
@@ -219,7 +219,7 @@ export default async function ProjectCaseStudyPage({
             <div className="lg:col-span-5 p-6 rounded-2xl bg-white/45 backdrop-blur-xl border-t border-l border-white/90 border-r border-b border-white/45 shadow-xs space-y-3.5">
               <div className="text-xs font-mono font-bold text-zinc-900 uppercase tracking-wider flex items-center gap-1.5">
                 <AlertTriangle className="w-4 h-4 text-amber-600" />
-                <span>Engineering Boundary Conditions</span>
+                <span>Current Limitations</span>
               </div>
               <ul className="space-y-2.5 text-xs text-slate-800 font-sans leading-relaxed">
                 {project.caseStudy.limitations.map((lim, idx) => (
