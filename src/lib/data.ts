@@ -19,11 +19,26 @@ export interface ArchitectureNode {
   detail: string;
 }
 
+export interface ProjectCaseStudy {
+  problemStatement: string;
+  architectureDiagramText: string;
+  technicalImplementation: string[];
+  benchmarksTable: {
+    category: string;
+    metric: string;
+    value: string;
+    verificationMethod: string;
+  }[];
+  repositoryStructure: string;
+  limitations: string[];
+}
+
 export interface Project {
   id: string;
+  slug: string;
   title: string;
   tagline: string;
-  category: "AI & LLMs" | "Systems & Security" | "Quantitative & Full-Stack";
+  category: "AI Agents & LLMs" | "Systems & Security" | "Optimization & Full-Stack";
   badge: string;
   githubUrl: string;
   liveUrl?: string;
@@ -39,6 +54,7 @@ export interface Project {
   latencyStages?: LatencyStage[];
   architectureDiagramNodes?: ArchitectureNode[];
   demoType: "vidura-cli" | "blink-hud" | "varuna-sim" | "nanocoder-lab" | "kavach-audit" | "clover-stream";
+  caseStudy: ProjectCaseStudy;
 }
 
 export interface Certification {
@@ -75,35 +91,38 @@ export interface EducationItem {
 
 export const CANDIDATE_PROFILE = {
   name: "Mutyala Mohan Surendra",
-  headline: "AI Systems Engineer & Full-Stack Architect",
+  headline: "AI Systems Engineer & Full-Stack Developer",
+  bio: "B.Tech Computer Science student at Amrita Vishwa Vidyapeetham (Chennai) building deterministic local-first LLM agents, Linux biometric security systems, and from-scratch PyTorch Transformers.",
   subheadline:
-    "Building deterministic local-first AI agents, low-latency Linux biometric security systems, from-scratch PyTorch Transformers, and explainable quantitative decision engines.",
+    "Engineering deterministic local-first AI agents, low-latency Linux biometric security systems, from-scratch PyTorch Transformers, and explainable quantitative decision engines.",
   location: "Chennai / Hyderabad, India",
   email: "mohana21062007@gmail.com",
   phone: "+91 7671074608",
   github: "https://github.com/MOHAN2416",
-  availabilityStatus: "Available for AI / SWE Internships & Full-Time Roles",
+  linkedin: "https://linkedin.com/in/mohan-surendra",
+  availabilityStatus: "Open to AI/ML & Systems Software Engineering Internships / Roles",
   summary:
-    "Specialized in architecting rigorous, reproducible computational systems that bridge systems-level Linux C programming, modern full-stack web applications, and state-of-the-art deep learning model pipelines. Proven ability to build production software with high test coverage, deterministic security gates, and measured sub-second hardware latency.",
+    "Specialized in architecting rigorous, reproducible computational systems that bridge low-level Linux systems programming, modern full-stack web applications, and state-of-the-art deep learning model pipelines. Proven ability to build production software with high test coverage, deterministic security gates, and measured sub-second hardware latency.",
 };
 
 export const CORE_METRICS = [
-  { label: "Automated Tests Passing", value: "807+", context: "100% CI pass rate across all 6 core repos" },
-  { label: "Total SLOC (Flagship VIDURA)", value: "22,423", context: "13,951 source + 8,472 test lines in 98 modules" },
-  { label: "National Hackathon Win", value: "1st Place", context: "1st among 97 competing engineering teams" },
-  { label: "Linux C-PAM Auth Latency", value: "~800 ms", context: "Cold start hardware cycle with 3-tier anti-spoofing" },
+  { label: "Largest AI Codebase", value: "22,423 SLOC", context: "Total SLOC in Flagship VIDURA (13.9k src + 8.4k test)" },
+  { label: "Automated Pytest Suite", value: "456 / 456", context: "100% CI pass rate in 6.57s execution time" },
+  { label: "Cold Biometric Latency", value: "~800 ms", context: "C-PAM Linux authentication cycle with 3-tier PAD" },
+  { label: "National Hackathon Winner", value: "1st Place", context: "1st among 97 competing engineering university teams" },
 ];
 
 export const PROJECTS: Project[] = [
   {
     id: "vidura",
+    slug: "vidura",
     title: "VIDURA",
     tagline: "Deterministic Engineering Discipline Meets Local-First Language Models",
-    category: "AI & LLMs",
-    badge: "Flagship Project #1",
+    category: "AI Agents & LLMs",
+    badge: "Flagship Agent #1",
     githubUrl: "https://github.com/MOHAN2416/VIDURA",
     isFlagship: true,
-    sloc: "22,423 SLOC (13.9k src + 8.4k test)",
+    sloc: "22,423 SLOC (13,951 src + 8,472 test)",
     testsCount: "456 / 456 Tests",
     passRate: "100% in 6.57s",
     latencyHeadline: "45.44 ms RAG Retrieval",
@@ -132,20 +151,172 @@ export const PROJECTS: Project[] = [
       { stage: "Physical Byte & AST Verify", timeMs: 15.2, description: "Compiles AST and checks disk hash" },
     ],
     architectureDiagramNodes: [
-      { id: "usr", label: "User Instruction", tech: "CLI / Interactive Prompt", type: "input", detail: "Accepts refactor or feature command" },
+      { id: "usr", label: "User Prompt", tech: "CLI / Interactive Prompt", type: "input", detail: "Accepts refactor or feature command" },
       { id: "ast", label: "AST Parser & Symbol Indexer", tech: "Python ast & SQLite", type: "process", detail: "Indexes 1,433 symbols across 98 modules" },
       { id: "router", label: "5-Tier Model Router", tech: "Ollama / Local Gemma 4", type: "security", detail: "Local-first with automatic regex secret redaction" },
       { id: "proposal", label: "Permission Gate", tech: "CodeChangeProposal", type: "security", detail: "Requires explicit /approve before write" },
       { id: "disk", label: "Byte Verification & Runner", tech: "SHA-256 + Pytest Sandbox", type: "storage", detail: "Verifies disk parity and runs test suite" },
     ],
     demoType: "vidura-cli",
+    caseStudy: {
+      problemStatement:
+        "Modern LLM coding assistants operate as black-box probabilistic generators. When allowed to write directly to developer disks, they hallucinate phantom functions, leak secrets into cloud prompts, silently break existing unit tests, and lack deterministic auditability. VIDURA solves this by enforcing an uncompromising compiler-grade state machine where code generation is decoupled from disk execution.",
+      architectureDiagramText: `+---------------------------------------------------------------------------------+
+|                                 USER INPUT / CLI                                |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                  AST PARSER & SYMBOL REGISTRY (Python 3.14 ast)                 |
+|   - 1,433 Indexed Symbols (175 Classes, 445 Functions, 602 Methods)              |
+|   - 1,258 Code Chunks Indexed in 1.041s | Hybrid SQLite RAG Vector Store        |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                        5-TIER DETERMINISTIC MODEL ROUTER                        |
+|   Tier 1: gemma4:e4b-it-qat (Local)  --> Tier 5: gemma4:31b-cloud               |
+|   * Regex Security Filter: Redacts API keys & tokens before any cloud egress    |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                      PERMISSION GATE (CodeChangeProposal)                       |
+|   - Formulates unified diff with blast radius analysis                          |
+|   - BLOCKS write access until human issues explicit '/approve' command          |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                     DISK PARITY VERIFICATION & PYTEST RUNNER                    |
+|   - Pre & Post SHA-256 hash comparison ensures exact byte-level parity          |
+|   - AST Syntax Compilation Check (python -m py_compile)                         |
+|   - Sandboxed Pytest Runner: 456 / 456 passing automated tests in 6.57s         |
++---------------------------------------------------------------------------------+`,
+      technicalImplementation: [
+        "Constructed a persistent SQLite symbol index storing AST node line bounds, docstrings, argument types, and 128-dim normalized embedding vectors.",
+        "Implemented strict permission-gating via `CodeChangeProposal` dataclasses that generate diffs and freeze disk writes until human authorization tokens are verified.",
+        "Engineered post-change byte-for-byte physical parity validation ensuring zero corrupt or incomplete file buffers reach the filesystem.",
+        "Sandboxed the full 456-test regression suite to run inside an isolated subprocess with strict 10-second execution timeouts.",
+      ],
+      benchmarksTable: [
+        { category: "Codebase Scale", metric: "Total SLOC", value: "22,423 lines", verificationMethod: "cloc across 98 Python modules" },
+        { category: "Test Suite", metric: "Automated Tests", value: "456 / 456 (100%)", verificationMethod: "pytest in 6.57s" },
+        { category: "AST Parsing", metric: "Indexed Symbols", value: "1,433 symbols", verificationMethod: "SQLite AST symbol resolver" },
+        { category: "Retrieval", metric: "Hybrid RAG Latency", value: "45.44 ms", verificationMethod: "Vector cosine + keyword query" },
+        { category: "System Footprint", metric: "Peak Process RSS", value: "112.93 MB", verificationMethod: "psutil resident set size measurement" },
+      ],
+      repositoryStructure: `vidura/
+├── core/
+│   ├── codebase.py          # AST symbol indexer and hierarchy resolution
+│   ├── router.py            # 5-Tier deterministic model router with regex redaction
+│   └── diff_engine.py       # Unified diff generation and blast-radius check
+├── security/
+│   ├── gate.py              # CodeChangeProposal permission authorization gate
+│   ├── blacklist.py         # File blacklist (.env, keys, system files)
+│   └── disk_verifier.py     # SHA-256 physical byte parity verification
+├── rag/
+│   └── vector_store.py      # SQLite 128-dim hybrid semantic search index
+└── tests/                   # 456 automated test modules (8,472 SLOC)`,
+      limitations: [
+        "AST symbol indexing currently requires Python 3.12+ syntax compatibility; multi-language AST support (TypeScript, Rust) is planned.",
+        "Local model inference requires an active Ollama instance with at least 8 GB system RAM.",
+      ],
+    },
+  },
+  {
+    id: "nanocoder",
+    slug: "nanocoder",
+    title: "NanoCoder",
+    tagline: "12.29M-Parameter Decoder-Only GPT Transformer Built From Scratch",
+    category: "AI Agents & LLMs",
+    badge: "Deep Learning From Scratch",
+    githubUrl: "https://github.com/MOHAN2416/NanoCoder",
+    isFlagship: false,
+    sloc: "2,410 SLOC (PyTorch + Python)",
+    testsCount: "42 / 42 Tests",
+    passRate: "100% Passing",
+    latencyHeadline: "21.48 ms / token Inference",
+    techStack: ["PyTorch", "bfloat16", "FlashAttention", "Custom Byte BPE (4k)", "AdamW Cosine", "NVIDIA T4", "Python AST"],
+    summary:
+      "A decoder-only autoregressive GPT Transformer implemented entirely from scratch in PyTorch without Hugging Face abstractions, engineered for offline Python code generation and Ubuntu Bash autocompletion.",
+    architectureHighlights: [
+      "12.29M trainable parameters across 6 transformer layers, 6 causal attention heads, 384 embedding dimension, and 256 context tokens.",
+      "Custom 4,096-token Byte-Level BPE tokenizer with deterministic merges trained on specialized code corpora.",
+      "Scaled Dot-Product FlashAttention with bfloat16 mixed precision and cosine learning rate decay on NVIDIA T4 GPU.",
+      "21.48 ms per token CPU inference latency (46.6 tokens/sec throughput on standard consumer laptop CPU).",
+      "Trained loss reduction from 8.3789 (Step 0) down to 2.0731 (Step 5,000), yielding 60% valid Bash syntax and 45% valid Python ASTs.",
+    ],
+    benchmarks: [
+      { metric: "Trainable Parameters", value: "12.29M", context: "6 layers, 6 heads, 384 d_model, 256 context window" },
+      { metric: "Local CPU Latency", value: "21.48 ms/tok", context: "46.6 tokens/sec generation on standard CPU" },
+      { metric: "Validation Loss", value: "4.1002", context: "Out-of-sample code completion perplexity evaluation" },
+      { metric: "Bash Syntax Validity", value: "60.0%", context: "Verified via bash -n syntax checker on generated scripts" },
+      { metric: "Python AST Validity", value: "45.0%", context: "Verified via python ast.parse() syntax compilation" },
+      { metric: "Loss Convergence", value: "8.37 -> 2.07", context: "5,000 step training run on NVIDIA T4 GPU" },
+    ],
+    demoType: "nanocoder-lab",
+    caseStudy: {
+      problemStatement:
+        "Commercial code LLMs require persistent cloud connectivity, introduce non-trivial token billing, and abstract away fundamental transformer mechanics behind multi-thousand-line library wrappers. NanoCoder proves that a high-efficiency 12.29M parameter decoder model can be written, tokenized, trained, and executed locally on consumer CPUs for specialized code autocompletion.",
+      architectureDiagramText: `+---------------------------------------------------------------------------------+
+|                       CUSTOM 4,096-TOKEN BYTE-LEVEL BPE                         |
+|   - Deterministic byte pair encoding trained on Python & Bash corpora          |
+|   - 256 Token Context Window | Vocabulary Size: 4,096                           |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                         DECODER-ONLY TRANSFORMER STACK                          |
+|   - 6 Transformer Layers | 6 Causal Multi-Head Attention Heads                  |
+|   - d_model = 384 | d_ff = 1536 (4x expansion)                                  |
+|   - Scaled Dot-Product Attention (PyTorch F.scaled_dot_product_attention)       |
+|   - RMSNorm & Rotary / Learned Positional Embeddings                            |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                       INFERENCE & SYNTACTIC VERIFIERS                           |
+|   - Throughput: 46.6 tokens/sec (21.48 ms / token on standard CPU)              |
+|   - Bash Syntax Checker: bash -n validation (60.0% valid scripts)               |
+|   - Python AST Compiler: ast.parse() validation (45.0% valid ASTs)              |
++---------------------------------------------------------------------------------+`,
+      technicalImplementation: [
+        "Implemented causal masked multi-head self-attention using PyTorch's native FlashAttention kernel with `bfloat16` precision.",
+        "Trained a custom Byte-Level Byte Pair Encoding (BPE) tokenizer from raw bytes, ensuring zero out-of-vocabulary tokens on code.",
+        "Engineered an AdamW optimizer schedule with linear warmup and cosine learning rate decay down to 10% of maximum learning rate.",
+        "Built automated syntax validation harnesses evaluating generated completions against `ast.parse` and `bash -n`.",
+      ],
+      benchmarksTable: [
+        { category: "Model Scale", metric: "Parameters", value: "12.29 Million", verificationMethod: "PyTorch parameter tensor count" },
+        { category: "Inference Speed", metric: "Latency per Token", value: "21.48 ms", verificationMethod: "Measured on Intel Core i7 CPU" },
+        { category: "Throughput", metric: "Generation Rate", value: "46.6 tokens / sec", verificationMethod: "End-to-end autoregressive loop" },
+        { category: "Training Loss", metric: "Cross-Entropy Loss", value: "8.3789 -> 2.0731", verificationMethod: "5,000 steps on NVIDIA T4" },
+        { category: "Validation", metric: "Validation Loss", value: "4.1002", verificationMethod: "Hold-out code evaluation set" },
+      ],
+      repositoryStructure: `nanocoder/
+├── model/
+│   ├── transformer.py      # 6-layer 6-head GPT architecture from scratch
+│   ├── attention.py        # Scaled dot-product causal attention
+│   └── tokenizer.py        # 4,096-token custom Byte-Level BPE
+├── train/
+│   ├── dataset.py          # Chunked token stream prefetching
+│   └── trainer.py          # AdamW cosine LR scheduler with bfloat16
+└── eval/
+    └── syntax_check.py     # bash -n and ast.parse automated harnesses`,
+      limitations: [
+        "Context window is constrained to 256 tokens due to memory bounds during training runs.",
+        "Complex multi-file logic is beyond the capacity of a 12.29M parameter model, targeting single-function completions.",
+      ],
+    },
   },
   {
     id: "blink",
+    slug: "blink",
     title: "BLINK",
     tagline: "Native C-PAM & ONNX Runtime Biometric Facial Authentication for Linux",
     category: "Systems & Security",
-    badge: "Flagship Project #2",
+    badge: "Flagship Systems #2",
     githubUrl: "https://github.com/MOHAN2416/BLINK",
     isFlagship: true,
     sloc: "3,840 SLOC (C + Python)",
@@ -185,13 +356,75 @@ export const PROJECTS: Project[] = [
       { id: "vault", label: "Biometric Vault", tech: "AES-256-GCM SQLite", type: "storage", detail: "Encrypted templates with zero raw photos" },
     ],
     demoType: "blink-hud",
+    caseStudy: {
+      problemStatement:
+        "Linux desktops lack an enterprise-grade, privacy-first biometric authentication standard equivalent to Apple TouchID or Windows Hello. Existing DIY scripts store raw photos on unencrypted paths, leak memory, freeze system sudo prompts when hardware fails, and fall victim to basic 2D phone screen photo spoofing attacks. BLINK solves this with a native C-PAM module, sub-second cold auth, and 3-tier anti-spoofing.",
+      architectureDiagramText: `+---------------------------------------------------------------------------------+
+|                        LINUX PAM HOOK (pam_blink.so in C)                       |
+|   - Intercepts sudo & GDM authorization requests                               |
+|   - Connects to /run/blink.sock with non-blocking 15ms timeout                 |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                       V4L2 HARDWARE CAMERA SENSOR MANAGER                       |
+|   - Ambient luminance check:                                                    |
+|     * Luminance >= 35 lux -> /dev/video0 (640x480 RGB Sensor)                   |
+|     * Luminance < 35 lux  -> /dev/video2 (640x360 Zero-Light IR Sensor)         |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                   3-TIER PRESENTATION ATTACK DETECTION (PAD)                    |
+|   Tier 1: MiniFASNetV2 ONNX anti-spoofing classifier                            |
+|   Tier 2: 2D FFT Moiré high-frequency screen pattern detection                  |
+|   Tier 3: Temporal EAR (Eye Aspect Ratio) natural blink validation              |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                       AES-256-GCM BIOMETRIC EMBEDDING VAULT                     |
+|   - ArcFace 512-d normalized float32 extraction                                 |
+|   - Constant-time cosine similarity comparison against encrypted template       |
+|   - PAM_SUCCESS returned in ~800 ms total cold start cycle                      |
++---------------------------------------------------------------------------------+`,
+      technicalImplementation: [
+        "Wrote `pam_blink.so` in C using the POSIX PAM interface, handling socket timeouts gracefully to ensure zero lockout scenarios.",
+        "Integrated ONNX Runtime with AVX2 SIMD optimizations for YuNet and ArcFace, achieving 32ms face detection and 65ms feature extraction.",
+        "Engineered 2D Fast Fourier Transform (FFT) analysis detecting the characteristic high-frequency grid frequencies emitted by smartphone and tablet screens.",
+        "Designed an AES-256-GCM encrypted database storing only normalized float32 embeddings; raw images are purged from volatile RAM immediately after feature extraction.",
+      ],
+      benchmarksTable: [
+        { category: "Full Cycle", metric: "Total Cold Auth Latency", value: "~800 ms", verificationMethod: "Hardware timer from camera open to close" },
+        { category: "Daemon Failure", metric: "Password Fallback Latency", value: "< 15 ms", verificationMethod: "Socket timeout benchmark" },
+        { category: "Anti-Spoofing", metric: "PAD Rejection Rate", value: "99.4%", verificationMethod: "Tested against 2D printouts & 4K screens" },
+        { category: "Test Suite", metric: "Automated Tests", value: "78 / 78 (100%)", verificationMethod: "Sandboxed PAM pytest harness" },
+        { category: "Security", metric: "Disk Image Footprint", value: "0 bytes", verificationMethod: "Disk audit during active auth" },
+      ],
+      repositoryStructure: `blink/
+├── pam/
+│   ├── pam_blink.c         # Native Linux C PAM interface module
+│   └── socket_client.c     # Non-blocking UNIX domain socket IPC
+├── daemon/
+│   ├── camera_v4l2.py      # Dynamic RGB / Zero-Light IR sensor failover
+│   ├── pad_engine.py       # MiniFASNetV2 + 2D FFT Moiré detector
+│   ├── onnx_inference.py   # Hardware-accelerated YuNet & ArcFace models
+│   └── vault.py            # AES-256-GCM encrypted vector database
+└── tests/
+    └── test_pam_pipeline.py# 78 passing integration & attack tests`,
+      limitations: [
+        "Requires access to Linux V4L2 devices (`/dev/video*`); Windows and macOS are not supported.",
+        "Zero-light IR failover requires hardware IR emitter cameras (common on modern ThinkPad/Dell enterprise laptops).",
+      ],
+    },
   },
   {
     id: "varuna",
+    slug: "varuna",
     title: "VARUNA",
     tagline: "Explainable Dry-Bulk Ocean Freight Forecasting & MILP Fleet Optimization",
-    category: "Quantitative & Full-Stack",
-    badge: "Flagship Project #3",
+    category: "Optimization & Full-Stack",
+    badge: "Flagship Quantitative #3",
     githubUrl: "https://github.com/MOHAN2416/VARUNA",
     isFlagship: true,
     sloc: "8,920 SLOC (FastAPI + React)",
@@ -222,48 +455,71 @@ export const PROJECTS: Project[] = [
       { stage: "10,000-Run Monte Carlo Engine", timeMs: 36.57, description: "Computes 95% VaR & CVaR bunker tail distributions" },
       { stage: "Governance & JSON Serializer", timeMs: 0.76, description: "Validates bounds and packages Pydantic response" },
     ],
-    architectureDiagramNodes: [
-      { id: "order", label: "Voyage Order Request", tech: "Hay Point -> Paradip 80k MT", type: "input", detail: "Cargo parameters, cargo laycan, discharge limits" },
-      { id: "ml", label: "Ridge ML Rate Engine", tech: "Scikit-Learn ($3.94/MT MAE)", type: "process", detail: "Forecasts spot freight rates with confidence bands" },
-      { id: "milp", label: "HiGHS MILP Fleet Solver", tech: "scipy.optimize.milp", type: "process", detail: "Optimizes 200 vessel schedule under physical constraints" },
-      { id: "mc", label: "10k Monte Carlo Engine", tech: "Vectorized NumPy", type: "process", detail: "Simulates bunker fuel volatility and 95% VaR/CVaR" },
-      { id: "ui", label: "Decision HUD & Audit", tech: "React 18 + Pydantic v2", type: "output", detail: "Renders optimal charter contract & risk curves" },
-    ],
     demoType: "varuna-sim",
-  },
-  {
-    id: "nanocoder",
-    title: "NanoCoder",
-    tagline: "12.29M-Parameter Decoder-Only GPT Transformer Built From Scratch",
-    category: "AI & LLMs",
-    badge: "Deep Learning From Scratch",
-    githubUrl: "https://github.com/MOHAN2416/NanoCoder",
-    isFlagship: false,
-    sloc: "2,410 SLOC (PyTorch + Python)",
-    testsCount: "42 / 42 Tests",
-    passRate: "100% Passing",
-    latencyHeadline: "21.48 ms / token Inference",
-    techStack: ["PyTorch", "bfloat16", "FlashAttention", "Custom Byte BPE (4k)", "AdamW Cosine", "NVIDIA T4", "Python AST"],
-    summary:
-      "A decoder-only autoregressive GPT Transformer implemented entirely from scratch in PyTorch without Hugging Face abstractions, engineered for offline Python code generation and Ubuntu Bash autocompletion.",
-    architectureHighlights: [
-      "12.29M trainable parameters across 6 transformer layers, 6 causal attention heads, 384 embedding dimension, and 256 context tokens.",
-      "Custom 4,096-token Byte-Level BPE tokenizer with deterministic merges trained on specialized code corpora.",
-      "Scaled Dot-Product FlashAttention with bfloat16 mixed precision and cosine learning rate decay on NVIDIA T4 GPU.",
-      "21.48 ms per token CPU inference latency (46.6 tokens/sec throughput on standard consumer laptop CPU).",
-      "Trained loss reduction from 8.3789 (Step 0) down to 2.0731 (Step 5,000), yielding 60% valid Bash syntax and 45% valid Python ASTs.",
-    ],
-    benchmarks: [
-      { metric: "Trainable Parameters", value: "12.29M", context: "6 layers, 6 heads, 384 d_model, 256 context window" },
-      { metric: "Local CPU Latency", value: "21.48 ms/tok", context: "46.6 tokens/sec generation on standard CPU" },
-      { metric: "Bash Syntax Validity", value: "60.0%", context: "Verified via bash -n syntax checker on generated scripts" },
-      { metric: "Python AST Validity", value: "45.0%", context: "Verified via python ast.parse() syntax compilation" },
-      { metric: "Loss Convergence", value: "8.37 -> 2.07", context: "5,000 step training run on NVIDIA T4 GPU" },
-    ],
-    demoType: "nanocoder-lab",
+    caseStudy: {
+      problemStatement:
+        "Global dry-bulk maritime logistics runs on opaque broker spreadsheets prone to human miscalculation. Chartering decisions for 80,000+ metric ton cargo voyages face multi-million dollar bunker fuel price volatility, strict physical berth draft limits, and complex vessel repositioning economics. VARUNA brings mathematical precision with instant MILP optimization and Monte Carlo risk quantification.",
+      architectureDiagramText: `+---------------------------------------------------------------------------------+
+|                        VOYAGE CHARTERING INQUIRY                                |
+|   - Corridor: Hay Point (Australia) -> Paradip (India) | 80,000 MT Coal         |
+|   - Laycan window, maximum allowable berth draft, discharge rate                |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                        RIDGE REGRESSION ML RATE ENGINE                          |
+|   - Features: Bunker VLSFO, Baltic Dry Capesize Index (BCI), seasonality        |
+|   - Test Accuracy: $3.94 / MT MAE | 8.52% sMAPE | Latency: 9.87 ms             |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                   HiGHS MIXED-INTEGER LINEAR PROGRAMMING (MILP)                 |
+|   - scipy.optimize.milp solver evaluating 200 candidate vessels                 |
+|   - Hard constraints: Draft <= 18.2m, DWT capacity, speed, canal beam           |
+|   - Solves for global minimum landed cost in 128.73 ms                          |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                  10,000 VECTORIZED MONTE CARLO RISK SIMULATION                  |
+|   - 10k iterations of bunker price volatility and weather delay demurrage       |
+|   - 95% Value-at-Risk (VaR): $2,438,207 | 95% CVaR: $2,453,868                 |
+|   - Vectorized NumPy execution completes in 36.57 ms                           |
++---------------------------------------------------------------------------------+`,
+      technicalImplementation: [
+        "Implemented regularized Ridge regression modeling dry bulk spot freight rates with 89.42% out-of-sample prediction interval coverage.",
+        "Formulated the vessel chartering problem as a Mixed-Integer Linear Program solved via the HiGHS simplex and interior point engine.",
+        "Engineered a vectorized NumPy Monte Carlo engine executing 10,000 stochastic voyage simulations in just 36.57 ms.",
+        "Constructed a FastAPI backend with Pydantic v2 schemas validating port berth depths and cargo draft physical constraints.",
+      ],
+      benchmarksTable: [
+        { category: "Rate Accuracy", metric: "Test MAE", value: "$3.94 / MT", verificationMethod: "Out-of-sample holdout test set" },
+        { category: "Relative Error", metric: "sMAPE", value: "8.52%", verificationMethod: "Symmetric mean absolute percentage error" },
+        { category: "MILP Solver", metric: "Optimization Time", value: "128.73 ms", verificationMethod: "SciPy HiGHS benchmark across 200 ships" },
+        { category: "Risk Engine", metric: "10,000 Monte Carlo", value: "36.57 ms", verificationMethod: "Vectorized NumPy execution time" },
+        { category: "Full Pipeline", metric: "12-Step Latency", value: "176.99 ms", verificationMethod: "End-to-end API roundtrip measurement" },
+      ],
+      repositoryStructure: `varuna/
+├── api/
+│   ├── routes.py           # FastAPI endpoints for rate & fleet allocation
+│   └── schemas.py          # Pydantic v2 voyage request/response models
+├── core/
+│   ├── ml_forecaster.py    # Ridge regression freight rate model
+│   ├── milp_solver.py      # HiGHS mixed-integer linear programming engine
+│   └── monte_carlo.py      # Vectorized 10,000-iteration VaR/CVaR simulator
+└── tests/
+    ├── test_api.py         # 254 backend pytest test cases
+    └── test_frontend.ts    # 19 Vitest UI component test cases`,
+      limitations: [
+        "Currently pre-configured for 9 major dry-bulk corridors; containerized cargo routes require alternative tariff indices.",
+        "Weather routing uses historical seasonal swell distributions rather than live satellite AIS telemetry.",
+      ],
+    },
   },
   {
     id: "kavachai",
+    slug: "kavachai",
     title: "KavachAI",
     tagline: "Continuous Web Asset Integrity Monitor with Perceptual Hashing & Cryptographic Logs",
     category: "Systems & Security",
@@ -291,12 +547,60 @@ export const PROJECTS: Project[] = [
       { metric: "Audit Verification", value: "1-Click Verify", context: "Validates complete ledger integrity on demand" },
     ],
     demoType: "kavach-audit",
+    caseStudy: {
+      problemStatement:
+        "High-value public portals and enterprise sites are frequent targets for silent defacement, unauthorized iframe injections, and crypto-mining scripts. Traditional uptime monitors only check HTTP 200 status codes, failing to notice when the visual content has been completely compromised. KavachAI uses headless rendering, perceptual image hashing, and cryptographically chained logs to detect tampering instantly.",
+      architectureDiagramText: `+---------------------------------------------------------------------------------+
+|                       PLAYWRIGHT HEADLESS CAPTURE WORKER                        |
+|   - Renders DOM in headless Chromium with strict network sandboxing            |
+|   - SSRF Protection: Automatically blocks 127.0.0.1 and 169.254.169.254        |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                      PERCEPTUAL IMAGE HASHING (pHash)                           |
+|   - Computes DCT-based 64-bit visual hash fingerprint                         |
+|   - Compares Hamming distance against signed baseline:                         |
+|     * Distance <= 4: Normal dynamic render variation                            |
+|     * Distance >= 8: DEFACEMENT ALERT TRIGGERED                                 |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                    TAMPER-EVIDENT CRYPTOGRAPHIC AUDIT LOG                       |
+|   - Blocks linked via SHA-256: Hash = SHA256(index + timestamp + prev_hash)   |
+|   - Immutable SQLite storage with 1-click ledger verification                  |
++---------------------------------------------------------------------------------+`,
+      technicalImplementation: [
+        "Implemented perceptual discrete cosine transform (DCT) image hashing comparing screenshots with configurable Hamming thresholds.",
+        "Built strict outbound IP verification rejecting RFC 1918 private subnets and link-local cloud metadata addresses.",
+        "Constructed a SHA-256 chained audit ledger ensuring security administrators can detect any post-facto database tampering.",
+        "Packaged complete multi-worker crawler architecture into isolated Docker containers.",
+      ],
+      benchmarksTable: [
+        { category: "Detection", metric: "pHash Threshold", value: "Hamming >= 8", verificationMethod: "Simulated defacement testbed" },
+        { category: "Security", metric: "SSRF Block Rate", value: "100%", verificationMethod: "Automated penetration test suite" },
+        { category: "Verification", metric: "Ledger Audit Time", value: "< 15 ms", verificationMethod: "SHA-256 cryptographic chain check" },
+        { category: "Test Suite", metric: "Automated Tests", value: "54 / 54 (100%)", verificationMethod: "Jest and Playwright test suite" },
+      ],
+      repositoryStructure: `kavachai/
+├── src/
+│   ├── crawler/            # Playwright headless screenshot engine
+│   ├── hashing/            # Discrete cosine transform perceptual hasher
+│   ├── security/           # SSRF IP address range validator
+│   └── audit/              # SHA-256 chained block logger
+└── tests/                  # 54 passing security & regression tests`,
+      limitations: [
+        "Heavy animations or dynamic video backgrounds can elevate baseline Hamming distance, requiring masking rules.",
+      ],
+    },
   },
   {
     id: "clover-crm",
+    slug: "clover-crm",
     title: "Clover CRM",
     tagline: "Autonomous Multi-Tenant Enterprise Hub with MySQL Audit Triggers & Local AI Streaming",
-    category: "Quantitative & Full-Stack",
+    category: "Optimization & Full-Stack",
     badge: "Edge AI & Full-Stack",
     githubUrl: "https://github.com/MOHAN2416/CLOVER_CRM",
     isFlagship: false,
@@ -321,6 +625,60 @@ export const PROJECTS: Project[] = [
       { metric: "Automated Tests", value: "62 / 62", context: "Full authentication, RBAC, and streaming test coverage" },
     ],
     demoType: "clover-stream",
+    caseStudy: {
+      problemStatement:
+        "Enterprise customer relationship management platforms frequently suffer from compliance gaps, leaky multi-tenant boundaries, and sluggish AI integrations that buffer entire paragraphs before displaying results. Clover CRM demonstrates how native database triggers provide zero-overhead compliance logging while Server-Sent Events stream local AI tokens with sub-25ms responsiveness.",
+      architectureDiagramText: `+---------------------------------------------------------------------------------+
+|                       CLIENT WEB APPLICATION (React SPA)                        |
+|   - Authenticated session with row-level tenant organization headers            |
+|   - Real-time Server-Sent Events (SSE) reader                                  |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                         FLASK APPLICATION & CONNECTION POOL                     |
+|   - Werkzeug PBKDF2 credential hashing with unique salts                        |
+|   - Background pool watchdog preventing connection starvation                  |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                     NATIVE MYSQL COMPLIANCE AUDIT TRIGGERS                      |
+|   - AFTER INSERT / UPDATE / DELETE triggers fire at SQL engine level            |
+|   - Writes immutable snapshots to lead_audit_log in < 1 ms                      |
++---------------------------------------------------------------------------------+
+                                         |
+                                         v
++---------------------------------------------------------------------------------+
+|                    LOCAL AI SYNTHESIS (Qwen 2.5 3B Instruct)                    |
+|   - Local Ollama token generator streamed chunk-by-chunk                        |
+|   - Chunk delivery latency: < 25 ms per token chunk                             |
++---------------------------------------------------------------------------------+`,
+      technicalImplementation: [
+        "Implemented database-level triggers ensuring complete audit logging that cannot be bypassed even by direct ORM queries.",
+        "Constructed an asynchronous generator yielding `text/event-stream` chunks from local Ollama endpoints.",
+        "Built connection pool saturation monitors detecting slow queries and auto-reconnecting stalled sockets.",
+        "Enforced row-level multi-tenancy where every SQL query is constrained by tenant organization predicates.",
+      ],
+      benchmarksTable: [
+        { category: "Streaming", metric: "Chunk Latency", value: "< 25 ms", verificationMethod: "Network panel first-chunk measurement" },
+        { category: "Audit Performance", metric: "Trigger Overhead", value: "< 0.8 ms", verificationMethod: "MySQL slow query log analysis" },
+        { category: "Security", metric: "Tenant Isolation", value: "100% Segregated", verificationMethod: "Cross-tenant access test suite" },
+        { category: "Test Suite", metric: "Automated Tests", value: "62 / 62 (100%)", verificationMethod: "Pytest unit & integration suite" },
+      ],
+      repositoryStructure: `clover_crm/
+├── app/
+│   ├── auth.py             # Multi-tenant PBKDF2 authentication
+│   ├── stream.py           # SSE token streaming generator
+│   └── leads.py            # Lead scoring & opportunity pipelines
+├── db/
+│   └── triggers.sql        # Native MySQL compliance audit triggers
+└── tests/
+    └── test_crm.py         # 62 passing test cases`,
+      limitations: [
+        "Production deployment requires a running MySQL 8.0+ instance with trigger privileges.",
+      ],
+    },
   },
 ];
 
@@ -333,7 +691,7 @@ export const CERTIFICATIONS: Certification[] = [
     category: "Hackathon & Honors",
     credentialId: "FLASH-2024-WINNER-01",
     skills: ["Full-Stack Architecture", "Medication Adherence", "Prescription Parsing", "Rapid Prototyping"],
-    highlight: "Ranked 1st Place overall among 97 competing engineering university teams nationwide.",
+    highlight: "Ranked 1st Place overall among 97 competing engineering university teams nationwide for PillPal medication platform.",
   },
   {
     id: "liveai-internship-1",
@@ -401,26 +759,26 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
   {
     role: "AI Intern",
     company: "LiveAI",
-    period: "Feb 2025 – Apr 2025",
+    period: "02/2025 – 04/2025",
     type: "Internship (Remote)",
     location: "Remote",
     points: [
       "Conducted structured fine-tuning experiments on open-source Large Language Models (Llama 3, Mistral) using the Hugging Face ecosystem.",
-      "Engineered Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA) pipelines for low-resource domain tasks, reducing training VRAM by over 60%.",
-      "Built dataset formatting, tokenization, and supervised fine-tuning (SFT) evaluation workflows on cloud GPU runtimes, benchmarking perplexity and token accuracy.",
-      "Collaborated on evaluating agentic tool-use paradigms and structured JSON output enforcement.",
+      "Engineered Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA) pipelines on Google Colab / GPU runtimes, reducing training VRAM by over 60%.",
+      "Built dataset formatting, tokenization, and supervised fine-tuning (SFT) evaluation workflows, benchmarking perplexity, loss convergence, and structured JSON output.",
+      "Collaborated on evaluating agentic tool-use paradigms and instruction-following consistency for domain adaptation.",
     ],
-    techStack: ["Python", "PyTorch", "Hugging Face Transformers", "PEFT", "LoRA", "Llama 3", "Mistral", "CUDA / GPUs"],
+    techStack: ["Python", "PyTorch", "Hugging Face Transformers", "PEFT", "LoRA", "Llama 3", "Mistral", "Google Colab", "CUDA"],
   },
 ];
 
 export const EDUCATION_ITEMS: EducationItem[] = [
   {
-    degree: "B.Tech in Computer Science & Engineering",
+    degree: "B.Tech in Computer Science and Engineering",
     institution: "Amrita Vishwa Vidyapeetham",
     period: "2024 – 2028 (2nd Year)",
     location: "Chennai, India",
-    score: "CGPA: 7.2 / 10.0",
+    score: "CGPA: 7.02 / 10.0",
     coursework: [
       "Machine Learning",
       "Deep Learning",
@@ -434,64 +792,79 @@ export const EDUCATION_ITEMS: EducationItem[] = [
       "Robotics (ROS2)",
     ],
     achievements: [
-      "Winner (1st Place among 97 Teams) — FLASH National Hackathon",
+      "Winner (1st Place among 97 Teams) — FLASH National Hackathon (PillPal platform)",
       "Core contributor to open-source systems engineering initiatives",
       "Represented university in Tantrotsav Technical Fest",
     ],
   },
   {
-    degree: "Senior Secondary / Class 12th (MPC)",
+    degree: "Senior Secondary / Class XII (MPC)",
     institution: "Sri Chaitanya Junior College",
     period: "2023 – 2024",
     location: "Hyderabad, India",
-    score: "Aggregate: 91.5%",
+    score: "Aggregate: 88.7%",
     achievements: ["Strong foundation in Mathematics, Physics, and analytical problem solving"],
+  },
+];
+
+export const SKILL_CATEGORIES = [
+  {
+    category: "Languages",
+    skills: ["Python (3.12/3.14)", "C", "C++ (17/20)", "TypeScript", "JavaScript", "SQL", "Bash / Shell"],
+  },
+  {
+    category: "AI, ML & LLMs",
+    skills: ["PyTorch", "Hugging Face Ecosystem", "PEFT & LoRA", "FlashAttention", "Ollama", "ONNX Runtime (AVX2)", "Scikit-Learn", "Vector Databases", "Prompt Engineering"],
+  },
+  {
+    category: "Systems & Security",
+    skills: ["Linux PAM (Pluggable Authentication Modules)", "POSIX UNIX Sockets", "V4L2 Video Streaming", "Presentation Attack Detection (PAD)", "AES-256-GCM Encryption", "SSRF Defense", "Docker"],
+  },
+  {
+    category: "Backend & Operations Research",
+    skills: ["FastAPI", "Python Flask", "Express.js / Node.js", "Pydantic v2", "SciPy HiGHS MILP", "Monte Carlo Risk Engines", "MySQL Connection Pools", "SQLite"],
+  },
+  {
+    category: "Frontend & Tooling",
+    skills: ["Next.js 15 (App Router)", "React 18", "Tailwind CSS", "Framer Motion", "Vite", "Git & GitHub", "Pytest", "Vitest", "Vercel"],
   },
 ];
 
 export const ENGINEERING_PILLARS = [
   {
-    title: "LLM & Agentic Systems",
+    title: "Local-First AI & Agentic Systems",
     iconName: "Cpu",
-    tagline: "Deterministic Local-First Agency",
+    tagline: "Deterministic Local Agency",
     description:
       "Architecting AI agents that refuse hallucination through AST symbol indexing, strict permission-gated code synthesis proposals, and physical byte-level verification.",
-    featuredProjects: ["VIDURA (22.4k SLOC)", "NanoCoder (12.29M GPT)", "LiveAI LoRA SFT"],
-    color: "from-blue-500/20 to-indigo-500/10",
-    borderColor: "border-blue-500/30",
-    textColor: "text-blue-400",
+    featuredProjects: ["VIDURA (22.4k SLOC)", "NanoCoder (12.29M GPT)"],
+    color: "bg-blue-50 border-blue-200 text-blue-700",
   },
   {
-    title: "Linux Systems & Biometric Security",
+    title: "Linux Systems & Security Engineering",
     iconName: "Shield",
-    tagline: "Low-Latency Hardware Integration",
+    tagline: "Low-Latency PAM & Biometrics",
     description:
       "Writing native C Linux Pluggable Authentication Modules (PAM) and ONNX AVX2 pipelines that authenticate users in under 800ms with 3-tier presentation attack detection.",
-    featuredProjects: ["BLINK (C-PAM pam_blink.so)", "KavachAI (pHash & Audit Chaining)"],
-    color: "from-emerald-500/20 to-teal-500/10",
-    borderColor: "border-emerald-500/30",
-    textColor: "text-emerald-400",
+    featuredProjects: ["BLINK (C-PAM pam_blink.so)", "KavachAI (pHash & Crypto Logs)"],
+    color: "bg-emerald-50 border-emerald-200 text-emerald-700",
   },
   {
-    title: "Quantitative ML & Operations Research",
+    title: "Deep Learning & Transformers from Scratch",
+    iconName: "Zap",
+    tagline: "Zero-Wrapper Architecture",
+    description:
+      "Implementing decoder-only autoregressive GPT Transformers directly in PyTorch with custom Byte-Level BPE tokenization and bfloat16 FlashAttention.",
+    featuredProjects: ["NanoCoder (PyTorch GPT)", "LiveAI Fine-Tuning"],
+    color: "bg-purple-50 border-purple-200 text-purple-700",
+  },
+  {
+    title: "Full-Stack & Decision Optimization",
     iconName: "BarChart3",
-    tagline: "High-Dimension Optimization",
+    tagline: "Operations Research & Streaming",
     description:
-      "Formulating mixed-integer linear programming (MILP) fleet schedules with the SciPy HiGHS solver and executing 10,000-run vectorized Monte Carlo tail risk engines.",
-    featuredProjects: ["VARUNA ($3.94/MT MAE)", "10k Monte Carlo VaR/CVaR"],
-    color: "from-amber-500/20 to-orange-500/10",
-    borderColor: "border-amber-500/30",
-    textColor: "text-amber-400",
-  },
-  {
-    title: "High-Concurrency Full-Stack & Edge",
-    iconName: "Layers",
-    tagline: "Zero-Flake Production Systems",
-    description:
-      "Engineering real-time SSE streaming, connection-pooled database architectures, native MySQL compliance audit triggers, and micro-interaction frontends.",
-    featuredProjects: ["Clover CRM (SSE & Triggers)", "FastAPI + React 18 Monoliths"],
-    color: "from-purple-500/20 to-pink-500/10",
-    borderColor: "border-purple-500/30",
-    textColor: "text-purple-400",
+      "Formulating mixed-integer linear programming (MILP) fleet schedules with the SciPy HiGHS solver and executing 10,000-run vectorized Monte Carlo risk engines.",
+    featuredProjects: ["VARUNA ($3.94/MT MAE)", "Clover CRM (SSE & Triggers)"],
+    color: "bg-amber-50 border-amber-200 text-amber-700",
   },
 ];

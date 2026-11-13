@@ -87,42 +87,42 @@ export function NanoCoderDemo() {
         clearInterval(interval);
         setIsGenerating(false);
       }
-    }, 45); // Visual pacing
+    }, 40);
   };
 
   const currentGeneratedTokens = activePreset.tokens.slice(0, generatedCount);
 
   return (
-    <div className="rounded-xl border border-border/80 bg-[#090D13] p-4 md:p-6 shadow-2xl space-y-5 font-sans">
+    <div className="rounded-xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-xs space-y-5 font-sans">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-border/60">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-200">
         <div>
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
+            <span className="p-1.5 rounded-lg bg-purple-50 text-purple-700 border border-purple-200">
               <Cpu className="w-4 h-4" />
             </span>
-            <h4 className="text-base font-semibold text-slate-100 font-mono">
+            <h4 className="text-base font-bold font-heading text-zinc-900">
               NanoCoder 12.29M Transformer Autoregressive Token Lab
             </h4>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            PyTorch from scratch • 6 Layers • 6 Causal Heads • bfloat16 FlashAttention • Custom 4k Byte BPE
+          <p className="text-xs text-zinc-500 mt-0.5 font-mono">
+            PyTorch from scratch &middot; 6 Layers &middot; 6 Heads &middot; bfloat16 FlashAttention &middot; Custom 4k BPE
           </p>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-1 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 text-xs font-mono">
-            Speed: 21.48 ms/tok (46.6 tok/s CPU)
+          <span className="px-2.5 py-1 rounded bg-purple-50 text-purple-700 border border-purple-200 text-xs font-mono font-medium">
+            21.48 ms/tok (46.6 tok/s CPU)
           </span>
-          <span className="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-xs font-mono">
+          <span className="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-mono font-medium">
             Loss: 8.37 &rarr; 2.07
           </span>
         </div>
       </div>
 
       {/* Preset Selector */}
-      <div className="flex items-center gap-2 text-xs font-mono">
-        <span className="text-slate-500">Target Corpus:</span>
+      <div className="flex items-center gap-2 text-xs font-sans">
+        <span className="text-zinc-500 font-medium">Corpus Prompt:</span>
         {PROMPT_PRESETS.map((p) => (
           <button
             key={p.id}
@@ -130,10 +130,10 @@ export function NanoCoderDemo() {
               setActivePreset(p);
               setGeneratedCount(0);
             }}
-            className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-md border text-xs font-mono font-medium transition-colors cursor-pointer ${
               activePreset.id === p.id
-                ? "bg-purple-600/30 text-purple-200 border-purple-500/50"
-                : "bg-slate-800/60 text-slate-400 border-border/60 hover:text-slate-200"
+                ? "bg-zinc-900 text-white border-zinc-900 shadow-xs"
+                : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
             }`}
           >
             {p.name}
@@ -141,67 +141,67 @@ export function NanoCoderDemo() {
         ))}
       </div>
 
-      {/* Token Generation Window */}
-      <div className="p-4 rounded-xl bg-black/70 border border-border/80 font-mono text-xs leading-relaxed space-y-3">
-        <div className="flex items-center justify-between text-slate-500 text-[11px] pb-2 border-b border-slate-800">
+      {/* Token Generation Box */}
+      <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-200 font-mono text-xs leading-relaxed space-y-3">
+        <div className="flex items-center justify-between text-zinc-500 text-[11px] pb-2 border-b border-zinc-200">
           <span>Prompt Context (256 window)</span>
           <span>
             Tokens generated: {generatedCount} / {activePreset.tokens.length}
           </span>
         </div>
 
-        <pre className="text-slate-300 overflow-x-auto whitespace-pre-wrap font-mono min-h-[140px]">
-          <span className="text-slate-400">{activePreset.prompt}</span>
-          <span className="text-purple-300 font-semibold">
+        <pre className="text-zinc-700 overflow-x-auto whitespace-pre-wrap font-mono min-h-[140px]">
+          <span className="text-zinc-500">{activePreset.prompt}</span>
+          <span className="text-purple-700 font-bold">
             {currentGeneratedTokens.map((t) => t.text).join("")}
           </span>
-          {isGenerating && <span className="inline-block w-2 h-4 bg-purple-400 animate-pulse ml-0.5" />}
+          {isGenerating && <span className="inline-block w-2 h-4 bg-purple-600 animate-pulse ml-0.5" />}
         </pre>
 
         {generatedCount === activePreset.tokens.length && (
-          <div className="p-2.5 rounded bg-emerald-950/20 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+          <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-2 font-mono">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
             <span>{activePreset.validityCheck}</span>
           </div>
         )}
       </div>
 
-      {/* Token Inspector Strip */}
+      {/* Token Inspector */}
       <div className="space-y-1.5">
-        <div className="text-[11px] font-mono text-slate-400 flex items-center justify-between">
-          <span>Live Token Sampling Distribution (Top-K = 40, Temp = 0.7)</span>
+        <div className="text-[11px] font-mono text-zinc-500 flex items-center justify-between">
+          <span>Top-K Sampling (K=40, Temp=0.7)</span>
           <span>FlashAttention bfloat16: ACTIVE</span>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 text-[10px] font-mono">
           {activePreset.tokens.slice(0, 6).map((tok, idx) => (
             <div
               key={idx}
-              className={`p-2 rounded border ${
+              className={`p-2 rounded-lg border ${
                 idx < generatedCount
-                  ? "bg-purple-950/30 border-purple-500/40 text-purple-200"
-                  : "bg-slate-900 border-border/40 text-slate-500"
+                  ? "bg-purple-50 border-purple-200 text-purple-900 font-semibold"
+                  : "bg-white border-zinc-200 text-zinc-400"
               }`}
             >
-              <div className="truncate font-semibold">{tok.text.trim() || "\\n"}</div>
-              <div className="text-slate-400">ID: {tok.id}</div>
-              <div className="text-emerald-400">P: {(tok.prob * 100).toFixed(1)}%</div>
+              <div className="truncate">{tok.text.trim() || "\\n"}</div>
+              <div className="text-zinc-400">ID: {tok.id}</div>
+              <div className="text-emerald-700">P: {(tok.prob * 100).toFixed(1)}%</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Footer controls */}
-      <div className="flex items-center justify-between pt-2 border-t border-border/60 text-xs">
-        <div className="text-slate-500 font-mono">
-          Zero Hugging Face abstractions • Scaled Dot-Product Attention
-        </div>
+      {/* Footer */}
+      <div className="flex items-center justify-between pt-2 border-t border-zinc-200 text-xs font-mono">
+        <span className="text-zinc-500">
+          Zero high-level wrappers &middot; Pure PyTorch F.scaled_dot_product_attention
+        </span>
         <button
           onClick={startGeneration}
           disabled={isGenerating}
-          className="px-4 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-medium flex items-center gap-1.5 shadow-lg shadow-purple-950/50 transition-all cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50"
+          className="px-4 py-1.5 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-medium flex items-center gap-1.5 shadow-xs transition-all cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50"
         >
           <Play className="w-3.5 h-3.5" />
-          {isGenerating ? "Synthesizing Tokens..." : "Generate Autoregressively (21.48ms/tok)"}
+          <span>{isGenerating ? "Synthesizing Tokens..." : "Generate Autoregressively"}</span>
         </button>
       </div>
     </div>

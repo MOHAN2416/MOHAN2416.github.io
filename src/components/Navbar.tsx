@@ -1,179 +1,178 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Command, GitBranch, FileText, Menu, X, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { GitBranch, FileText, Menu, X, ArrowRight, ExternalLink } from "lucide-react";
 import { CANDIDATE_PROFILE } from "@/lib/data";
 
 interface NavbarProps {
-  onOpenCommandPalette: () => void;
-  onOpenResume: () => void;
-  onOpenAiAssistant: () => void;
+  onOpenResume?: () => void;
 }
 
-export function Navbar({ onOpenCommandPalette, onOpenResume, onOpenAiAssistant }: NavbarProps) {
+export function Navbar({ onOpenResume }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const NAV_LINKS = [
-    { label: "Overview", href: "#overview" },
-    { label: "Pillars", href: "#pillars" },
-    { label: "Projects (6)", href: "#projects" },
-    { label: "Architecture Lab", href: "#architecture" },
-    { label: "Experience", href: "#experience" },
-    { label: "Credentials", href: "#credentials" },
-    { label: "Contact", href: "#contact" },
+    { label: "Overview", href: "/" },
+    { label: "Projects", href: "/projects" },
+    { label: "Interactive Labs", href: "/playground" },
+    { label: "Experience & Education", href: "/experience" },
+    { label: "Credentials", href: "/credentials" },
   ];
 
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+    <header
+      className={`sticky top-0 z-40 w-full transition-all duration-200 ${
         scrolled
-          ? "bg-[#07090E]/90 backdrop-blur-md border-b border-border/80 shadow-2xl py-3"
-          : "bg-transparent py-4 sm:py-5 border-b border-transparent"
+          ? "bg-white/85 backdrop-blur-md border-b border-zinc-200/80 shadow-xs py-3"
+          : "bg-white/95 backdrop-blur-sm border-b border-zinc-200/60 py-3.5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo & Name */}
-        <a href="#overview" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 p-[1px] shadow-glow-indigo transition-transform group-hover:scale-105">
-            <div className="w-full h-full bg-[#0D1117] rounded-[11px] flex items-center justify-center text-blue-400 font-mono font-bold text-sm">
-              MS
-            </div>
+        {/* Brand Monogram & Name */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-white font-mono font-bold text-xs shadow-xs transition-transform group-hover:scale-105">
+            MS
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-sm sm:text-base text-slate-100 tracking-tight font-sans group-hover:text-blue-400 transition-colors">
+              <span className="font-semibold text-sm sm:text-base text-zinc-900 tracking-tight font-heading group-hover:text-cobalt-600 transition-colors">
                 Mutyala Mohan Surendra
               </span>
-              <span className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="hidden xl:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-emerald" />
                 Available for Roles
               </span>
             </div>
-            <div className="text-[11px] font-mono text-slate-400 hidden sm:block">
-              AI Systems Engineer & Full-Stack Architect
+            <div className="text-[11px] text-zinc-500 hidden sm:block font-sans">
+              AI Systems Engineer & Full-Stack Developer
             </div>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden xl:flex items-center space-x-1 font-mono text-xs">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        <nav className="hidden lg:flex items-center space-x-1 font-sans text-xs">
+          {NAV_LINKS.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`px-3 py-1.5 rounded-md font-medium transition-colors ${
+                  active
+                    ? "text-cobalt-600 bg-cobalt-50/70 border border-cobalt-200/50"
+                    : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/70"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
 
-        {/* Right CTA Actions */}
+        {/* Right Action Buttons */}
         <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Cmd+K Command Palette Trigger */}
-          <button
-            onClick={onOpenCommandPalette}
-            className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-slate-300 text-xs font-mono border border-border/80 shadow-sm transition-all cursor-pointer group hover:border-blue-500/50"
-            title="Press Cmd+K to open Command Palette"
-          >
-            <Command className="w-3.5 h-3.5 text-blue-400" />
-            <span className="hidden sm:inline text-slate-400 group-hover:text-slate-200">Search</span>
-            <kbd className="hidden sm:inline-flex items-center gap-0.5 text-[10px] bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 text-slate-400 font-mono">
-              ⌘K
-            </kbd>
-          </button>
-
-          {/* AI Twin Trigger Button */}
-          <button
-            onClick={onOpenAiAssistant}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/40 text-xs font-mono transition-all cursor-pointer hover:scale-105 active:scale-95"
-            title="Ask Mohan's AI Assistant"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-            <span className="hidden md:inline">AI Twin</span>
-          </button>
-
-          {/* Resume PDF Modal Button */}
+          {/* Resume Action */}
           <button
             onClick={onOpenResume}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono border border-border/80 transition-all cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white hover:bg-zinc-50 text-zinc-700 text-xs font-mono border border-zinc-200 shadow-xs transition-all cursor-pointer"
           >
-            <FileText className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="hidden sm:inline">Resume</span>
+            <FileText className="w-3.5 h-3.5 text-zinc-500" />
+            <span>Resume</span>
           </button>
 
-          {/* GitHub External */}
+          {/* GitHub Icon Link */}
           <a
             href={CANDIDATE_PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 sm:p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-100 border border-border/80 transition-colors"
-            title="View GitHub Profile"
+            className="p-1.5 sm:p-2 rounded-md bg-white hover:bg-zinc-50 text-zinc-600 hover:text-zinc-900 border border-zinc-200 shadow-xs transition-colors"
+            title="GitHub Repository"
           >
-            <GitBranch className="w-4 h-4 text-slate-300" />
+            <GitBranch className="w-4 h-4" />
           </a>
 
-          {/* Mobile Menu Hamburger */}
+          {/* Primary Cobalt Contact CTA */}
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-cobalt-600 hover:bg-cobalt-700 text-white text-xs font-semibold shadow-xs transition-all hover:shadow-sm"
+          >
+            <span>Contact</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 rounded-lg bg-slate-900 text-slate-400 hover:text-slate-200 xl:hidden border border-border/70"
-            aria-label="Toggle Navigation"
+            className="p-1.5 rounded-md bg-white text-zinc-600 hover:text-zinc-900 lg:hidden border border-zinc-200"
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden px-4 pt-3 pb-5 bg-[#0D1117] border-b border-border/80 space-y-2 text-xs font-mono">
-          <div className="px-3 py-1.5 text-[11px] text-emerald-400 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <div className="lg:hidden px-4 pt-3 pb-5 bg-white border-b border-zinc-200 space-y-2 text-xs font-sans shadow-sm">
+          <div className="px-3 py-1.5 text-[11px] text-emerald-700 font-mono bg-emerald-50 rounded-md border border-emerald-200 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-emerald" />
             {CANDIDATE_PROFILE.availabilityStatus}
           </div>
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800"
+              className={`block px-3 py-2 rounded-md font-medium ${
+                isActive(link.href)
+                  ? "bg-cobalt-50 text-cobalt-600 font-semibold"
+                  : "text-zinc-700 hover:bg-zinc-100"
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <div className="pt-2 border-t border-border/60 flex items-center justify-between">
+          <div className="pt-2 border-t border-zinc-100 flex items-center justify-between">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenCommandPalette();
+                onOpenResume?.();
               }}
-              className="px-3 py-1.5 rounded bg-slate-800 text-slate-300 flex items-center gap-2"
+              className="px-3 py-1.5 rounded-md bg-zinc-100 text-zinc-700 font-mono text-xs flex items-center gap-1.5"
             >
-              <Command className="w-3.5 h-3.5 text-blue-400" />
-              <span>Command Palette (⌘K)</span>
+              <FileText className="w-3.5 h-3.5" />
+              <span>Resume PDF</span>
             </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAiAssistant();
-              }}
-              className="px-3 py-1.5 rounded bg-blue-600/30 text-blue-300 flex items-center gap-1.5"
+            <a
+              href={CANDIDATE_PROFILE.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-md bg-zinc-100 text-zinc-700 font-mono text-xs flex items-center gap-1.5"
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Ask AI Twin</span>
-            </button>
+              <GitBranch className="w-3.5 h-3.5" />
+              <span>GitHub</span>
+              <ExternalLink className="w-3 h-3 text-zinc-400" />
+            </a>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 }

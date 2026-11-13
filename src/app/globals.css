@@ -3,111 +3,102 @@
 @tailwind utilities;
 
 :root {
-  --background: #07090E;
-  --foreground: #F3F4F6;
-  --surface: #0D1117;
-  --surface-border: #161F30;
+  --canvas: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-muted: #F4F4F5;
+  --border: #E4E4E7;
+  --ink-primary: #09090B;
+  --ink-body: #3F3F46;
+  --ink-muted: #71717A;
+  --cobalt: #2563EB;
+}
+
+html {
+  background-color: #FAFAFA;
+  color: #09090B;
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background-color: var(--background);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  overflow-x: hidden;
-  selection-background-color: #3B82F6;
-  selection-color: #FFFFFF;
+  background-color: #FAFAFA;
+  color: #3F3F46;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-::selection {
-  background: rgba(59, 130, 246, 0.35);
-  color: #FFFFFF;
-}
-
-/* Custom Precision Scrollbar */
+/* Light Editorial Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #07090E;
+  background: #FAFAFA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: #D4D4D8;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #A1A1AA;
 }
 
-/* Engineering Matrix & Grid Backgrounds */
-.bg-grid-pattern {
-  background-size: 32px 32px;
+/* Crisp Selection */
+::selection {
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+/* Technical Blueprint Grid Pattern for Light Mode */
+.bg-light-grid {
+  background-size: 28px 28px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
 }
 
-.bg-dots-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+.bg-light-dots {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
-/* Glassmorphism Surface */
-.glass-panel {
-  background: rgba(13, 17, 23, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Editorial Card & Surfaces */
+.editorial-card {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel-subtle {
-  background: rgba(15, 22, 36, 0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.editorial-card:hover {
+  border-color: #D4D4D8;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
-.glass-panel-interactive {
-  background: rgba(13, 17, 23, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  color: #09090B;
+  letter-spacing: -0.025em;
+  font-weight: 600;
 }
 
-.glass-panel-interactive:hover {
-  background: rgba(20, 28, 43, 0.85);
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(59, 130, 246, 0.15);
+/* Monospace Elements */
+code, pre, kbd {
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
 }
 
-/* Glow Highlights */
-.glow-text-indigo {
-  text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+/* Status Pulse for Light Theme */
+@keyframes light-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(5, 150, 105, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
 }
 
-.glow-text-emerald {
-  text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
-}
-
-.glow-text-amber {
-  text-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
-}
-
-/* Code & Terminal Styling */
-pre, code {
-  font-family: var(--font-geist-mono), "JetBrains Mono", monospace;
-}
-
-/* Pulse animation utility */
-@keyframes status-pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-.pulse-active {
-  animation: status-pulse 2s infinite;
+.pulse-emerald {
+  animation: light-pulse 2s infinite;
 }

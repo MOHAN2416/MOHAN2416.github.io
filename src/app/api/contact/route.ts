@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
+import { saveContact } from "@/lib/db";
 import crypto from "crypto";
 
 export async function POST(request: NextRequest) {
@@ -7,9 +7,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { name, email, company, role, message } = body;
 
-    // Validation
+    // Strict input validation
     if (!name || typeof name !== "string" || name.trim().length === 0) {
-      return NextResponse.json({ error: "Candidate or recruiter name is required." }, { status: 400 });
+      return NextResponse.json({ error: "Recruiter or contact name is required." }, { status: 400 });
     }
 
     if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
@@ -25,55 +25,48 @@ export async function POST(request: NextRequest) {
     const ip = forwardedFor ? forwardedFor.split(",")[0].trim() : "127.0.0.1";
     const ipHash = crypto.createHash("sha256").update(ip).digest("hex").slice(0, 16);
 
-    const db = getDb();
-    const now = Math.floor(Date.now() / 1000);
-    const windowSeconds = 600; // 10 minute window
-
-    const rateRow = db.prepare("SELECT * FROM rate_limits WHERE ip_hash = ?").get(ipHash) as
-      | { ip_hash: string; request_count: number; window_start: number }
-      | undefined;
-
-    if (rateRow) {
-      if (now - rateRow.window_start < windowSeconds) {
-        if (rateRow.request_count >= 8) {
-          return NextResponse.json(
-            { error: "Rate limit reached. Please wait a few minutes before submitting another message." },
-            { status: 429 }
-          );
-        }
-        db.prepare("UPDATE rate_limits SET request_count = request_count + 1 WHERE ip_hash = ?").run(ipHash);
-      } else {
-        db.prepare("UPDATE rate_limits SET request_count = 1, window_start = ? WHERE ip_hash = ?").run(now, ipHash);
-      }
-    } else {
-      db.prepare("INSERT INTO rate_limits (ip_hash, request_count, window_start) VALUES (?, 1, ?)").run(ipHash, now);
-    }
-
     // Unique verification receipt ID
     const randomHex = crypto.randomBytes(4).toString("hex").toUpperCase();
     const receiptId = `MMS-REC-${new Date().getFullYear()}-${randomHex}`;
 
-    const insertStmt = db.prepare(`
-      INSERT INTO contacts (receipt_id, name, email, company, role, message, ip_hash)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
-    `);
-
-    insertStmt.run(
+    // Save contact safely (Vercel read-only safe)
+    saveContact({
       receiptId,
-      name.trim(),
-      email.trim(),
-      company ? company.trim() : null,
-      role ? role.trim() : null,
-      message.trim(),
-      ipHash
-    );
+      name: name.trim(),
+      email: email.trim(),
+      company: company ? company.trim() : null,
+      role: role ? role.trim() : null,
+      message: message.trim(),
+      ipHash,
+    });
+
+    // Optional Resend email dispatch if configured
+    if (process.env.RESEND_API_KEY) {
+      try {
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: "Portfolio Recruiter <onboarding@resend.dev>",
+            to: ["mohana21062007@gmail.com"],
+            subject: `[Portfolio Inquiry] ${name} from ${company || "Prospective Team"}`,
+            text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || "N/A"}\nRole: ${role || "N/A"}\nMessage:\n${message}\n\nReceipt: ${receiptId}`,
+          }),
+        });
+      } catch (err) {
+        console.warn("Resend email dispatch error (non-fatal):", err);
+      }
+    }
 
     return NextResponse.json(
       {
         success: true,
         receiptId,
         timestamp: new Date().toISOString(),
-        message: "Your message has been securely recorded into Mohan's portfolio database. A response will be dispatched promptly.",
+        message: "Your inquiry has been securely recorded. Mohan will respond promptly to discuss engineering opportunities.",
       },
       { status: 201 }
     );

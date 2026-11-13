@@ -1,149 +1,130 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Link from "next/link";
 import { CANDIDATE_PROFILE } from "@/lib/data";
-import { Terminal, GitBranch, ArrowUp, Sparkles, Command } from "lucide-react";
+import { GitBranch, Mail, Phone, MapPin, ArrowUp, CheckCircle2 } from "lucide-react";
 
-interface FooterProps {
-  onOpenCommandPalette: () => void;
-  onOpenAiAssistant: () => void;
-}
-
-export function Footer({ onOpenCommandPalette, onOpenAiAssistant }: FooterProps) {
-  const [visitorCount, setVisitorCount] = useState<number>(1843);
-  const [currentTime, setCurrentTime] = useState<string>("");
-
-  useEffect(() => {
-    // Fetch live telemetry
-    fetch("/api/telemetry?view=false")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.visitorCount) {
-          setVisitorCount(data.visitorCount);
-        }
-      })
-      .catch((err) => console.error(err));
-
-    const updateTime = () => {
-      const now = new Date();
-      setCurrentTime(
-        now.toLocaleTimeString("en-US", { timeZone: "Asia/Kolkata", hour12: false }) + " IST"
-      );
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
+export function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="border-t border-border/80 bg-[#07090E] pt-12 pb-8 relative text-xs font-mono text-slate-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        {/* Top Telemetry Strip */}
-        <div className="p-4 rounded-2xl bg-[#0B0F17] border border-border/70 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              SYSTEM TELEMETRY: ONLINE
+    <footer className="border-t border-zinc-200/80 bg-white pt-12 pb-8 text-xs font-sans text-zinc-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        {/* Top Vercel Deployment & Telemetry Strip */}
+        <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-200/80 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+          <div className="flex items-center gap-2.5">
+            <span className="flex items-center gap-1.5 text-emerald-700 font-medium">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 pulse-emerald" />
+              Vercel Deployment: Healthy
             </span>
-            <span className="text-slate-600">|</span>
-            <span className="text-slate-300">
-              CI Pass Rate: <span className="text-emerald-400 font-bold">100% (807 Tests)</span>
+            <span className="text-zinc-300">|</span>
+            <span className="text-zinc-600">
+              CI Pass Rate: <strong className="text-zinc-900">100% (807 Tests)</strong>
             </span>
-            <span className="hidden sm:inline text-slate-600">|</span>
-            <span className="hidden sm:inline text-slate-300">
-              Visitor Impressions: <span className="text-cyan-400 font-bold">{visitorCount}</span>
+            <span className="hidden sm:inline text-zinc-300">|</span>
+            <span className="hidden sm:inline text-zinc-600">
+              Next.js 15 App Router (Multi-Page Light)
             </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-slate-500">Local Time:</span>
-            <span className="text-slate-300 font-bold">{currentTime || "09:30:00 IST"}</span>
+            <span className="text-zinc-500">Location:</span>
+            <span className="text-zinc-800 font-semibold">{CANDIDATE_PROFILE.location}</span>
             <button
               onClick={scrollToTop}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors ml-2 cursor-pointer"
-              title="Return to Top"
+              className="p-1.5 rounded-md bg-white hover:bg-zinc-100 text-zinc-700 border border-zinc-200 shadow-xs transition-colors cursor-pointer ml-1"
+              title="Return to top"
             >
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Main Footer Navigation & Identity */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pt-4">
-          {/* Col 1: Identity */}
+        {/* Multi-Column Links */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Identity & Bio */}
           <div className="space-y-3 md:col-span-2">
-            <div className="flex items-center gap-2 text-white font-bold text-sm">
-              <Terminal className="w-4 h-4 text-blue-400" />
+            <div className="flex items-center gap-2 text-zinc-900 font-bold font-heading text-sm">
+              <div className="w-5 h-5 rounded bg-zinc-900 text-white font-mono text-[10px] flex items-center justify-center font-bold">
+                MS
+              </div>
               <span>{CANDIDATE_PROFILE.name}</span>
             </div>
-            <p className="text-slate-400 font-sans text-xs leading-relaxed max-w-md">
-              {CANDIDATE_PROFILE.headline}. Engineering deterministic AI agents, low-latency Linux biometric security suites, and explainable quantitative operations research.
+            <p className="text-zinc-600 text-xs leading-relaxed max-w-md font-sans">
+              {CANDIDATE_PROFILE.headline}. Building deterministic local-first LLM agents, Linux C-PAM biometric security suites, from-scratch PyTorch Transformers, and MILP operations research.
             </p>
-            <div className="pt-2 flex items-center gap-2">
-              <button
-                onClick={onOpenCommandPalette}
-                className="px-2.5 py-1 rounded-md bg-slate-900 border border-border/70 text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <Command className="w-3 h-3 text-blue-400" />
-                <span>Command Palette (⌘K)</span>
-              </button>
-              <button
-                onClick={onOpenAiAssistant}
-                className="px-2.5 py-1 rounded-md bg-blue-950/40 border border-blue-500/30 text-blue-300 hover:text-blue-100 flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <Sparkles className="w-3 h-3 text-blue-400" />
-                <span>Ask AI Twin</span>
-              </button>
+            <div className="flex items-center gap-3 pt-1 text-zinc-600">
+              <span className="flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5 text-zinc-400" />
+                <span>{CANDIDATE_PROFILE.location}</span>
+              </span>
             </div>
           </div>
 
-          {/* Col 2: Flagship Systems */}
-          <div className="space-y-2">
-            <div className="text-slate-200 font-bold uppercase text-[11px] tracking-wider">
-              Flagship Systems
+          {/* Navigation Links */}
+          <div className="space-y-2.5">
+            <div className="text-zinc-900 font-semibold font-mono uppercase text-[11px] tracking-wider">
+              Navigation
             </div>
-            <ul className="space-y-1.5 text-slate-400">
+            <ul className="space-y-2 text-zinc-600">
               <li>
-                <a href="#projects" className="hover:text-blue-400 transition-colors">
-                  VIDURA (22.4k SLOC Agent)
-                </a>
+                <Link href="/" className="hover:text-cobalt-600 transition-colors">
+                  Overview
+                </Link>
               </li>
               <li>
-                <a href="#projects" className="hover:text-emerald-400 transition-colors">
-                  BLINK (~800ms C-PAM)
-                </a>
+                <Link href="/projects" className="hover:text-cobalt-600 transition-colors">
+                  Projects (6 Systems)
+                </Link>
               </li>
               <li>
-                <a href="#projects" className="hover:text-amber-400 transition-colors">
-                  VARUNA (HiGHS MILP 176ms)
-                </a>
+                <Link href="/playground" className="hover:text-cobalt-600 transition-colors">
+                  Interactive Labs
+                </Link>
               </li>
               <li>
-                <a href="#projects" className="hover:text-purple-400 transition-colors">
-                  NanoCoder (12.29M Transformer)
-                </a>
+                <Link href="/experience" className="hover:text-cobalt-600 transition-colors">
+                  Experience & Education
+                </Link>
+              </li>
+              <li>
+                <Link href="/credentials" className="hover:text-cobalt-600 transition-colors">
+                  Credentials & Skills
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-cobalt-600 transition-colors">
+                  Recruiter Contact
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Direct Connect */}
-          <div className="space-y-2">
-            <div className="text-slate-200 font-bold uppercase text-[11px] tracking-wider">
+          {/* Connect & GitHub */}
+          <div className="space-y-2.5">
+            <div className="text-zinc-900 font-semibold font-mono uppercase text-[11px] tracking-wider">
               Direct Connect
             </div>
-            <ul className="space-y-1.5 text-slate-400">
+            <ul className="space-y-2 text-zinc-600 font-mono text-xs">
               <li>
-                <a href={`mailto:${CANDIDATE_PROFILE.email}`} className="hover:text-white transition-colors">
-                  {CANDIDATE_PROFILE.email}
+                <a
+                  href={`mailto:${CANDIDATE_PROFILE.email}`}
+                  className="hover:text-cobalt-600 transition-colors flex items-center gap-1.5"
+                >
+                  <Mail className="w-3.5 h-3.5 text-zinc-400" />
+                  <span className="truncate">{CANDIDATE_PROFILE.email}</span>
                 </a>
               </li>
               <li>
-                <a href={`tel:${CANDIDATE_PROFILE.phone}`} className="hover:text-white transition-colors">
-                  {CANDIDATE_PROFILE.phone}
+                <a
+                  href={`tel:${CANDIDATE_PROFILE.phone}`}
+                  className="hover:text-cobalt-600 transition-colors flex items-center gap-1.5"
+                >
+                  <Phone className="w-3.5 h-3.5 text-zinc-400" />
+                  <span>{CANDIDATE_PROFILE.phone}</span>
                 </a>
               </li>
               <li>
@@ -151,29 +132,32 @@ export function Footer({ onOpenCommandPalette, onOpenAiAssistant }: FooterProps)
                   href={CANDIDATE_PROFILE.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors flex items-center gap-1"
+                  className="hover:text-zinc-900 transition-colors flex items-center gap-1.5"
                 >
-                  <GitBranch className="w-3 h-3" />
+                  <GitBranch className="w-3.5 h-3.5 text-zinc-400" />
                   <span>github.com/MOHAN2416</span>
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors">
-                  Send Recruiter Message
-                </a>
+                <Link
+                  href="/contact"
+                  className="inline-block mt-1 text-cobalt-600 font-sans font-semibold hover:underline"
+                >
+                  Schedule Technical Interview &rarr;
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Copyright & Security note */}
-        <div className="pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
+        {/* Bottom Metadata & Vercel indicator */}
+        <div className="pt-6 border-t border-zinc-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-500">
           <div>
-            &copy; {new Date().getFullYear()} Mutyala Mohan Surendra. Engineered with Next.js 15, Tailwind CSS, & SQLite.
+            &copy; {new Date().getFullYear()} Mutyala Mohan Surendra. Editorial Light Engineering Showcase.
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>Deterministic Local Execution • Zero External Analytics Trackers</span>
+          <div className="flex items-center gap-2 font-mono">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Zero Hydration Mismatch &middot; Vercel Serverless Ready</span>
           </div>
         </div>
       </div>

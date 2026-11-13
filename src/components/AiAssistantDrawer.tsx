@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { Sparkles, X, Send, Bot, User, RefreshCw, ArrowRight } from "lucide-react";
 
 interface Message {
@@ -15,9 +16,9 @@ interface Message {
 const INITIAL_MESSAGES: Message[] = [
   {
     role: "assistant",
-    text: `Hello! I am **Mohan's Autonomous AI Twin**, pre-loaded with complete knowledge of his 6 production repositories, systems architectures, CI benchmarks, and research.
+    text: `Hello! I am **Mohan's Autonomous AI Twin**, pre-loaded with comprehensive technical knowledge of his 6 engineering repositories, systems architectures, measured benchmarks, and academic coursework.
 
-How can I help evaluate Mohan for your engineering team?`,
+How can I assist in evaluating Mohan for your engineering team?`,
     suggestedQuestions: [
       "Why hire Mohan for an AI Systems role?",
       "How does VIDURA prevent unauthorized code execution?",
@@ -31,10 +32,9 @@ How can I help evaluate Mohan for your engineering team?`,
 interface AiAssistantDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  onOpenProject: (projectId: string) => void;
 }
 
-export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistantDrawerProps) {
+export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
   const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
   const [inputQuery, setInputQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -59,7 +59,7 @@ export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistan
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api/ai-assistant", {
+      const res = await fetch("/api/assistant", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: q }),
@@ -85,7 +85,7 @@ export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistan
       console.error(err);
       const errorMessage: Message = {
         role: "assistant",
-        text: "I encountered a transient error querying Mohan's knowledge base. Please try selecting one of the suggested prompts or query about VIDURA, BLINK, or VARUNA directly.",
+        text: "I encountered a transient error querying Mohan's knowledge base. Please select one of the suggested prompts or query about VIDURA, BLINK, or VARUNA directly.",
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -97,34 +97,35 @@ export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistan
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[94vw] sm:w-[480px] max-w-[500px] h-[580px] rounded-2xl border border-blue-500/40 bg-[#090D14] shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl animate-in fade-in slide-in-from-bottom-5 duration-200">
-      {/* Drawer Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-[#0D121D] border-b border-border/80">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[94vw] sm:w-[460px] max-w-[480px] h-[580px] rounded-2xl border border-zinc-200 bg-white shadow-popover flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200 font-sans">
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 bg-zinc-50 border-b border-zinc-200">
         <div className="flex items-center gap-2.5">
-          <div className="p-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400">
+          <div className="p-1.5 rounded-lg bg-cobalt-50 border border-cobalt-200 text-cobalt-600">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
-            <div className="text-xs font-bold text-white font-mono flex items-center gap-1.5">
-              <span>Mohan&apos;s AI Twin</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="text-xs font-bold text-zinc-900 font-heading flex items-center gap-1.5">
+              <span>Mohan&apos;s AI Assistant</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-emerald" />
             </div>
-            <div className="text-[10px] text-slate-400 font-sans">
-              Deterministic RAG • 6 Repos • Offline Ready
+            <div className="text-[11px] text-zinc-500 font-sans">
+              Deterministic Knowledge Base &middot; 6 Repos
             </div>
           </div>
         </div>
 
         <button
           onClick={onClose}
-          className="p-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer"
+          className="p-1.5 rounded-md hover:bg-zinc-200 text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer"
+          aria-label="Close assistant"
         >
           <X className="w-4 h-4" />
         </button>
       </div>
 
-      {/* Messages Scroll Area */}
-      <div className="flex-1 p-4 overflow-y-auto space-y-4 text-xs font-sans bg-[#070A0F]">
+      {/* Messages Feed */}
+      <div className="flex-1 p-4 overflow-y-auto space-y-4 text-xs font-sans bg-[#FAFAFA]">
         {messages.map((msg, idx) => (
           <div
             key={idx}
@@ -132,27 +133,27 @@ export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistan
               msg.role === "user" ? "items-end" : "items-start"
             }`}
           >
-            <div className="flex items-center gap-1.5 text-[10px] text-slate-500 font-mono">
+            <div className="flex items-center gap-1.5 text-[10px] text-zinc-400 font-mono">
               {msg.role === "assistant" ? (
                 <>
-                  <Bot className="w-3 h-3 text-blue-400" />
+                  <Bot className="w-3 h-3 text-cobalt-600" />
                   <span>AI Twin</span>
-                  {msg.category && <span>• {msg.category}</span>}
+                  {msg.category && <span>&middot; {msg.category}</span>}
                 </>
               ) : (
                 <>
-                  <User className="w-3 h-3 text-slate-400" />
+                  <User className="w-3 h-3 text-zinc-500" />
                   <span>You</span>
                 </>
               )}
-              <span>• {msg.timestamp}</span>
+              <span>&middot; {msg.timestamp}</span>
             </div>
 
             <div
-              className={`p-3.5 rounded-2xl max-w-[90%] leading-relaxed ${
+              className={`p-3.5 rounded-xl max-w-[90%] leading-relaxed ${
                 msg.role === "user"
-                  ? "bg-blue-600 text-white rounded-tr-none font-medium"
-                  : "bg-[#0D1117] text-slate-200 border border-border/70 rounded-tl-none whitespace-pre-wrap"
+                  ? "bg-cobalt-600 text-white rounded-tr-none font-medium shadow-xs"
+                  : "bg-white text-zinc-800 border border-zinc-200 rounded-tl-none shadow-xs whitespace-pre-wrap"
               }`}
             >
               {msg.text}
@@ -161,15 +162,16 @@ export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistan
             {/* Relevant Project Quick Link */}
             {msg.relevantProjects && msg.relevantProjects.length > 0 && (
               <div className="flex flex-wrap gap-1.5 pt-1">
-                {msg.relevantProjects.map((pId) => (
-                  <button
-                    key={pId}
-                    onClick={() => onOpenProject(pId)}
-                    className="px-2.5 py-1 rounded bg-blue-950/40 text-blue-300 border border-blue-500/30 text-[10px] font-mono flex items-center gap-1 hover:bg-blue-900/50 transition-colors cursor-pointer"
+                {msg.relevantProjects.map((pSlug) => (
+                  <Link
+                    key={pSlug}
+                    href={`/projects/${pSlug}`}
+                    onClick={onClose}
+                    className="px-2.5 py-1 rounded-md bg-cobalt-50 text-cobalt-700 border border-cobalt-200 text-[11px] font-mono flex items-center gap-1 hover:bg-cobalt-100 transition-colors"
                   >
-                    <span>Inspect {pId.toUpperCase()} Sandbox</span>
-                    <ArrowRight className="w-2.5 h-2.5" />
-                  </button>
+                    <span>Read {pSlug.toUpperCase()} Case Study</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
                 ))}
               </div>
             )}
@@ -177,13 +179,15 @@ export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistan
             {/* Suggested Follow-up Questions */}
             {msg.suggestedQuestions && msg.suggestedQuestions.length > 0 && (
               <div className="space-y-1 pt-1.5">
-                <div className="text-[10px] font-mono text-slate-500">Suggested Next Questions:</div>
+                <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
+                  Suggested Prompts:
+                </div>
                 <div className="flex flex-wrap gap-1">
                   {msg.suggestedQuestions.map((sq, sqIdx) => (
                     <button
                       key={sqIdx}
                       onClick={() => handleSendMessage(sq)}
-                      className="px-2.5 py-1 rounded-lg bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-border/60 text-[10px] font-mono text-left transition-colors cursor-pointer"
+                      className="px-2.5 py-1 rounded-md bg-white hover:bg-zinc-100 text-zinc-700 border border-zinc-200 text-[11px] font-sans text-left transition-colors cursor-pointer shadow-xs"
                     >
                       {sq}
                     </button>
@@ -195,16 +199,16 @@ export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistan
         ))}
 
         {isLoading && (
-          <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 p-2">
+          <div className="flex items-center gap-2 text-xs font-mono text-cobalt-600 p-2">
             <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-            <span>Scanning deterministic RAG index across 6 repos...</span>
+            <span>Retrieving verified architectural specifications...</span>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Footer */}
-      <div className="p-3 bg-[#0D121D] border-t border-border/80">
+      {/* Input Form */}
+      <div className="p-3 bg-white border-t border-zinc-200">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -216,13 +220,13 @@ export function AiAssistantDrawer({ isOpen, onClose, onOpenProject }: AiAssistan
             type="text"
             value={inputQuery}
             onChange={(e) => setInputQuery(e.target.value)}
-            placeholder="Ask about VIDURA, BLINK PAM, VARUNA MILP, LiveAI..."
-            className="flex-1 px-3.5 py-2 rounded-xl bg-[#070A0F] border border-border/70 text-slate-200 placeholder-slate-500 text-xs font-sans focus:outline-none focus:border-blue-500"
+            placeholder="Ask about VIDURA AST, BLINK PAM, VARUNA MILP, or LiveAI..."
+            className="flex-1 px-3.5 py-2 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder-zinc-400 text-xs font-sans focus:outline-none focus:border-cobalt-500 focus:bg-white transition-colors"
           />
           <button
             type="submit"
             disabled={isLoading || !inputQuery.trim()}
-            className="p-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white disabled:opacity-40 transition-all cursor-pointer"
+            className="p-2 rounded-lg bg-cobalt-600 hover:bg-cobalt-700 text-white disabled:opacity-40 shadow-xs transition-colors cursor-pointer"
           >
             <Send className="w-4 h-4" />
           </button>

@@ -10,7 +10,6 @@ interface AuditBlock {
   user: string;
   prevHash: string;
   hash: string;
-  isTampered?: boolean;
 }
 
 const INITIAL_BLOCKS: AuditBlock[] = [
@@ -54,45 +53,45 @@ export function KavachAuditDemo() {
     setTimeout(() => {
       setIsVerifying(false);
       setVerificationResult("CRYPTOGRAPHIC INTEGRITY VERIFIED: All 3 blocks chained with 0 hash discrepancies.");
-    }, 450);
+    }, 350);
   };
 
   return (
-    <div className="rounded-xl border border-border/80 bg-[#090D13] p-4 md:p-6 shadow-2xl space-y-6 font-sans">
+    <div className="rounded-xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-xs space-y-6 font-sans">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-border/60">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-200">
         <div>
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20">
+            <span className="p-1.5 rounded-lg bg-teal-50 text-teal-700 border border-teal-200">
               <Shield className="w-4 h-4" />
             </span>
-            <h4 className="text-base font-semibold text-slate-100 font-mono">
-              KavachAI Perceptual Hashing & Cryptographic Audit Ledger
+            <h4 className="text-base font-bold font-heading text-zinc-900">
+              KavachAI Perceptual Hashing &amp; Cryptographic Audit Ledger
             </h4>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Visual Defacement Detection (pHash) • Tamper-Evident SHA-256 Chaining • Strict SSRF Mitigation
+          <p className="text-xs text-zinc-500 mt-0.5 font-mono">
+            Visual Defacement (pHash) &middot; Tamper-Evident SHA-256 Chaining &middot; SSRF Network Mitigation
           </p>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-1 rounded bg-teal-500/10 text-teal-300 border border-teal-500/20 text-xs font-mono">
+          <span className="px-2.5 py-1 rounded bg-teal-50 text-teal-700 border border-teal-200 text-xs font-mono font-medium">
             Audit Latency: &lt; 15 ms
           </span>
-          <span className="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-xs font-mono">
+          <span className="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-mono font-medium">
             SSRF Filter: 100% Active
           </span>
         </div>
       </div>
 
-      {/* Visual Perceptual Hashing Simulator */}
-      <div className="bg-[#0D121B] p-4 rounded-xl border border-border/60 space-y-3">
-        <div className="flex items-center justify-between text-xs">
-          <span className="text-slate-300 font-mono font-medium flex items-center gap-1.5">
-            <Eye className="w-3.5 h-3.5 text-cyan-400" />
-            Simulate Visual Deviation (pHash Hamming Distance: <span className="text-cyan-300 font-bold">{hammingDistance}</span>)
+      {/* Perceptual Hashing Slider */}
+      <div className="bg-zinc-50 p-4 rounded-xl border border-zinc-200 space-y-3 font-mono text-xs">
+        <div className="flex items-center justify-between">
+          <span className="text-zinc-700 font-semibold flex items-center gap-1.5">
+            <Eye className="w-3.5 h-3.5 text-cobalt-600" />
+            Simulate Visual Deviation (pHash Hamming: <strong className="text-cobalt-600">{hammingDistance}</strong>)
           </span>
-          <span className={`font-mono text-xs font-semibold ${isDefaced ? "text-rose-400" : "text-emerald-400"}`}>
+          <span className={`font-semibold ${isDefaced ? "text-red-700" : "text-emerald-700"}`}>
             {isDefaced ? "⚠️ DEFACEMENT ALERT TRIGGERED" : "✅ Normal Visual State"}
           </span>
         </div>
@@ -103,40 +102,40 @@ export function KavachAuditDemo() {
           max="24"
           value={hammingDistance}
           onChange={(e) => setHammingDistance(parseInt(e.target.value))}
-          className="w-full accent-cyan-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+          className="w-full accent-cobalt-600 h-1.5 bg-zinc-200 rounded-lg cursor-pointer"
         />
 
-        <div className="flex justify-between text-[11px] font-mono text-slate-500">
+        <div className="flex justify-between text-[11px] text-zinc-400">
           <span>0 (Pixel Identical)</span>
           <span>Threshold = 8 (Alert Gate)</span>
           <span>24 (Complete Defacement)</span>
         </div>
       </div>
 
-      {/* Cryptographic SHA-256 Chained Blocks */}
+      {/* Chained Blocks */}
       <div className="space-y-2.5">
-        <div className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-          <LinkIcon className="w-3.5 h-3.5 text-blue-400" />
+        <div className="text-xs font-mono text-zinc-500 font-semibold flex items-center gap-1.5 uppercase">
+          <LinkIcon className="w-3.5 h-3.5 text-cobalt-600" />
           <span>Tamper-Evident SHA-256 Audit Chain (Immutable Ledger)</span>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 font-mono text-xs">
           {blocks.map((block) => (
             <div
               key={block.blockIndex}
-              className="p-3 rounded-lg bg-[#0B0F17] border border-border/70 font-mono text-xs space-y-1.5"
+              className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 space-y-1.5"
             >
-              <div className="flex items-center justify-between text-slate-400">
-                <span className="text-blue-400 font-bold">Block #{block.blockIndex}</span>
-                <span className="text-[11px] text-slate-500">{block.timestamp}</span>
+              <div className="flex items-center justify-between text-zinc-500">
+                <span className="text-cobalt-700 font-bold">Block #{block.blockIndex}</span>
+                <span className="text-[11px] text-zinc-400">{block.timestamp}</span>
               </div>
-              <div className="text-slate-200 text-xs">{block.action}</div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-[10px] text-slate-400 pt-1">
-                <div className="truncate bg-slate-900/60 p-1.5 rounded border border-border/40">
-                  <span className="text-slate-500">prev_hash:</span> {block.prevHash.slice(0, 24)}...
+              <div className="text-zinc-900 font-medium text-xs">{block.action}</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-[10px] text-zinc-500 pt-1">
+                <div className="truncate bg-white p-1.5 rounded border border-zinc-200">
+                  <span className="text-zinc-400">prev_hash:</span> {block.prevHash.slice(0, 24)}...
                 </div>
-                <div className="truncate bg-slate-900/60 p-1.5 rounded border border-border/40">
-                  <span className="text-emerald-400">hash:</span> {block.hash.slice(0, 24)}...
+                <div className="truncate bg-white p-1.5 rounded border border-zinc-200">
+                  <span className="text-emerald-700 font-bold">hash:</span> {block.hash.slice(0, 24)}...
                 </div>
               </div>
             </div>
@@ -144,26 +143,26 @@ export function KavachAuditDemo() {
         </div>
       </div>
 
-      {/* Verification Status */}
+      {/* Verification Banner */}
       {verificationResult && (
-        <div className="p-3 rounded-lg bg-emerald-950/20 border border-emerald-500/30 text-emerald-300 font-mono text-xs flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+        <div className="p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono text-xs flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
           <span>{verificationResult}</span>
         </div>
       )}
 
-      {/* Footer controls */}
-      <div className="flex items-center justify-between pt-2 border-t border-border/60 text-xs">
-        <div className="text-slate-500 font-mono">
-          Strict SSRF Filter: 127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 Dropped
-        </div>
+      {/* Footer */}
+      <div className="flex items-center justify-between pt-2 border-t border-zinc-200 text-xs font-mono">
+        <span className="text-zinc-500">
+          Strict SSRF Filter: 127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 169.254.169.254 Dropped
+        </span>
         <button
           onClick={verifyLedger}
           disabled={isVerifying}
-          className="px-4 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-medium flex items-center gap-1.5 shadow-lg shadow-teal-950/50 transition-all cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50"
+          className="px-4 py-1.5 rounded-md bg-teal-600 hover:bg-teal-700 text-white font-medium flex items-center gap-1.5 shadow-xs transition-all cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${isVerifying ? "animate-spin" : ""}`} />
-          Verify Audit Chain Integrity (&lt;15ms)
+          <span>Verify Audit Chain Integrity (&lt;15ms)</span>
         </button>
       </div>
     </div>
