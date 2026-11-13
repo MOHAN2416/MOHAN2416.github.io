@@ -229,12 +229,12 @@ export function CommandPalette({ isOpen, onClose, onOpenResume }: CommandPalette
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl rounded-2xl border border-zinc-200 bg-white shadow-2xl overflow-hidden font-sans space-y-0"
+        className="relative w-full max-w-2xl rounded-2xl border border-white/90 bg-white/90 backdrop-blur-2xl shadow-2xl overflow-hidden font-sans space-y-0"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
         {/* Search Header */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-zinc-200 bg-zinc-50/60">
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-zinc-200/60 bg-white/60 backdrop-blur-md">
           <Search className="w-5 h-5 text-zinc-400 shrink-0" />
           <input
             ref={inputRef}
@@ -342,7 +342,7 @@ export function CommandPalette({ isOpen, onClose, onOpenResume }: CommandPalette
         </div>
 
         {/* Footer Shortcut Bar */}
-        <div className="px-4 py-2.5 bg-zinc-50 border-t border-zinc-200 flex flex-wrap items-center justify-between text-[11px] text-zinc-500 font-mono">
+        <div className="px-4 py-2.5 bg-white/60 backdrop-blur-md border-t border-zinc-200/60 flex flex-wrap items-center justify-between text-[11px] text-zinc-500 font-mono">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <kbd className="px-1.5 py-0.5 rounded bg-white border border-zinc-200 text-[10px]">↑↓</kbd>

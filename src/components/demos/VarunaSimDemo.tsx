@@ -39,7 +39,7 @@ export function VarunaSimDemo() {
   };
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-xs space-y-6 font-sans">
+    <div className="rounded-2xl border border-white/85 bg-white/60 backdrop-blur-2xl p-6 sm:p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),0_10px_30px_-10px_rgba(15,23,42,0.08)] space-y-6 font-sans">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-200">
         <div>

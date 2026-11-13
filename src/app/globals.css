@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --canvas: #FAFAFA;
-  --surface: #FFFFFF;
-  --surface-muted: #F4F4F5;
-  --border: #E4E4E7;
+  --canvas: #E6ECF5;
+  --surface: rgba(255, 255, 255, 0.55);
+  --surface-muted: rgba(255, 255, 255, 0.45);
+  --border: rgba(255, 255, 255, 0.85);
   --ink-primary: #09090B;
   --ink-body: #3F3F46;
   --ink-muted: #71717A;
@@ -14,13 +14,15 @@
 }
 
 html {
-  background-color: #FAFAFA;
+  background-color: #E6ECF5;
   color: #09090B;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #FAFAFA;
+  background-color: #E6ECF5;
+  background-image: linear-gradient(135deg, #E4ECF7 0%, #EBF0F7 50%, #E2EAF4 100%);
+  background-attachment: fixed;
   color: #3F3F46;
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.65;
@@ -29,55 +31,58 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Light Editorial Scrollbar */
+/* Light Frosted Glass Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAFAFA;
+  background: rgba(230, 236, 245, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D8;
+  background: rgba(148, 163, 184, 0.5);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A1A1AA;
+  background: rgba(100, 116, 139, 0.7);
 }
 
 /* Crisp Selection */
 ::selection {
-  background: #DBEAFE;
+  background: #C7D2FE;
   color: #1E40AF;
 }
 
-/* Technical Blueprint Grid Pattern for Light Mode */
-.bg-light-grid {
-  background-size: 28px 28px;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+/* 3D Frosted Glass Material Helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.4),
+    0 10px 30px -10px rgba(15, 23, 42, 0.08),
+    0 4px 12px -4px rgba(37, 99, 235, 0.05);
 }
 
-.bg-light-dots {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px);
-  background-size: 20px 20px;
+.glass-sub {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-/* Editorial Card & Surfaces */
-.editorial-card {
-  background: #FFFFFF;
-  border: 1px solid #E4E4E7;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.editorial-card:hover {
-  border-color: #D4D4D8;
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+.glass-pill {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
 /* Typography Helpers */

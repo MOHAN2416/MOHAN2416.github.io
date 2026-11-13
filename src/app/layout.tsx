@@ -49,9 +49,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-[#FAFAFA] text-zinc-900 scroll-smooth">
+    <html lang="en" className="bg-[#E6ECF5] text-zinc-900 scroll-smooth">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#FAFAFA] text-zinc-900 min-h-screen`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#E6ECF5] text-zinc-900 min-h-screen bg-gradient-to-br from-[#E4ECF7] via-[#EBF0F7] to-[#E2EAF4]`}
       >
         <GlobalShell>{children}</GlobalShell>
       </body>

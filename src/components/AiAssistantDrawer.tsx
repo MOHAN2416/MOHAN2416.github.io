@@ -97,9 +97,9 @@ export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[94vw] sm:w-[460px] max-w-[480px] h-[580px] rounded-2xl border border-zinc-200 bg-white shadow-popover flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200 font-sans">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[94vw] sm:w-[460px] max-w-[480px] h-[580px] rounded-2xl border border-white/90 bg-white/75 backdrop-blur-2xl backdrop-saturate-[180%] shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),0_20px_50px_-10px_rgba(15,23,42,0.18)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200 font-sans">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-zinc-50 border-b border-zinc-200">
+      <div className="flex items-center justify-between px-4 py-3 bg-white/60 backdrop-blur-md border-b border-white/80">
         <div className="flex items-center gap-2.5">
           <div className="p-1.5 rounded-lg bg-cobalt-50 border border-cobalt-200 text-cobalt-600">
             <Sparkles className="w-4 h-4" />
@@ -208,7 +208,7 @@ export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
       </div>
 
       {/* Input Form */}
-      <div className="p-3 bg-white border-t border-zinc-200">
+      <div className="p-3 bg-white/60 backdrop-blur-md border-t border-white/80">
         <form
           onSubmit={(e) => {
             e.preventDefault();

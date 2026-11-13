@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { CERTIFICATIONS, SKILL_CATEGORIES, Certification } from "@/lib/data";
 import { Award, ShieldCheck, X, CheckCircle2, ArrowRight, ExternalLink, Download, Copy, Check, Eye } from "lucide-react";
-import { SpotlightCard } from "@/components/SpotlightCard";
+import { GlassCard } from "@/components/GlassCard";
 
 const CATEGORIES = ["All (8)", "Systems & C/C++", "AI & ML", "Hackathon & Honors", "Software Engineering"];
 
@@ -27,9 +27,9 @@ export default function CredentialsPage() {
   const isPdf = (path?: string) => path?.toLowerCase().endsWith(".pdf");
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 font-sans">
+    <div className="w-full max-w-[1640px] mx-auto px-5 sm:px-8 lg:px-12 py-10 sm:py-16 space-y-12 font-sans">
       {/* Header */}
-      <div className="space-y-4 border-b border-zinc-200/80 pb-6">
+      <div className="space-y-4 border-b border-zinc-200/60 pb-6">
         <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
           <Link href="/" className="hover:text-cobalt-600 transition-colors">Home</Link>
           <span>/</span>
@@ -37,10 +37,10 @@ export default function CredentialsPage() {
         </div>
 
         <div className="space-y-2">
-          <h1 className="text-3xl sm:text-4xl font-bold font-heading text-zinc-900 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-zinc-900 tracking-tight">
             Verified Credentials &amp; Technical Skills Matrix
           </h1>
-          <p className="text-sm sm:text-base text-zinc-600 max-w-3xl font-sans">
+          <p className="text-sm sm:text-base text-zinc-600 max-w-4xl font-sans">
             Formal certifications and competency verifications covering C/C++ systems engineering, GPU language model fine-tuning, competitive algorithms, and full-stack software architecture.
           </p>
         </div>
@@ -48,7 +48,7 @@ export default function CredentialsPage() {
 
       {/* 1. Technical Skills Matrix */}
       <section className="space-y-6">
-        <div className="space-y-1 border-b border-zinc-200/80 pb-3">
+        <div className="space-y-1 border-b border-zinc-200/60 pb-3">
           <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900">
             Categorized Technical Skills Matrix
           </h2>
@@ -57,11 +57,11 @@ export default function CredentialsPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {SKILL_CATEGORIES.map((cat, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-xl bg-white border border-zinc-200 shadow-xs space-y-3 hover:border-zinc-300 transition-colors"
+              className="p-6 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/85 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_4px_16px_-4px_rgba(15,23,42,0.05)] space-y-3.5 hover:bg-white/75 transition-all"
             >
               <div className="flex items-center gap-2 text-xs font-mono font-bold text-zinc-900 uppercase tracking-wider">
                 <CheckCircle2 className="w-4 h-4 text-cobalt-600" />
@@ -71,7 +71,7 @@ export default function CredentialsPage() {
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-50 text-zinc-700 border border-zinc-200"
+                    className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/70 backdrop-blur-md text-zinc-700 border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
                   >
                     {skill}
                   </span>
@@ -84,7 +84,7 @@ export default function CredentialsPage() {
 
       {/* 2. Verified Certifications Grid */}
       <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-zinc-200/80 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-zinc-200/60 pb-4">
           <div className="space-y-1">
             <h2 className="text-xl sm:text-2xl font-bold font-heading text-zinc-900">
               Verified Certifications Vault
@@ -95,15 +95,15 @@ export default function CredentialsPage() {
           </div>
 
           {/* Filter Tabs */}
-          <div className="flex items-center gap-1.5 overflow-x-auto text-xs font-sans">
+          <div className="flex items-center gap-2 overflow-x-auto text-xs font-sans">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 rounded-md font-medium transition-colors cursor-pointer whitespace-nowrap ${
+                className={`px-4 py-2 rounded-xl font-medium transition-all cursor-pointer whitespace-nowrap ${
                   activeCategory === cat
-                    ? "bg-zinc-900 text-white font-semibold shadow-xs"
-                    : "bg-white text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 border border-zinc-200"
+                    ? "bg-zinc-900 text-white font-semibold shadow-[0_2px_8px_-2px_rgba(15,23,42,0.3)]"
+                    : "bg-white/60 hover:bg-white/90 backdrop-blur-md text-zinc-700 border border-white/85 shadow-xs"
                 }`}
               >
                 {cat}
@@ -112,18 +112,18 @@ export default function CredentialsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7">
           {filteredCerts.map((cert, idx) => (
-            <SpotlightCard
+            <GlassCard
               key={cert.id}
               index={idx}
               onClick={() => setSelectedCert(cert)}
               className="cursor-pointer group"
             >
-              <div className="p-6 space-y-4 flex flex-col justify-between h-full">
+              <div className="p-7 space-y-4 flex flex-col justify-between h-full">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[10px] font-mono font-medium bg-emerald-50/80 text-emerald-700 border border-emerald-200/80 shadow-xs">
                       <ShieldCheck className="w-3 h-3 text-emerald-600" />
                       <span>Verified Credential</span>
                     </span>
@@ -141,9 +141,9 @@ export default function CredentialsPage() {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-zinc-100 space-y-3">
+                <div className="pt-3 border-t border-zinc-200/50 space-y-3">
                   {cert.credentialId && (
-                    <div className="text-[11px] font-mono text-zinc-400 truncate flex items-center justify-between">
+                    <div className="text-[11px] font-mono text-zinc-500 truncate flex items-center justify-between">
                       <span>ID: <strong className="text-zinc-800 font-semibold">{cert.credentialId}</strong></span>
                     </div>
                   )}
@@ -152,14 +152,14 @@ export default function CredentialsPage() {
                     {cert.skills.slice(0, 3).map((skill) => (
                       <span
                         key={skill}
-                        className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-100 text-zinc-600 border border-zinc-200"
+                        className="px-2.5 py-0.5 rounded-md text-[10px] font-mono bg-white/70 backdrop-blur-md text-zinc-600 border border-white/85 shadow-xs"
                       >
                         {skill}
                       </span>
                     ))}
                   </div>
 
-                  <div className="pt-2 flex items-center justify-between border-t border-zinc-100 text-xs font-medium text-cobalt-600">
+                  <div className="pt-2 flex items-center justify-between border-t border-zinc-200/50 text-xs font-medium text-cobalt-600">
                     <span className="inline-flex items-center gap-1.5 font-semibold group-hover:underline">
                       <Eye className="w-3.5 h-3.5" />
                       <span>Preview Certificate</span>
@@ -168,17 +168,17 @@ export default function CredentialsPage() {
                   </div>
                 </div>
               </div>
-            </SpotlightCard>
+            </GlassCard>
           ))}
         </div>
       </section>
 
       {/* Credential Inspection & Interactive Preview Modal */}
       {selectedCert && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-zinc-900/50 backdrop-blur-sm overflow-y-auto">
-          <div className="relative w-full max-w-3xl rounded-2xl border border-zinc-200 bg-white p-5 sm:p-7 shadow-2xl space-y-5 font-sans max-h-[92vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-zinc-900/50 backdrop-blur-md overflow-y-auto">
+          <div className="relative w-full max-w-3xl rounded-2xl border border-white/90 bg-white/90 backdrop-blur-2xl p-5 sm:p-7 shadow-2xl space-y-5 font-sans max-h-[92vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="flex items-start justify-between border-b border-zinc-200 pb-4">
+            <div className="flex items-start justify-between border-b border-zinc-200/60 pb-4">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 rounded-xl bg-cobalt-50 border border-cobalt-200 text-cobalt-600">
                   <Award className="w-6 h-6" />
@@ -216,7 +216,7 @@ export default function CredentialsPage() {
                   </a>
                 </div>
 
-                <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-2 overflow-hidden flex items-center justify-center min-h-[380px] max-h-[520px]">
+                <div className="rounded-xl border border-zinc-200/80 bg-zinc-50/80 p-2 overflow-hidden flex items-center justify-center min-h-[380px] max-h-[520px]">
                   {isPdf(selectedCert.filePath) ? (
                     <iframe
                       src={selectedCert.filePath}
@@ -234,7 +234,7 @@ export default function CredentialsPage() {
                 </div>
               </div>
             ) : (
-              <div className="p-8 rounded-xl border border-dashed border-zinc-300 bg-zinc-50 text-center space-y-3 font-sans">
+              <div className="p-8 rounded-xl border border-dashed border-zinc-300 bg-white/60 text-center space-y-3 font-sans">
                 <div className="w-12 h-12 rounded-full bg-cobalt-50 text-cobalt-600 flex items-center justify-center mx-auto">
                   <Award className="w-6 h-6" />
                 </div>
@@ -251,7 +251,7 @@ export default function CredentialsPage() {
             <div className="space-y-3.5 text-xs text-zinc-700 pt-1">
               {/* Credential ID Card */}
               {selectedCert.credentialId && (
-                <div className="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 flex items-center justify-between font-mono">
+                <div className="p-3.5 rounded-xl bg-white/70 border border-white/85 flex items-center justify-between font-mono shadow-xs">
                   <div className="space-y-0.5">
                     <div className="text-[10px] text-zinc-400 uppercase tracking-wider">
                       Verification Credential ID
@@ -293,7 +293,7 @@ export default function CredentialsPage() {
                   {selectedCert.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 rounded-md bg-zinc-100 text-zinc-800 text-xs font-mono border border-zinc-200"
+                      className="px-2.5 py-1 rounded-md bg-white/80 text-zinc-800 text-xs font-mono border border-white/90 shadow-xs"
                     >
                       {skill}
                     </span>
@@ -303,7 +303,7 @@ export default function CredentialsPage() {
             </div>
 
             {/* Modal Bottom Actions */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-100">
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-zinc-200/60">
               <div>
                 {selectedCert.verificationUrl && (
                   <a
@@ -343,14 +343,14 @@ export default function CredentialsPage() {
       )}
 
       {/* Bottom Contact CTA */}
-      <div className="p-6 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-sans">
+      <div className="p-7 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/85 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_4px_16px_-4px_rgba(15,23,42,0.05)] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-sans">
         <div>
           <div className="font-bold text-zinc-900 text-sm">Need authenticated copies or academic transcripts?</div>
           <p className="text-xs text-zinc-600 mt-0.5">Reach out via the contact form to request official credentials and letters of recommendation.</p>
         </div>
         <Link
           href="/contact"
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-cobalt-600 hover:bg-cobalt-700 text-white text-xs font-semibold shadow-xs shrink-0"
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-cobalt-600 hover:bg-cobalt-700 text-white text-xs font-semibold shadow-xs shrink-0 transition-all hover:scale-[1.02] active:scale-[0.98]"
         >
           <span>Contact Mohan</span>
           <ArrowRight className="w-3.5 h-3.5" />

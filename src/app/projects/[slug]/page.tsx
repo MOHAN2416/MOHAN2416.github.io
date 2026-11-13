@@ -38,9 +38,9 @@ export default async function ProjectCaseStudyPage({
   const nextProject = projectIndex < PROJECTS.length - 1 ? PROJECTS[projectIndex + 1] : PROJECTS[0];
 
   return (
-    <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 font-sans">
+    <article className="w-full max-w-[1640px] mx-auto px-5 sm:px-8 lg:px-12 py-10 sm:py-16 space-y-12 font-sans">
       {/* 1. Header & Breadcrumb */}
-      <div className="space-y-5 border-b border-zinc-200/80 pb-8">
+      <div className="space-y-5 border-b border-zinc-200/60 pb-8">
         <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
           <Link href="/" className="hover:text-cobalt-600 transition-colors">Home</Link>
           <span>/</span>
@@ -51,42 +51,42 @@ export default async function ProjectCaseStudyPage({
 
         <div className="space-y-3">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-medium bg-zinc-100 text-zinc-800 border border-zinc-200">
+            <span className="px-3 py-1 rounded-lg text-[11px] font-mono font-medium bg-white/70 backdrop-blur-md text-zinc-800 border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
               {project.badge}
             </span>
             <span className="text-xs font-mono text-zinc-500">
               &bull; {project.category}
             </span>
-            <span className="text-xs font-mono text-emerald-700 font-medium bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+            <span className="text-xs font-mono text-emerald-700 font-medium bg-emerald-50/80 px-2.5 py-1 rounded-lg border border-emerald-200/80 shadow-xs">
               {project.testsCount} passing
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-bold font-heading text-zinc-900 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-heading text-zinc-900 tracking-tight">
             {project.title}
           </h1>
 
-          <p className="text-base sm:text-lg font-mono text-cobalt-600 font-medium leading-relaxed">
+          <p className="text-base sm:text-xl font-mono text-cobalt-600 font-medium leading-relaxed max-w-4xl">
             {project.tagline}
           </p>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-3 pt-2">
+        <div className="flex flex-wrap items-center gap-3.5 pt-2">
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white font-mono text-xs font-semibold shadow-xs transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-mono text-xs font-semibold shadow-[0_4px_12px_-2px_rgba(15,23,42,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <GitBranch className="w-4 h-4" />
             <span>GitHub Repository</span>
-            <ExternalLink className="w-3 h-3 text-zinc-400" />
+            <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
           </a>
 
           <Link
             href={`/playground?tab=${project.demoType}`}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white hover:bg-zinc-50 text-cobalt-600 font-mono text-xs font-semibold border border-zinc-200 shadow-xs transition-colors hover:border-zinc-300"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/70 hover:bg-white/95 backdrop-blur-md text-cobalt-600 font-mono text-xs font-semibold border border-white/90 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_2px_8px_-2px_rgba(15,23,42,0.06)] transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <Terminal className="w-4 h-4" />
             <span>Test in Interactive Playground</span>
@@ -98,7 +98,7 @@ export default async function ProjectCaseStudyPage({
           {project.techStack.map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-100 text-zinc-700 border border-zinc-200"
+              className="px-3 py-1 rounded-lg text-xs font-mono bg-white/60 backdrop-blur-md text-zinc-700 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
             >
               {tech}
             </span>
@@ -114,7 +114,7 @@ export default async function ProjectCaseStudyPage({
             <span className="text-cobalt-600 font-mono text-lg">01.</span>
             <span>Problem Statement &amp; Motivation</span>
           </h2>
-          <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-sans max-w-4xl">
             {project.caseStudy.problemStatement}
           </p>
         </section>
@@ -125,11 +125,11 @@ export default async function ProjectCaseStudyPage({
             <span className="text-cobalt-600 font-mono text-lg">02.</span>
             <span>System Architecture</span>
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-600">
+          <p className="text-xs sm:text-sm text-zinc-600 max-w-3xl">
             End-to-end dataflow pipeline enforcing deterministic gates, non-blocking execution, and verification invariants:
           </p>
 
-          <div className="p-4 sm:p-6 rounded-xl bg-[#F4F4F5] border border-zinc-200 shadow-xs overflow-x-auto">
+          <div className="p-6 sm:p-8 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/85 shadow-xs overflow-x-auto">
             <pre className="font-mono text-xs sm:text-[13px] text-zinc-800 leading-relaxed whitespace-pre font-medium">
               {project.caseStudy.architectureDiagramText}
             </pre>
@@ -142,11 +142,11 @@ export default async function ProjectCaseStudyPage({
             <span className="text-cobalt-600 font-mono text-lg">03.</span>
             <span>Core Technical Implementation</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {project.caseStudy.technicalImplementation.map((impl, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-white border border-zinc-200 shadow-xs space-y-2"
+                className="p-5 sm:p-6 rounded-2xl bg-white/65 backdrop-blur-xl border border-white/85 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_4px_16px_-4px_rgba(15,23,42,0.05)] space-y-2.5"
               >
                 <div className="flex items-center gap-2 text-xs font-mono font-bold text-zinc-900">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -172,23 +172,23 @@ export default async function ProjectCaseStudyPage({
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-zinc-200 bg-white shadow-xs">
+          <div className="overflow-x-auto rounded-2xl border border-white/85 bg-white/65 backdrop-blur-xl shadow-xs">
             <table className="w-full text-left text-xs font-mono">
               <thead>
-                <tr className="bg-zinc-50 border-b border-zinc-200 text-zinc-600 font-semibold uppercase tracking-wider">
-                  <th className="py-3 px-4">Subsystem</th>
-                  <th className="py-3 px-4">Metric</th>
-                  <th className="py-3 px-4">Measured Value</th>
-                  <th className="py-3 px-4">Methodology &amp; Verification</th>
+                <tr className="bg-white/70 border-b border-zinc-200/60 text-zinc-600 font-semibold uppercase tracking-wider">
+                  <th className="py-3.5 px-5">Subsystem</th>
+                  <th className="py-3.5 px-5">Metric</th>
+                  <th className="py-3.5 px-5">Measured Value</th>
+                  <th className="py-3.5 px-5">Methodology &amp; Verification</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100">
+              <tbody className="divide-y divide-zinc-200/50">
                 {project.caseStudy.benchmarksTable.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-zinc-50/50 transition-colors">
-                    <td className="py-3 px-4 text-zinc-500">{row.category}</td>
-                    <td className="py-3 px-4 font-bold text-zinc-900">{row.metric}</td>
-                    <td className="py-3 px-4 font-bold text-cobalt-600">{row.value}</td>
-                    <td className="py-3 px-4 text-zinc-600 font-sans text-xs">{row.verificationMethod}</td>
+                  <tr key={idx} className="hover:bg-white/80 transition-colors">
+                    <td className="py-3.5 px-5 text-zinc-500">{row.category}</td>
+                    <td className="py-3.5 px-5 font-bold text-zinc-900">{row.metric}</td>
+                    <td className="py-3.5 px-5 font-bold text-cobalt-600">{row.value}</td>
+                    <td className="py-3.5 px-5 text-zinc-600 font-sans text-xs">{row.verificationMethod}</td>
                   </tr>
                 ))}
               </tbody>
@@ -205,25 +205,25 @@ export default async function ProjectCaseStudyPage({
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Repo Tree */}
-            <div className="lg:col-span-7 p-4 sm:p-5 rounded-xl bg-[#F4F4F5] border border-zinc-200 font-mono text-xs overflow-x-auto">
-              <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <div className="lg:col-span-7 p-6 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/85 font-mono text-xs overflow-x-auto shadow-xs">
+              <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
                 <FileCode className="w-3.5 h-3.5 text-zinc-500" />
                 <span>Codebase Tree</span>
               </div>
-              <pre className="text-zinc-800 leading-snug whitespace-pre">
+              <pre className="text-zinc-800 leading-snug whitespace-pre font-medium">
                 {project.caseStudy.repositoryStructure}
               </pre>
             </div>
 
             {/* Known Limitations */}
-            <div className="lg:col-span-5 p-5 rounded-xl bg-white border border-zinc-200 shadow-xs space-y-3">
+            <div className="lg:col-span-5 p-6 rounded-2xl bg-white/65 backdrop-blur-xl border border-white/85 shadow-xs space-y-3.5">
               <div className="text-xs font-mono font-bold text-zinc-900 uppercase tracking-wider flex items-center gap-1.5">
                 <AlertTriangle className="w-4 h-4 text-amber-600" />
                 <span>Engineering Boundary Conditions</span>
               </div>
-              <ul className="space-y-2 text-xs text-zinc-600 font-sans leading-relaxed">
+              <ul className="space-y-2.5 text-xs text-zinc-600 font-sans leading-relaxed">
                 {project.caseStudy.limitations.map((lim, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
+                  <li key={idx} className="flex items-start gap-2.5">
                     <span className="text-zinc-400 font-bold">&bull;</span>
                     <span>{lim}</span>
                   </li>
@@ -235,10 +235,10 @@ export default async function ProjectCaseStudyPage({
       </div>
 
       {/* 3. Bottom Previous / Next Pagination */}
-      <div className="pt-8 border-t border-zinc-200 flex items-center justify-between gap-4 font-mono text-xs">
+      <div className="pt-8 border-t border-zinc-200/60 flex items-center justify-between gap-4 font-mono text-xs">
         <Link
           href={`/projects/${prevProject.slug}`}
-          className="group flex items-center gap-2 text-zinc-600 hover:text-cobalt-600 transition-colors"
+          className="group flex items-center gap-2 text-zinc-600 hover:text-cobalt-600 transition-colors p-3 rounded-xl hover:bg-white/60"
         >
           <ArrowLeft className="w-4 h-4 text-zinc-400 group-hover:-translate-x-1 transition-transform" />
           <div>
@@ -249,7 +249,7 @@ export default async function ProjectCaseStudyPage({
 
         <Link
           href={`/projects/${nextProject.slug}`}
-          className="group flex items-center gap-2 text-right text-zinc-600 hover:text-cobalt-600 transition-colors"
+          className="group flex items-center gap-2 text-right text-zinc-600 hover:text-cobalt-600 transition-colors p-3 rounded-xl hover:bg-white/60"
         >
           <div>
             <div className="text-[10px] text-zinc-400 uppercase">Next Project</div>

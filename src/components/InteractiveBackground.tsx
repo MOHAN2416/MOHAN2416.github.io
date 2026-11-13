@@ -25,8 +25,8 @@ export function InteractiveBackground() {
     let width = 0;
     let height = 0;
     let dots: Dot[] = [];
-    const SPACING = 28;
-    const INFLUENCE_RADIUS = 160;
+    const SPACING = 32;
+    const INFLUENCE_RADIUS = 165;
 
     const mouse = {
       x: -9999,
@@ -127,26 +127,22 @@ export function InteractiveBackground() {
         ctx.beginPath();
 
         if (proximity > 0) {
-          // Illuminated dot (Cobalt or Emerald based on position)
-          const isEmerald = (i % 7 === 0);
-          const r = isEmerald ? 16 : 37;
-          const g = isEmerald ? 185 : 99;
-          const b = isEmerald ? 129 : 235;
-          const alpha = 0.35 + proximity * 0.65;
-          const radius = 1.3 + proximity * 1.5;
+          // Illuminated in Cobalt (#2563EB)
+          const alpha = 0.45 + proximity * 0.55;
+          const radius = 1.3 + proximity * 1.6;
 
           ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+          ctx.fillStyle = `rgba(37, 99, 235, ${alpha})`;
         } else {
-          // Base static architectural dot
-          ctx.arc(dot.x, dot.y, 1.1, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(203, 213, 225, 0.65)";
+          // Base fine architectural dot
+          ctx.arc(dot.x, dot.y, 1.15, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(100, 116, 139, 0.22)";
         }
 
         ctx.fill();
       }
 
-      // Draw faint connecting vector lines between active nearby nodes (< 65px)
+      // Draw faint connecting vector lines between active nearby nodes (< 60px)
       ctx.lineWidth = 0.8;
       for (let i = 0; i < activeDots.length; i++) {
         for (let j = i + 1; j < activeDots.length; j++) {
@@ -154,7 +150,7 @@ export function InteractiveBackground() {
           const d2 = activeDots[j];
           const distNodes = Math.hypot(d1.x - d2.x, d1.y - d2.y);
           if (distNodes < 60) {
-            const lineAlpha = (1 - distNodes / 60) * 0.25;
+            const lineAlpha = (1 - distNodes / 60) * 0.28;
             ctx.beginPath();
             ctx.moveTo(d1.x, d1.y);
             ctx.lineTo(d2.x, d2.y);
@@ -179,41 +175,15 @@ export function InteractiveBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none">
-      {/* 1. Floating Ambient Mesh Radial Orbs (18s continuous fluid loop) */}
+      {/* Multi-Layered Iridescent Light Mesh (Fixed Behind All Pages, 20s continuous float loop) */}
+      
+      {/* 1. Top-Left Orb: Glacial Sky Blue (#BAE6FD) */}
       <motion.div
-        className="absolute -top-[10%] -left-[10%] w-[55vw] h-[55vw] rounded-full bg-gradient-to-tr from-blue-200/40 via-blue-100/30 to-transparent blur-3xl pointer-events-none"
+        className="absolute -top-[12%] -left-[10%] w-[58vw] h-[58vw] rounded-full bg-[#BAE6FD] blur-[110px] opacity-75 pointer-events-none"
         animate={{
-          x: [0, 40, -30, 0],
-          y: [0, -50, 20, 0],
-          scale: [1, 1.08, 0.95, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="absolute top-[35%] -right-[15%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-bl from-indigo-200/35 via-sky-100/30 to-transparent blur-3xl pointer-events-none"
-        animate={{
-          x: [0, -50, 30, 0],
-          y: [0, 40, -30, 0],
-          scale: [1, 0.94, 1.06, 1],
-        }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="absolute -bottom-[10%] left-[20%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-tl from-emerald-100/40 via-teal-50/20 to-transparent blur-3xl pointer-events-none"
-        animate={{
-          x: [0, 35, -40, 0],
-          y: [0, -30, 40, 0],
-          scale: [1, 1.05, 0.96, 1],
+          x: [0, 45, -35, 0],
+          y: [0, -40, 30, 0],
+          scale: [1, 1.08, 0.94, 1],
         }}
         transition={{
           duration: 20,
@@ -222,7 +192,52 @@ export function InteractiveBackground() {
         }}
       />
 
-      {/* 2. Interactive High-DPI HTML5 Architectural Canvas Matrix */}
+      {/* 2. Top-Right Orb: Soft Periwinkle Indigo (#C7D2FE) */}
+      <motion.div
+        className="absolute -top-[8%] -right-[12%] w-[54vw] h-[54vw] rounded-full bg-[#C7D2FE] blur-[110px] opacity-75 pointer-events-none"
+        animate={{
+          x: [0, -45, 30, 0],
+          y: [0, 40, -35, 0],
+          scale: [1, 0.95, 1.07, 1],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* 3. Center-Left Orb: Translucent Mint Aqua (#A7F3D0) */}
+      <motion.div
+        className="absolute top-[38%] -left-[14%] w-[50vw] h-[50vw] rounded-full bg-[#A7F3D0] blur-[110px] opacity-70 pointer-events-none"
+        animate={{
+          x: [0, 35, -45, 0],
+          y: [0, -35, 45, 0],
+          scale: [1, 1.06, 0.95, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* 4. Bottom-Right Orb: Soft Lavender Mist (#DDD6FE) */}
+      <motion.div
+        className="absolute top-[55%] -right-[10%] w-[55vw] h-[55vw] rounded-full bg-[#DDD6FE] blur-[110px] opacity-75 pointer-events-none"
+        animate={{
+          x: [0, -40, 40, 0],
+          y: [0, 45, -30, 0],
+          scale: [1, 0.93, 1.08, 1],
+        }}
+        transition={{
+          duration: 24,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Interactive Fine Dot-Grid Canvas Matrix (32px Spacing, Cobalt illumination) */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"

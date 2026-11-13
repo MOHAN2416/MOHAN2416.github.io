@@ -61,10 +61,10 @@ ${CANDIDATE_PROFILE.summary}
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-zinc-900/40 backdrop-blur-sm overflow-y-auto">
-      <div className="relative w-full max-w-4xl rounded-2xl border border-zinc-200 bg-white shadow-2xl overflow-hidden flex flex-col max-h-[92vh] font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-zinc-900/40 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-4xl rounded-2xl border border-white/90 bg-white/95 backdrop-blur-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] font-sans">
         {/* Controls Bar */}
-        <div className="flex items-center justify-between px-6 py-3.5 bg-zinc-50 border-b border-zinc-200">
+        <div className="flex items-center justify-between px-6 py-3.5 bg-white/70 backdrop-blur-md border-b border-zinc-200/60">
           <div className="text-xs font-mono text-zinc-700 flex items-center gap-2">
             <FileText className="w-4 h-4 text-cobalt-600" />
             <span className="font-semibold">{CANDIDATE_PROFILE.name} — Curriculum Vitae</span>

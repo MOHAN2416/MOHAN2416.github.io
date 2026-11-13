@@ -141,9 +141,9 @@ tests/test_e2e_lifecycle.py ........................................... [100%]
   }, [lines]);
 
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white shadow-xs overflow-hidden font-mono text-xs">
+    <div className="rounded-2xl border border-white/85 bg-white/60 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),0_10px_30px_-10px_rgba(15,23,42,0.08)] overflow-hidden font-mono text-xs">
       {/* Terminal Title Bar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-zinc-50 border-b border-zinc-200">
+      <div className="flex items-center justify-between px-4 py-3 bg-white/70 backdrop-blur-md border-b border-white/80">
         <div className="flex items-center space-x-2">
           <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
           <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />

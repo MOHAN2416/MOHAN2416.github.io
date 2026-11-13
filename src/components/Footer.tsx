@@ -7,14 +7,14 @@ import { GitBranch, Mail, Phone, MapPin, CheckCircle2, ExternalLink } from "luci
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200/80 bg-white pt-12 pb-8 text-xs font-sans text-zinc-500">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <footer className="border-t border-white/80 bg-white/45 backdrop-blur-2xl pt-12 pb-8 text-xs font-sans text-zinc-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)]">
+      <div className="w-full max-w-[1640px] mx-auto px-5 sm:px-8 lg:px-12 space-y-10">
         {/* Multi-Column Links */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Identity & Bio */}
           <div className="space-y-3 md:col-span-2">
             <div className="flex items-center gap-2 text-zinc-900 font-bold font-heading text-sm">
-              <div className="w-5 h-5 rounded bg-zinc-900 text-white font-mono text-[10px] flex items-center justify-center font-bold">
+              <div className="w-6 h-6 rounded-lg bg-zinc-900 text-white font-mono text-[11px] flex items-center justify-center font-bold shadow-xs">
                 MS
               </div>
               <span>{CANDIDATE_PROFILE.name}</span>
@@ -23,7 +23,7 @@ export function Footer() {
               {CANDIDATE_PROFILE.headline}. Building deterministic local-first LLM agents, Linux C-PAM biometric security suites, from-scratch PyTorch Transformers, and MILP operations research.
             </p>
             <div className="flex items-center gap-3 pt-1 text-zinc-600">
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1 font-mono text-xs">
                 <MapPin className="w-3.5 h-3.5 text-zinc-400" />
                 <span>{CANDIDATE_PROFILE.location}</span>
               </span>
@@ -128,9 +128,9 @@ export function Footer() {
         </div>
 
         {/* Bottom Metadata & Vercel indicator */}
-        <div className="pt-6 border-t border-zinc-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-500">
+        <div className="pt-6 border-t border-zinc-200/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-500">
           <div>
-            &copy; {new Date().getFullYear()} Mutyala Mohan Surendra. Editorial Light Engineering Showcase.
+            &copy; {new Date().getFullYear()} Mutyala Mohan Surendra. Frosted Glass Engineering Showcase.
           </div>
           <div className="flex items-center gap-2 font-mono">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
