@@ -129,10 +129,10 @@ export default function HomePage() {
               <div className="p-8 sm:p-9 space-y-6 flex flex-col justify-between h-full">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="p-3 rounded-xl bg-white/70 backdrop-blur-md border border-white/85 shadow-xs">
+                    <div className="p-3 rounded-xl bg-white/45 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)]">
                       {getPillarIcon(pillar.iconName)}
                     </div>
-                    <span className="text-xs font-mono font-semibold text-zinc-500">
+                    <span className="text-xs font-mono font-semibold text-zinc-600">
                       {pillar.tagline}
                     </span>
                   </div>
@@ -141,14 +141,14 @@ export default function HomePage() {
                     <h3 className="text-xl font-bold font-heading text-zinc-900">
                       {pillar.title}
                     </h3>
-                    <p className="text-sm text-zinc-600 leading-relaxed font-sans">
+                    <p className="text-sm text-slate-800 leading-relaxed font-sans">
                       {pillar.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-zinc-200/50 flex items-center justify-between text-xs font-mono text-zinc-500">
-                  <span className="font-semibold text-zinc-700">Implementations:</span>
+                <div className="pt-4 border-t border-zinc-200/50 flex items-center justify-between text-xs font-mono text-zinc-600">
+                  <span className="font-semibold text-zinc-800">Implementations:</span>
                   <span className="text-cobalt-600 font-medium">{pillar.featuredProjects.join(" · ")}</span>
                 </div>
               </div>
@@ -186,14 +186,14 @@ export default function HomePage() {
             <GlassCard key={project.id} index={idx} data-cursor="view">
               <div className="p-7 sm:p-8 space-y-5">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-lg text-[11px] font-mono font-medium bg-white/70 backdrop-blur-md text-zinc-700 border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
+                  <span className="px-3 py-1 rounded-lg text-[11px] font-mono font-medium bg-white/45 backdrop-blur-md text-zinc-900 border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_1px_rgba(255,255,255,0.95)]">
                     {project.badge}
                   </span>
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-white/60 hover:bg-white text-zinc-400 hover:text-zinc-900 transition-colors border border-white/80 shadow-xs"
+                    className="p-1.5 rounded-lg bg-white/45 hover:bg-white text-zinc-600 hover:text-zinc-950 transition-colors border-t border-l border-white/90 border-r border-b border-white/45 shadow-xs"
                     title="View GitHub"
                   >
                     <GitBranch className="w-4 h-4" />
@@ -204,10 +204,10 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold font-heading text-zinc-900">
                     {project.title}
                   </h3>
-                  <div className="text-xs font-mono text-cobalt-600 font-medium mt-1 leading-snug">
+                  <div className="text-xs font-mono text-cobalt-600 font-semibold mt-1 leading-snug">
                     {project.tagline}
                   </div>
-                  <p className="text-sm text-zinc-600 mt-3 leading-relaxed font-sans">
+                  <p className="text-sm text-slate-800 mt-3 leading-relaxed font-sans">
                     {project.summary}
                   </p>
                 </div>
@@ -217,15 +217,15 @@ export default function HomePage() {
                   {project.cardMetrics.map((m, mIdx) => (
                     <div
                       key={mIdx}
-                      className="p-3 rounded-xl bg-white/60 backdrop-blur-md border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_2px_6px_-2px_rgba(15,23,42,0.03)] flex flex-col justify-between"
+                      className="p-3 rounded-xl bg-white/40 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] flex flex-col justify-between"
                     >
-                      <div className="text-[10px] text-zinc-400 uppercase tracking-tight font-semibold">
+                      <div className="text-[10px] text-zinc-500 uppercase tracking-tight font-semibold">
                         {m.label}
                       </div>
-                      <div className="font-bold text-zinc-900 mt-1 text-xs leading-tight">
+                      <div className="font-bold text-zinc-950 mt-1 text-xs leading-tight">
                         {m.value}
                       </div>
-                      <div className="text-[10px] text-zinc-500 mt-0.5 leading-tight">
+                      <div className="text-[10px] text-zinc-600 mt-0.5 leading-tight">
                         {m.sub}
                       </div>
                     </div>
@@ -237,7 +237,7 @@ export default function HomePage() {
                   {project.techStack.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-white/60 backdrop-blur-md text-zinc-600 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+                      className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-white/40 backdrop-blur-md text-slate-800 border-t border-l border-white/85 border-r border-b border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
                     >
                       {tech}
                     </span>
@@ -246,7 +246,7 @@ export default function HomePage() {
               </div>
 
               {/* Bottom Actions Bar */}
-              <div className="p-4 sm:p-5 bg-white/40 backdrop-blur-md border-t border-white/80 flex items-center justify-between">
+              <div className="p-4 sm:p-5 bg-white/25 backdrop-blur-md border-t border-white/60 flex items-center justify-between">
                 <Link
                   href={`/projects/${project.slug}`}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-cobalt-600 hover:text-cobalt-700"
@@ -257,7 +257,7 @@ export default function HomePage() {
 
                 <Link
                   href={`/playground?tab=${project.demoType}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-600 hover:text-zinc-900 px-2.5 py-1 rounded-md bg-white/60 border border-white/80 shadow-xs"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-700 hover:text-zinc-950 px-2.5 py-1 rounded-md bg-white/40 hover:bg-white/60 border-t border-l border-white/80 border-r border-b border-white/40 shadow-xs"
                 >
                   <Terminal className="w-3 h-3 text-cobalt-600" />
                   <span>Sandbox</span>

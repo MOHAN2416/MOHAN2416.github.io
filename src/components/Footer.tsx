@@ -7,7 +7,7 @@ import { GitBranch, Mail, Phone, MapPin, CheckCircle2, ExternalLink } from "luci
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/80 bg-white/45 backdrop-blur-2xl pt-12 pb-8 text-xs font-sans text-zinc-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)]">
+    <footer className="border-t border-white/80 bg-white/35 backdrop-blur-2xl backdrop-saturate-[180%] pt-12 pb-8 text-xs font-sans text-slate-700 shadow-[inset_0_1px_2px_rgba(255,255,255,1),0_-8px_32px_rgba(15,23,42,0.04)]">
       <div className="w-full max-w-[1640px] mx-auto px-5 sm:px-8 lg:px-12 space-y-10">
         {/* Multi-Column Links */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

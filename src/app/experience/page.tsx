@@ -107,7 +107,7 @@ export default function ExperienceEducationPage() {
                     {item.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 rounded-lg text-xs font-mono bg-white/70 backdrop-blur-md text-zinc-700 border border-white/85 shadow-xs"
+                        className="px-3 py-1 rounded-lg text-xs font-mono bg-white/40 backdrop-blur-md text-slate-800 border-t border-l border-white/85 border-r border-b border-white/40 shadow-xs"
                       >
                         {tech}
                       </span>
@@ -154,7 +154,7 @@ export default function ExperienceEducationPage() {
                         {edu.coursework.map((course) => (
                           <span
                             key={course}
-                            className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/70 backdrop-blur-md text-zinc-700 border border-white/85 shadow-xs"
+                            className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/40 backdrop-blur-md text-slate-800 border-t border-l border-white/85 border-r border-b border-white/40 shadow-xs"
                           >
                             {course}
                           </span>

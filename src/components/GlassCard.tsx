@@ -29,9 +29,9 @@ export function GlassCard({
   const springX = useSpring(normX, { stiffness: 260, damping: 24 });
   const springY = useSpring(normY, { stiffness: 260, damping: 24 });
 
-  // Subtle 3D tilt: rotateX from 3deg to -3deg, rotateY from -3deg to 3deg
-  const rotateX = useTransform(springY, [-0.5, 0.5], [3, -3]);
-  const rotateY = useTransform(springX, [-0.5, 0.5], [-3, 3]);
+  // Subtle 3D tilt: rotateX from 3.5deg to -3.5deg, rotateY from -3.5deg to 3.5deg
+  const rotateX = useTransform(springY, [-0.5, 0.5], [3.5, -3.5]);
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-3.5, 3.5]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -77,32 +77,41 @@ export function GlassCard({
           transformStyle: "preserve-3d",
           ...props.style,
         }}
-        className={`group relative rounded-2xl bg-white/55 backdrop-blur-2xl backdrop-saturate-[180%] border border-white/85 shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),inset_0_-1px_1px_rgba(255,255,255,0.4),0_10px_30px_-10px_rgba(15,23,42,0.08),0_4px_12px_-4px_rgba(37,99,235,0.05)] hover:bg-white/70 hover:border-white hover:shadow-[inset_0_1px_2px_rgba(255,255,255,1),0_20px_40px_-12px_rgba(15,23,42,0.12),0_8px_20px_-6px_rgba(37,99,235,0.10)] hover:-translate-y-1 transition-all duration-300 overflow-hidden ${className}`}
+        className={`group relative rounded-2xl bg-white/35 backdrop-blur-2xl backdrop-saturate-[200%] border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_2px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(37,99,235,0.08),0_16px_36px_-8px_rgba(15,23,42,0.12),0_4px_12px_-2px_rgba(37,99,235,0.08)] hover:bg-white/45 hover:shadow-[inset_0_1px_2px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(37,99,235,0.12),0_24px_48px_-10px_rgba(15,23,42,0.16),0_6px_16px_-2px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300 overflow-hidden ${className}`}
         {...props}
       >
-        {/* Glossy specular light sheen overlay following cursor */}
+        {/* Layer 1: Diagonal Glossy Surface Sheen (Always Visible, Even Without Hover) */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 opacity-90 rounded-2xl"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.22) 38%, rgba(255, 255, 255, 0.04) 65%, rgba(255, 255, 255, 0.28) 100%)",
+          }}
+        />
+
+        {/* Layer 2: Interactive Glossy Cursor Glare Overlay */}
         <div
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
           style={{
             opacity: isHovered ? 1 : 0,
-            background: `radial-gradient(500px circle at ${coords.x}px ${coords.y}px, rgba(255, 255, 255, 0.75), rgba(37, 99, 235, 0.06) 35%, transparent 65%)`,
+            background: `radial-gradient(380px circle at ${coords.x}px ${coords.y}px, rgba(255, 255, 255, 0.85), rgba(147, 197, 253, 0.15) 40%, transparent 70%)`,
           }}
         />
 
-        {/* 3D Glass rim accent */}
+        {/* Layer 3: 3D Beveled Specular Rim Lighting */}
         <div
           className="pointer-events-none absolute inset-0 z-0 rounded-2xl transition-opacity duration-300"
           style={{
             opacity: isHovered ? 1 : 0,
             border: `1.5px solid transparent`,
-            backgroundImage: `radial-gradient(280px circle at ${coords.x}px ${coords.y}px, rgba(255, 255, 255, 0.9), transparent 60%)`,
+            backgroundImage: `radial-gradient(280px circle at ${coords.x}px ${coords.y}px, rgba(255, 255, 255, 0.95), transparent 60%)`,
             WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
             WebkitMaskComposite: "xor",
             maskComposite: "exclude",
           }}
         />
 
-        {/* Inner Card Content */}
+        {/* Layer 4: Inner Card Content */}
         <div className="relative z-10 w-full h-full flex flex-col justify-between">
           {children}
         </div>

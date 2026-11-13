@@ -115,10 +115,10 @@ function PlaygroundContent() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between space-y-2 ${
+                className={`p-3.5 rounded-2xl text-left transition-all cursor-pointer flex flex-col justify-between space-y-2 ${
                   isActive
-                    ? "bg-white/90 backdrop-blur-xl border-cobalt-600 shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_4px_16px_-2px_rgba(37,99,235,0.18)]"
-                    : "bg-white/55 hover:bg-white/80 backdrop-blur-md border-white/85 shadow-xs"
+                    ? "bg-white/70 backdrop-blur-2xl border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_8px_24px_-4px_rgba(37,99,235,0.22)] ring-1 ring-cobalt-600"
+                    : "bg-white/40 hover:bg-white/65 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-xs"
                 }`}
               >
                 <div className="flex items-center justify-between">

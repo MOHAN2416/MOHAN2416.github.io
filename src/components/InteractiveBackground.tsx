@@ -25,7 +25,7 @@ export function InteractiveBackground() {
     let width = 0;
     let height = 0;
     let dots: Dot[] = [];
-    const SPACING = 32;
+    const SPACING = 36;
     const INFLUENCE_RADIUS = 165;
 
     const mouse = {
@@ -128,15 +128,15 @@ export function InteractiveBackground() {
 
         if (proximity > 0) {
           // Illuminated in Cobalt (#2563EB)
-          const alpha = 0.45 + proximity * 0.55;
+          const alpha = 0.5 + proximity * 0.5;
           const radius = 1.3 + proximity * 1.6;
 
           ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(37, 99, 235, ${alpha})`;
         } else {
           // Base fine architectural dot
-          ctx.arc(dot.x, dot.y, 1.15, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(100, 116, 139, 0.22)";
+          ctx.arc(dot.x, dot.y, 1.1, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(71, 85, 105, 0.22)";
         }
 
         ctx.fill();
@@ -150,7 +150,7 @@ export function InteractiveBackground() {
           const d2 = activeDots[j];
           const distNodes = Math.hypot(d1.x - d2.x, d1.y - d2.y);
           if (distNodes < 60) {
-            const lineAlpha = (1 - distNodes / 60) * 0.28;
+            const lineAlpha = (1 - distNodes / 60) * 0.3;
             ctx.beginPath();
             ctx.moveTo(d1.x, d1.y);
             ctx.lineTo(d2.x, d2.y);
@@ -174,30 +174,30 @@ export function InteractiveBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none">
-      {/* Multi-Layered Iridescent Light Mesh (Fixed Behind All Pages, 20s continuous float loop) */}
-      
-      {/* 1. Top-Left Orb: Glacial Sky Blue (#BAE6FD) */}
+    <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none bg-gradient-to-br from-[#DCE6F7] via-[#E4E9F8] to-[#D8E8F0]">
+      {/* 5 High-Contrast Translucent Color Ribbons & Orbs (blur-[95px], opacity-85) */}
+
+      {/* 1. Vibrant Glacial Cyan (#7DD3FC) at top-left */}
       <motion.div
-        className="absolute -top-[12%] -left-[10%] w-[58vw] h-[58vw] rounded-full bg-[#BAE6FD] blur-[110px] opacity-75 pointer-events-none"
+        className="absolute -top-[5%] left-[5%] w-[520px] h-[520px] rounded-full bg-[#7DD3FC] blur-[95px] opacity-85 pointer-events-none"
         animate={{
-          x: [0, 45, -35, 0],
-          y: [0, -40, 30, 0],
+          x: [0, 40, -30, 0],
+          y: [0, -35, 25, 0],
           scale: [1, 1.08, 0.94, 1],
         }}
         transition={{
-          duration: 20,
+          duration: 18,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
 
-      {/* 2. Top-Right Orb: Soft Periwinkle Indigo (#C7D2FE) */}
+      {/* 2. Rich Periwinkle Cobalt (#93C5FD / #818CF8) at top-right */}
       <motion.div
-        className="absolute -top-[8%] -right-[12%] w-[54vw] h-[54vw] rounded-full bg-[#C7D2FE] blur-[110px] opacity-75 pointer-events-none"
+        className="absolute top-[10%] right-[8%] w-[580px] h-[580px] rounded-full bg-gradient-to-br from-[#93C5FD] to-[#818CF8] blur-[95px] opacity-85 pointer-events-none"
         animate={{
           x: [0, -45, 30, 0],
-          y: [0, 40, -35, 0],
+          y: [0, 35, -30, 0],
           scale: [1, 0.95, 1.07, 1],
         }}
         transition={{
@@ -207,12 +207,12 @@ export function InteractiveBackground() {
         }}
       />
 
-      {/* 3. Center-Left Orb: Translucent Mint Aqua (#A7F3D0) */}
+      {/* 3. Luminous Mint Emerald (#6EE7B7) at center-left */}
       <motion.div
-        className="absolute top-[38%] -left-[14%] w-[50vw] h-[50vw] rounded-full bg-[#A7F3D0] blur-[110px] opacity-70 pointer-events-none"
+        className="absolute top-[42%] left-[12%] w-[500px] h-[500px] rounded-full bg-[#6EE7B7] blur-[95px] opacity-85 pointer-events-none"
         animate={{
-          x: [0, 35, -45, 0],
-          y: [0, -35, 45, 0],
+          x: [0, 35, -40, 0],
+          y: [0, -30, 40, 0],
           scale: [1, 1.06, 0.95, 1],
         }}
         transition={{
@@ -222,22 +222,49 @@ export function InteractiveBackground() {
         }}
       />
 
-      {/* 4. Bottom-Right Orb: Soft Lavender Mist (#DDD6FE) */}
+      {/* 4. Soft Violet Orchid (#C4B5FD) at center-right */}
       <motion.div
-        className="absolute top-[55%] -right-[10%] w-[55vw] h-[55vw] rounded-full bg-[#DDD6FE] blur-[110px] opacity-75 pointer-events-none"
+        className="absolute top-[55%] right-[10%] w-[540px] h-[540px] rounded-full bg-[#C4B5FD] blur-[95px] opacity-85 pointer-events-none"
         animate={{
-          x: [0, -40, 40, 0],
-          y: [0, 45, -30, 0],
-          scale: [1, 0.93, 1.08, 1],
+          x: [0, -35, 35, 0],
+          y: [0, 40, -25, 0],
+          scale: [1, 0.94, 1.06, 1],
         }}
         transition={{
-          duration: 24,
+          duration: 23,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
 
-      {/* Interactive Fine Dot-Grid Canvas Matrix (32px Spacing, Cobalt illumination) */}
+      {/* 5. Sky Azure (#60A5FA) at bottom-center */}
+      <motion.div
+        className="absolute bottom-[5%] left-[30%] w-[600px] h-[450px] rounded-full bg-[#60A5FA] blur-[95px] opacity-85 pointer-events-none"
+        animate={{
+          x: [0, 45, -35, 0],
+          y: [0, -25, 35, 0],
+          scale: [1, 1.05, 0.96, 1],
+        }}
+        transition={{
+          duration: 21,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Crisp Architectural Technical Blueprint Grid (48px lines in rgba(37, 99, 235, 0.08)) */}
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px)
+          `,
+          backgroundSize: "48px 48px",
+        }}
+      />
+
+      {/* Interactive Fine Dot-Grid Canvas Matrix with Magnetic Cursor Waves */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"

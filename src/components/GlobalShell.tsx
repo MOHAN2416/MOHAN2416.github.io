@@ -66,7 +66,7 @@ export function GlobalShell({ children }: { children: React.ReactNode }) {
       {!aiAssistantOpen && (
         <button
           onClick={() => setAiAssistantOpen(true)}
-          className="fixed bottom-5 right-5 z-40 px-4 py-2.5 rounded-full bg-white/75 hover:bg-white/90 backdrop-blur-xl text-zinc-900 text-xs font-mono font-medium shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),0_8px_24px_-4px_rgba(15,23,42,0.12)] flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95 cursor-pointer border border-white/85"
+          className="fixed bottom-5 right-5 z-40 px-4 py-2.5 rounded-full bg-white/50 hover:bg-white/75 backdrop-blur-2xl backdrop-saturate-[180%] text-zinc-900 text-xs font-mono font-medium shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),0_12px_32px_-4px_rgba(15,23,42,0.12)] flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95 cursor-pointer border-t border-l border-white/95 border-r border-b border-white/50"
           title="Ask Mohan's AI Assistant"
         >
           <div className="w-5 h-5 rounded-full bg-cobalt-50 text-cobalt-600 flex items-center justify-center">

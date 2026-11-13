@@ -130,13 +130,13 @@ export default function ContactPage() {
 
             <div className="space-y-3.5 font-mono text-xs">
               {/* Email */}
-              <div className="p-4 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-white/40 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-white border border-white/90 text-cobalt-600 shadow-xs">
+                  <div className="p-2 rounded-lg bg-white/80 border border-white/95 text-cobalt-600 shadow-xs">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] text-zinc-400 uppercase">Candidate Email</div>
+                    <div className="text-[10px] text-zinc-500 uppercase">Candidate Email</div>
                     <div className="text-zinc-900 font-bold">{CANDIDATE_PROFILE.email}</div>
                   </div>
                 </div>
@@ -150,13 +150,13 @@ export default function ContactPage() {
               </div>
 
               {/* LinkedIn */}
-              <div className="p-4 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-white/40 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-white border border-white/90 text-cobalt-600 shadow-xs">
+                  <div className="p-2 rounded-lg bg-white/80 border border-white/95 text-cobalt-600 shadow-xs">
                     <ExternalLink className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] text-zinc-400 uppercase">LinkedIn Profile</div>
+                    <div className="text-[10px] text-zinc-500 uppercase">LinkedIn Profile</div>
                     <a
                       href={CANDIDATE_PROFILE.linkedin}
                       target="_blank"
@@ -177,13 +177,13 @@ export default function ContactPage() {
               </div>
 
               {/* Phone */}
-              <div className="p-4 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-white/40 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-white border border-white/90 text-emerald-600 shadow-xs">
+                  <div className="p-2 rounded-lg bg-white/80 border border-white/95 text-emerald-600 shadow-xs">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] text-zinc-400 uppercase">Phone &amp; WhatsApp</div>
+                    <div className="text-[10px] text-zinc-500 uppercase">Phone &amp; WhatsApp</div>
                     <div className="text-zinc-900 font-bold">{CANDIDATE_PROFILE.phone}</div>
                   </div>
                 </div>
@@ -197,24 +197,24 @@ export default function ContactPage() {
               </div>
 
               {/* Location */}
-              <div className="p-4 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-white border border-white/90 text-zinc-500 shadow-xs">
+              <div className="p-4 rounded-xl bg-white/40 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-white/80 border border-white/95 text-zinc-500 shadow-xs">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-[10px] text-zinc-400 uppercase">Primary Location</div>
+                  <div className="text-[10px] text-zinc-500 uppercase">Primary Location</div>
                   <div className="text-zinc-900 font-bold">{CANDIDATE_PROFILE.location}</div>
-                  <div className="text-[11px] text-zinc-500 font-sans mt-0.5">Open to on-site, hybrid, or remote relocation.</div>
+                  <div className="text-[11px] text-zinc-600 font-sans mt-0.5">Open to on-site, hybrid, or remote relocation.</div>
                 </div>
               </div>
 
               {/* GitHub */}
-              <div className="p-4 rounded-xl bg-white/60 backdrop-blur-md border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-white border border-white/90 text-zinc-700 shadow-xs">
+              <div className="p-4 rounded-xl bg-white/40 backdrop-blur-md border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-white/80 border border-white/95 text-zinc-700 shadow-xs">
                   <GitBranch className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-[10px] text-zinc-400 uppercase">GitHub Profile</div>
+                  <div className="text-[10px] text-zinc-500 uppercase">GitHub Profile</div>
                   <a
                     href={CANDIDATE_PROFILE.github}
                     target="_blank"

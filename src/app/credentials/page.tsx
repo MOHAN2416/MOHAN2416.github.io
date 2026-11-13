@@ -61,7 +61,7 @@ export default function CredentialsPage() {
           {SKILL_CATEGORIES.map((cat, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/85 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_4px_16px_-4px_rgba(15,23,42,0.05)] space-y-3.5 hover:bg-white/75 transition-all"
+              className="p-6 rounded-2xl bg-white/40 backdrop-blur-xl border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),0_8px_24px_-4px_rgba(15,23,42,0.06)] space-y-3.5 hover:bg-white/55 transition-all"
             >
               <div className="flex items-center gap-2 text-xs font-mono font-bold text-zinc-900 uppercase tracking-wider">
                 <CheckCircle2 className="w-4 h-4 text-cobalt-600" />
@@ -71,7 +71,7 @@ export default function CredentialsPage() {
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/70 backdrop-blur-md text-zinc-700 border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+                    className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/45 backdrop-blur-md text-slate-800 border-t border-l border-white/90 border-r border-b border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
                   >
                     {skill}
                   </span>
@@ -103,7 +103,7 @@ export default function CredentialsPage() {
                 className={`px-4 py-2 rounded-xl font-medium transition-all cursor-pointer whitespace-nowrap ${
                   activeCategory === cat
                     ? "bg-zinc-900 text-white font-semibold shadow-[0_2px_8px_-2px_rgba(15,23,42,0.3)]"
-                    : "bg-white/60 hover:bg-white/90 backdrop-blur-md text-zinc-700 border border-white/85 shadow-xs"
+                    : "bg-white/45 hover:bg-white/70 backdrop-blur-md text-slate-800 border-t border-l border-white/90 border-r border-b border-white/45 shadow-xs"
                 }`}
               >
                 {cat}

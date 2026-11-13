@@ -39,7 +39,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all duration-200 bg-white/60 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/80 shadow-[0_4px_24px_-4px_rgba(15,23,42,0.05)] ${
+      className={`sticky top-0 z-40 w-full transition-all duration-200 bg-white/45 backdrop-blur-2xl backdrop-saturate-[180%] border-b border-white/80 shadow-[0_8px_32px_rgba(15,23,42,0.06)] ${
         scrolled ? "py-3" : "py-3.5"
       }`}
     >
@@ -53,7 +53,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
             <span className="font-semibold text-sm sm:text-base text-zinc-900 tracking-tight font-heading group-hover:text-cobalt-600 transition-colors block whitespace-nowrap">
               Mutyala Mohan Surendra
             </span>
-            <span className="text-[11px] text-zinc-500 hidden xl:block font-sans whitespace-nowrap">
+            <span className="text-[11px] text-zinc-600 hidden xl:block font-sans whitespace-nowrap">
               AI Systems Engineer & Full-Stack Developer
             </span>
           </div>
@@ -67,10 +67,10 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-1.5 rounded-lg font-medium transition-all whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-xl font-medium transition-all whitespace-nowrap ${
                   active
-                    ? "text-cobalt-600 bg-white/80 border border-white/90 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_2px_8px_-2px_rgba(37,99,235,0.12)] font-semibold"
-                    : "text-zinc-600 hover:text-zinc-900 hover:bg-white/50"
+                    ? "text-cobalt-600 bg-white/60 border-t border-l border-white/95 border-r border-b border-white/45 shadow-[inset_0_1px_1px_rgba(255,255,255,0.95),0_2px_8px_-2px_rgba(37,99,235,0.12)] font-semibold"
+                    : "text-slate-700 hover:text-slate-950 hover:bg-white/40"
                 }`}
               >
                 {link.label}
@@ -84,12 +84,12 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
           {/* Command Palette Trigger */}
           <button
             onClick={onOpenCommandPalette}
-            className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/60 hover:bg-white/85 text-zinc-600 hover:text-zinc-900 border border-white/85 text-xs font-mono shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_2px_6px_-2px_rgba(15,23,42,0.04)] transition-all cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/45 hover:bg-white/70 backdrop-blur-md text-slate-700 hover:text-slate-950 border-t border-l border-white/90 border-r border-b border-white/50 text-xs font-mono shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] transition-all cursor-pointer"
             title="Open Command Palette (⌘K)"
           >
-            <Search className="w-3.5 h-3.5 text-zinc-400" />
-            <span className="text-zinc-500">Search</span>
-            <kbd className="px-1.5 py-0.5 rounded bg-white/80 border border-white/90 text-[10px] text-zinc-500 font-mono shadow-xs">
+            <Search className="w-3.5 h-3.5 text-zinc-500" />
+            <span className="text-zinc-600 font-medium">Search</span>
+            <kbd className="px-1.5 py-0.5 rounded bg-white/80 border border-white/90 text-[10px] text-zinc-600 font-mono shadow-xs">
               ⌘K
             </kbd>
           </button>
@@ -97,7 +97,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
           {/* Resume Action */}
           <button
             onClick={onOpenResume}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/60 hover:bg-white/85 text-zinc-700 text-xs font-mono border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_2px_6px_-2px_rgba(15,23,42,0.04)] transition-all cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/45 hover:bg-white/70 backdrop-blur-md text-slate-800 text-xs font-mono border-t border-l border-white/90 border-r border-b border-white/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] transition-all cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5 text-zinc-500" />
             <span>Resume</span>
@@ -108,7 +108,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
             href={CANDIDATE_PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 sm:p-2 rounded-lg bg-white/60 hover:bg-white/85 text-zinc-600 hover:text-zinc-900 border border-white/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_2px_6px_-2px_rgba(15,23,42,0.04)] transition-colors"
+            className="p-1.5 sm:p-2 rounded-xl bg-white/45 hover:bg-white/70 backdrop-blur-md text-slate-700 hover:text-slate-950 border-t border-l border-white/90 border-r border-b border-white/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] transition-colors"
             title="GitHub Repository"
           >
             <GitBranch className="w-4 h-4" />
@@ -117,7 +117,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
           {/* Primary Cobalt Contact CTA */}
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-cobalt-600 hover:bg-cobalt-700 text-white text-xs font-semibold shadow-[0_2px_8px_-2px_rgba(37,99,235,0.4)] transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-cobalt-600 hover:bg-cobalt-700 text-white text-xs font-semibold shadow-[0_4px_12px_-2px_rgba(37,99,235,0.45)] transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>Contact</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -126,7 +126,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 rounded-lg bg-white/60 text-zinc-600 hover:text-zinc-900 lg:hidden border border-white/85"
+            className="p-1.5 rounded-xl bg-white/45 text-zinc-700 hover:text-zinc-950 lg:hidden border border-white/80"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
