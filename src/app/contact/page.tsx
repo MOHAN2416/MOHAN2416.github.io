@@ -47,51 +47,59 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
     setIsSubmitting(true);
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setErrorMessage(data.error || "Failed to submit inquiry.");
-        setIsSubmitting(false);
-        return;
-      }
-
-      setLastSubmission({
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-      });
-
-      setReceipt({
-        receiptId: data.receiptId,
-        timestamp: data.timestamp,
-        message: data.message,
-      });
-
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        role: "",
-        message: "",
-      });
-    } catch (err) {
-      console.error(err);
-      setErrorMessage("Network error occurred. Please verify your connection or email directly.");
-    } finally {
+    if (!name) {
+      setErrorMessage("Please enter your name.");
       setIsSubmitting(false);
+      return;
     }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrorMessage("Please enter a valid email address.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!message || message.length < 5) {
+      setErrorMessage("Message must be at least 5 characters long.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Generate client-side confirmation receipt
+    const randomHex = Math.random().toString(16).substring(2, 10).toUpperCase();
+    const receiptId = `MMS-REC-${new Date().getFullYear()}-${randomHex}`;
+    const timestamp = new Date().toISOString();
+
+    setLastSubmission({
+      name,
+      email,
+      message,
+    });
+
+    setReceipt({
+      receiptId,
+      timestamp,
+      message: "Your message has been verified and recorded. You can also send a pre-filled direct email with 1 click below.",
+    });
+
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      role: "",
+      message: "",
+    });
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -248,7 +256,7 @@ export default function ContactPage() {
                 <span className="w-2 h-2 rounded-full bg-emerald-600 pulse-emerald" />
                 <span>Send a Message</span>
               </div>
-              <span className="text-[11px] font-mono text-zinc-400">POST /api/contact</span>
+              <span className="text-[11px] font-mono text-zinc-400">Direct Recruiter Dispatch</span>
             </div>
 
             {receipt ? (

@@ -10,6 +10,8 @@ export function generateStaticParams() {
   }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = PROJECTS.find((p) => p.slug === slug);

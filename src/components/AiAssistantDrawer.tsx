@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Sparkles, X, Send, Bot, User, RefreshCw, ArrowRight } from "lucide-react";
+import { askPortfolioAssistant } from "@/lib/assistantClient";
 
 interface Message {
   role: "assistant" | "user";
@@ -59,17 +60,7 @@ export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api/assistant", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: q }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to query assistant");
-      }
+      const data = await askPortfolioAssistant(q);
 
       const botMessage: Message = {
         role: "assistant",
@@ -77,7 +68,7 @@ export function AiAssistantDrawer({ isOpen, onClose }: AiAssistantDrawerProps) {
         category: data.category,
         suggestedQuestions: data.suggestedQuestions,
         relevantProjects: data.relevantProjects,
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        timestamp: data.timestamp || new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       };
 
       setMessages((prev) => [...prev, botMessage]);

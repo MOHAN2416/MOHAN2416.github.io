@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CERTIFICATIONS, SKILL_CATEGORIES, Certification } from "@/lib/data";
 import { Award, ShieldCheck, X, CheckCircle2, ArrowRight, ExternalLink, Download, Copy, Check, Eye } from "lucide-react";
 import { GlassCard } from "@/components/GlassCard";
+import { withBasePath } from "@/lib/assetPath";
 
 const CATEGORIES = ["All (8)", "Systems & C/C++", "AI & ML", "Hackathon & Honors", "Software Engineering"];
 
@@ -207,7 +208,7 @@ export default function CredentialsPage() {
                 <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
                   <span>Certificate Preview:</span>
                   <a
-                    href={selectedCert.filePath}
+                    href={withBasePath(selectedCert.filePath)}
                     download
                     className="text-cobalt-600 hover:underline inline-flex items-center gap-1"
                   >
@@ -219,14 +220,14 @@ export default function CredentialsPage() {
                 <div className="rounded-xl border border-zinc-200/80 bg-zinc-50/80 p-2 overflow-hidden flex items-center justify-center min-h-[380px] max-h-[520px]">
                   {isPdf(selectedCert.filePath) ? (
                     <iframe
-                      src={selectedCert.filePath}
+                      src={withBasePath(selectedCert.filePath)}
                       className="w-full h-[460px] rounded-lg border border-zinc-200 bg-white"
                       title={selectedCert.title}
                     />
                   ) : (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
-                      src={selectedCert.filePath}
+                      src={withBasePath(selectedCert.filePath)}
                       alt={selectedCert.title}
                       className="max-h-[460px] w-auto mx-auto object-contain rounded-lg border border-zinc-200 bg-white shadow-xs"
                     />
@@ -321,7 +322,7 @@ export default function CredentialsPage() {
               <div className="flex items-center gap-2">
                 {selectedCert.filePath && (
                   <a
-                    href={selectedCert.filePath}
+                    href={withBasePath(selectedCert.filePath)}
                     download
                     className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-mono transition-colors"
                   >

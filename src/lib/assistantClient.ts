@@ -1,4 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+export interface AssistantResponse {
+  answer: string;
+  category?: string;
+  relevantProjects?: string[];
+  suggestedQuestions?: string[];
+  timestamp: string;
+  confidence?: number;
+}
 
 interface KnowledgeMatch {
   patterns: RegExp[];
@@ -246,85 +253,37 @@ You can also send a direct message on the **/contact** page!`,
   },
 ];
 
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const query = (body.query || "").trim();
+export async function askPortfolioAssistant(query: string): Promise<AssistantResponse> {
+  const trimmed = query.trim();
+  if (!trimmed) {
+    return {
+      answer: "Please ask a question about Mohan's projects, experience, or skills.",
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    };
+  }
 
-    if (!query) {
-      return NextResponse.json({ error: "Query cannot be empty." }, { status: 400 });
-    }
+  // Artificial slight delay for natural conversational feel in browser
+  await new Promise((resolve) => setTimeout(resolve, 250));
 
-    // High-Precision Semantic & Deterministic Fallback
-    let bestMatch: KnowledgeMatch | null = null;
-    let maxMatchCount = 0;
+  let bestMatch: KnowledgeMatch | null = null;
+  let maxMatchCount = 0;
 
-    for (const entry of KNOWLEDGE_BASE) {
-      let matches = 0;
-      for (const pattern of entry.patterns) {
-        if (pattern.test(query)) {
-          matches++;
-        }
-      }
-      if (matches > maxMatchCount) {
-        maxMatchCount = matches;
-        bestMatch = entry;
+  for (const entry of KNOWLEDGE_BASE) {
+    let matches = 0;
+    for (const pattern of entry.patterns) {
+      if (pattern.test(trimmed)) {
+        matches++;
       }
     }
-
-    // Optional LLM enhancement if key is provided in environment
-    if (process.env.GEMINI_API_KEY) {
-      try {
-        const geminiRes = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              contents: [
-                {
-                  role: "user",
-                  parts: [
-                    {
-                      text: `You are Mohan's AI Assistant for his developer portfolio. Answer in clear, plain everyday English. Ground your answers strictly in his verified projects (VIDURA: 22,423 SLOC offline agent, 456 tests; NanoCoder: 12.29M PyTorch model; BLINK: ~800ms Linux face unlock; VARUNA: 177ms freight route planner; KavachAI: tamper-proof monitor; Clover CRM: sales hub).
-
-User Query: ${query}`
-                    }
-                  ]
-                }
-              ],
-              generationConfig: { maxOutputTokens: 400, temperature: 0.2 },
-            }),
-            signal: AbortSignal.timeout(4000),
-          }
-        );
-
-        if (geminiRes.ok) {
-          const geminiData = await geminiRes.json();
-          const generatedText = geminiData.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (generatedText && generatedText.trim().length > 20) {
-            return NextResponse.json({
-              answer: generatedText.trim(),
-              category: bestMatch ? bestMatch.category : "AI Assistant",
-              relevantProjects: bestMatch?.generateAnswer().relevantProjects || ["vidura", "blink"],
-              suggestedQuestions: bestMatch?.generateAnswer().suggestedQuestions || [
-                "How does VIDURA keep code running safely offline?",
-                "How does BLINK log into Linux using your face in ~800 ms?",
-                "Tell me about Mohan's LiveAI internship.",
-              ],
-              timestamp: new Date().toISOString(),
-              confidence: 0.99,
-            });
-          }
-        }
-      } catch {
-        // Seamless fallback to deterministic answers
-      }
+    if (matches > maxMatchCount) {
+      maxMatchCount = matches;
+      bestMatch = entry;
     }
+  }
 
-    if (!bestMatch) {
-      return NextResponse.json({
-        answer: `Hello! I am **Mohan's AI Assistant**. I can answer any questions about his projects, skills, education, and internship experience.
+  if (!bestMatch) {
+    return {
+      answer: `Hello! I am **Mohan's AI Assistant**. I can answer any questions about his projects, skills, education, and internship experience.
 
 Mutyala Mohan Surendra is a **Software & AI Developer** based in Chennai and Hyderabad, India.
 
@@ -335,30 +294,26 @@ Here are a few highlights of his work:
 4. **AI Model Built from Scratch:** [NanoCoder](/projects/nanocoder) — A lightweight 12.29-million parameter AI coding model built in PyTorch.
 
 Feel free to ask any question about his projects, skills, or internship availability!`,
-        category: "General Overview",
-        relevantProjects: ["vidura", "blink", "varuna", "nanocoder"],
-        suggestedQuestions: [
-          "How does VIDURA keep code running safely offline?",
-          "How does BLINK log into Linux using your face in ~800 ms?",
-          "How does VARUNA find the best shipping routes?",
-          "Why should we hire Mohan for software or AI roles?",
-        ],
-        timestamp: new Date().toISOString(),
-      });
-    }
-
-    const result = bestMatch.generateAnswer();
-
-    return NextResponse.json({
-      answer: result.answer,
-      category: bestMatch.category,
-      relevantProjects: result.relevantProjects || [],
-      suggestedQuestions: result.suggestedQuestions,
-      timestamp: new Date().toISOString(),
-      confidence: 0.98,
-    });
-  } catch (error) {
-    console.error("Error in /api/assistant:", error);
-    return NextResponse.json({ error: "Failed to process AI assistant request." }, { status: 500 });
+      category: "General Overview",
+      relevantProjects: ["vidura", "blink", "varuna", "nanocoder"],
+      suggestedQuestions: [
+        "How does VIDURA keep code running safely offline?",
+        "How does BLINK log into Linux using your face in ~800 ms?",
+        "How does VARUNA find the best shipping routes?",
+        "Why should we hire Mohan for software or AI roles?",
+      ],
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      confidence: 0.95,
+    };
   }
+
+  const result = bestMatch.generateAnswer();
+  return {
+    answer: result.answer,
+    category: bestMatch.category,
+    relevantProjects: result.relevantProjects,
+    suggestedQuestions: result.suggestedQuestions,
+    timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    confidence: 0.98,
+  };
 }

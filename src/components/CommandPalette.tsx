@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { PROJECTS, CANDIDATE_PROFILE } from "@/lib/data";
+import { withBasePath } from "@/lib/assetPath";
 import {
   Search,
   FileText,
@@ -132,7 +133,7 @@ export function CommandPalette({ isOpen, onClose, onOpenResume }: CommandPalette
       badge: "PDF",
       icon: <FileText className="w-4 h-4 text-cobalt-600" />,
       action: () => {
-        window.open("/Mutyala_Mohan_Surendra_Resume.pdf", "_blank");
+        window.open(withBasePath("/Mutyala_Mohan_Surendra_Resume.pdf"), "_blank");
       },
     },
     {
