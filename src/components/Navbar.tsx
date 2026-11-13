@@ -45,7 +45,7 @@ export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
           : "bg-white/95 backdrop-blur-sm border-b border-zinc-200/60 py-3.5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-5">
         {/* Brand Monogram & Name */}
         <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
           <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-white font-mono font-bold text-xs shadow-xs transition-transform group-hover:scale-105 shrink-0">

@@ -1,13 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { EXPERIENCE_ITEMS, EDUCATION_ITEMS } from "@/lib/data";
 import { Briefcase, GraduationCap, Trophy, Calendar, MapPin, CheckCircle2, Award, ArrowRight } from "lucide-react";
-
-export const metadata = {
-  title: "Experience & Education | Mutyala Mohan Surendra",
-  description:
-    "AI Research Internship at LiveAI, FLASH National Hackathon 1st Place Champion, and Computer Science & Engineering degree at Amrita Vishwa Vidyapeetham, Chennai.",
-};
+import { SpotlightCard } from "@/components/SpotlightCard";
 
 export default function ExperienceEducationPage() {
   return (
@@ -30,9 +27,13 @@ export default function ExperienceEducationPage() {
         </div>
       </div>
 
-      {/* FLASH Hackathon 1st Place Trophy Banner */}
-      <div className="p-6 sm:p-8 rounded-xl bg-gradient-to-r from-amber-50/80 via-white to-amber-50/50 border border-amber-200 shadow-xs relative overflow-hidden">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      {/* FLASH Hackathon 1st Place Trophy Banner with Amber Spotlight */}
+      <SpotlightCard
+        spotlightColor="rgba(217, 119, 6, 0.09)"
+        borderColor="rgba(217, 119, 6, 0.4)"
+        className="bg-gradient-to-r from-amber-50/80 via-white to-amber-50/50 border-amber-200"
+      >
+        <div className="p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-start gap-4">
             <div className="p-3 rounded-xl bg-amber-100 border border-amber-300 text-amber-800 shrink-0">
               <Trophy className="w-8 h-8" />
@@ -61,7 +62,7 @@ export default function ExperienceEducationPage() {
             </div>
           </div>
         </div>
-      </div>
+      </SpotlightCard>
 
       {/* Professional Experience Section */}
       <section className="space-y-6">
@@ -74,52 +75,51 @@ export default function ExperienceEducationPage() {
 
         <div className="space-y-6">
           {EXPERIENCE_ITEMS.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-6 sm:p-7 rounded-xl bg-white border border-zinc-200 shadow-xs space-y-5 hover:border-zinc-300 transition-all"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-zinc-100">
-                <div>
-                  <h3 className="text-lg font-bold font-heading text-zinc-900">{item.role}</h3>
-                  <div className="text-sm font-semibold text-cobalt-600 font-mono">{item.company}</div>
-                </div>
-                <div className="text-left sm:text-right text-xs font-mono text-zinc-500 space-y-0.5">
-                  <div className="flex items-center sm:justify-end gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-zinc-400" />
-                    <span>{item.period}</span>
+            <SpotlightCard key={idx} index={idx}>
+              <div className="p-6 sm:p-7 space-y-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-zinc-100">
+                  <div>
+                    <h3 className="text-lg font-bold font-heading text-zinc-900">{item.role}</h3>
+                    <div className="text-sm font-semibold text-cobalt-600 font-mono">{item.company}</div>
                   </div>
-                  <div className="flex items-center sm:justify-end gap-1 text-zinc-500">
-                    <MapPin className="w-3 h-3 text-zinc-400" />
-                    <span>{item.location} &bull; {item.type}</span>
+                  <div className="text-left sm:text-right text-xs font-mono text-zinc-500 space-y-0.5">
+                    <div className="flex items-center sm:justify-end gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-zinc-400" />
+                      <span>{item.period}</span>
+                    </div>
+                    <div className="flex items-center sm:justify-end gap-1 text-zinc-500">
+                      <MapPin className="w-3 h-3 text-zinc-400" />
+                      <span>{item.location} &bull; {item.type}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-700 font-sans leading-relaxed">
-                {item.points.map((pt, pIdx) => (
-                  <li key={pIdx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>{pt}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="pt-2">
-                <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider mb-2 font-semibold">
-                  Technologies &amp; Frameworks:
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {item.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 rounded text-xs font-mono bg-zinc-100 text-zinc-700 border border-zinc-200"
-                    >
-                      {tech}
-                    </span>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-700 font-sans leading-relaxed">
+                  {item.points.map((pt, pIdx) => (
+                    <li key={pIdx} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>{pt}</span>
+                    </li>
                   ))}
+                </ul>
+
+                <div className="pt-2">
+                  <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider mb-2 font-semibold">
+                    Technologies &amp; Frameworks:
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {item.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 rounded text-xs font-mono bg-zinc-100 text-zinc-700 border border-zinc-200"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
       </section>
@@ -135,50 +135,49 @@ export default function ExperienceEducationPage() {
 
         <div className="space-y-5">
           {EDUCATION_ITEMS.map((edu, idx) => (
-            <div
-              key={idx}
-              className="p-6 sm:p-7 rounded-xl bg-white border border-zinc-200 shadow-xs space-y-4 hover:border-zinc-300 transition-all"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-zinc-100">
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold font-heading text-zinc-900">{edu.degree}</h3>
-                  <div className="text-xs sm:text-sm text-purple-700 font-semibold font-mono">{edu.institution}</div>
-                </div>
-                <div className="text-left sm:text-right text-xs font-mono text-zinc-500 space-y-0.5">
-                  <div className="text-emerald-700 font-bold">{edu.score}</div>
-                  <div className="text-zinc-500">{edu.period} &bull; {edu.location}</div>
-                </div>
-              </div>
-
-              {edu.coursework && (
-                <div className="space-y-2">
-                  <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">
-                    Core Computer Science Coursework:
+            <SpotlightCard key={idx} index={idx}>
+              <div className="p-6 sm:p-7 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-zinc-100">
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold font-heading text-zinc-900">{edu.degree}</h3>
+                    <div className="text-xs sm:text-sm text-purple-700 font-semibold font-mono">{edu.institution}</div>
                   </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {edu.coursework.map((course) => (
-                      <span
-                        key={course}
-                        className="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-100 text-zinc-700 border border-zinc-200"
-                      >
-                        {course}
-                      </span>
+                  <div className="text-left sm:text-right text-xs font-mono text-zinc-500 space-y-0.5">
+                    <div className="text-emerald-700 font-bold">{edu.score}</div>
+                    <div className="text-zinc-500">{edu.period} &bull; {edu.location}</div>
+                  </div>
+                </div>
+
+                {edu.coursework && (
+                  <div className="space-y-2">
+                    <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider font-semibold">
+                      Core Computer Science Coursework:
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {edu.coursework.map((course) => (
+                        <span
+                          key={course}
+                          className="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-100 text-zinc-700 border border-zinc-200"
+                        >
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {edu.achievements && (
+                  <div className="pt-2 border-t border-zinc-100 space-y-1.5 text-xs text-zinc-600 font-sans">
+                    {edu.achievements.map((ach, aIdx) => (
+                      <div key={aIdx} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5" />
+                        <span>{ach}</span>
+                      </div>
                     ))}
                   </div>
-                </div>
-              )}
-
-              {edu.achievements && (
-                <div className="pt-2 border-t border-zinc-100 space-y-1.5 text-xs text-zinc-600 font-sans">
-                  {edu.achievements.map((ach, aIdx) => (
-                    <div key={aIdx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5" />
-                      <span>{ach}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            </SpotlightCard>
           ))}
         </div>
       </section>

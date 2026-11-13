@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { CANDIDATE_PROFILE } from "@/lib/data";
 import { Mail, Phone, MapPin, GitBranch, Copy, Check, Send, CheckCircle2, AlertCircle, RefreshCw, ExternalLink } from "lucide-react";
+import { SpotlightCard } from "@/components/SpotlightCard";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -117,7 +118,7 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Direct Contact Channels */}
         <div className="lg:col-span-5 space-y-5">
-          <div className="p-6 sm:p-7 rounded-xl bg-white border border-zinc-200 shadow-xs space-y-5">
+          <SpotlightCard className="p-6 sm:p-7 space-y-5">
             <div>
               <h2 className="text-base font-bold font-heading text-zinc-900">
                 Direct Channels
@@ -236,12 +237,12 @@ export default function ContactPage() {
                 Available for 2026 / 2027 AI Systems, Deep Learning, and Full-Stack Engineering Internships &amp; Roles.
               </p>
             </div>
-          </div>
+          </SpotlightCard>
         </div>
 
         {/* Right Column: Functional Contact Form */}
         <div className="lg:col-span-7">
-          <div className="p-6 sm:p-8 rounded-xl bg-white border border-zinc-200 shadow-xs space-y-6">
+          <SpotlightCard className="p-6 sm:p-8 space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-zinc-200">
               <div className="text-xs font-mono font-semibold text-zinc-900 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-600 pulse-emerald" />
@@ -386,7 +387,7 @@ export default function ContactPage() {
                 </div>
               </form>
             )}
-          </div>
+          </SpotlightCard>
         </div>
       </div>
     </div>
