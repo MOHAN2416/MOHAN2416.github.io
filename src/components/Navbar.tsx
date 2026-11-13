@@ -3,14 +3,15 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GitBranch, FileText, Menu, X, ArrowRight, ExternalLink } from "lucide-react";
+import { GitBranch, FileText, Menu, X, ArrowRight, ExternalLink, Search } from "lucide-react";
 import { CANDIDATE_PROFILE } from "@/lib/data";
 
 interface NavbarProps {
   onOpenResume?: () => void;
+  onOpenCommandPalette?: () => void;
 }
 
-export function Navbar({ onOpenResume }: NavbarProps) {
+export function Navbar({ onOpenResume, onOpenCommandPalette }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -88,6 +89,19 @@ export function Navbar({ onOpenResume }: NavbarProps) {
 
         {/* Right Action Buttons */}
         <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* Command Palette Trigger */}
+          <button
+            onClick={onOpenCommandPalette}
+            className="hidden sm:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-md bg-zinc-50 hover:bg-zinc-100 text-zinc-600 hover:text-zinc-900 border border-zinc-200 text-xs font-mono transition-colors cursor-pointer"
+            title="Open Command Palette (⌘K)"
+          >
+            <Search className="w-3.5 h-3.5 text-zinc-400" />
+            <span className="text-zinc-500">Search</span>
+            <kbd className="px-1.5 py-0.5 rounded bg-white border border-zinc-200 text-[10px] text-zinc-500 font-mono shadow-xs">
+              ⌘K
+            </kbd>
+          </button>
+
           {/* Resume Action */}
           <button
             onClick={onOpenResume}

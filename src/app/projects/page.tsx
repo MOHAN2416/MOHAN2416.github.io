@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { PROJECTS } from "@/lib/data";
-import { GitBranch, ArrowRight, CheckCircle2, Cpu, Shield, Ship, Layers } from "lucide-react";
+import { GitBranch, ArrowRight, Cpu, Shield, Ship, Layers } from "lucide-react";
 
 const CATEGORIES = ["All (6)", "AI Agents & LLMs", "Systems & Security", "Optimization & Full-Stack"];
 
@@ -109,29 +109,19 @@ export default function ProjectsDirectoryPage() {
                 </p>
               </div>
 
-              {/* Top 3 Benchmark Badges */}
+              {/* Top 3 Verified Benchmark Badges */}
               <div className="grid grid-cols-3 gap-2.5 pt-1 text-xs font-mono">
-                <div className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
-                  <div className="text-[10px] text-zinc-400 uppercase">Scale</div>
-                  <div className="font-bold text-zinc-900 truncate mt-0.5">
-                    {project.sloc ? project.sloc.split(" ")[0] + " SLOC" : project.benchmarks[0].value}
+                {project.cardMetrics.map((m, idx) => (
+                  <div key={idx} className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
+                    <div className="text-[10px] text-zinc-400 uppercase tracking-tight">{m.label}</div>
+                    <div className="font-bold text-zinc-900 truncate mt-0.5 text-xs">
+                      {m.value}
+                    </div>
+                    <div className="text-[10px] text-zinc-500 truncate mt-0.5">
+                      {m.sub}
+                    </div>
                   </div>
-                </div>
-
-                <div className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
-                  <div className="text-[10px] text-zinc-400 uppercase">Tests</div>
-                  <div className="font-bold text-emerald-700 truncate mt-0.5 flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
-                    <span>{project.testsCount.split(" ")[0]} Tests</span>
-                  </div>
-                </div>
-
-                <div className="p-2.5 rounded-lg bg-zinc-50 border border-zinc-200">
-                  <div className="text-[10px] text-zinc-400 uppercase">Latency</div>
-                  <div className="font-bold text-cobalt-600 truncate mt-0.5">
-                    {project.latencyHeadline.split(" ")[0]} {project.latencyHeadline.split(" ")[1]}
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Tech Stack Chips */}

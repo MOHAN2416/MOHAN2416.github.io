@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { CANDIDATE_PROFILE } from "@/lib/data";
-import { GitBranch, Mail, Phone, MapPin, ArrowUp, CheckCircle2 } from "lucide-react";
+import { GitBranch, Mail, Phone, MapPin, ArrowUp, CheckCircle2, ExternalLink } from "lucide-react";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -22,7 +22,7 @@ export function Footer() {
             </span>
             <span className="text-zinc-300">|</span>
             <span className="text-zinc-600">
-              CI Pass Rate: <strong className="text-zinc-900">100% (807 Tests)</strong>
+              <strong className="text-zinc-900 font-semibold">807 Verified Automated Tests</strong> (VIDURA 456 + VARUNA 273 + BLINK 78) &mdash; <span className="text-emerald-700 font-bold">100% Passing</span>
             </span>
             <span className="hidden sm:inline text-zinc-300">|</span>
             <span className="hidden sm:inline text-zinc-600">
@@ -136,6 +136,17 @@ export function Footer() {
                 >
                   <GitBranch className="w-3.5 h-3.5 text-zinc-400" />
                   <span>github.com/MOHAN2416</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={CANDIDATE_PROFILE.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-cobalt-600 transition-colors flex items-center gap-1.5"
+                >
+                  <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
+                  <span>linkedin.com/in/mohan-surendra</span>
                 </a>
               </li>
               <li>

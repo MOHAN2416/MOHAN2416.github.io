@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { CANDIDATE_PROFILE } from "@/lib/data";
-import { Mail, Phone, MapPin, GitBranch, Copy, Check, Send, CheckCircle2, AlertCircle, RefreshCw } from "lucide-react";
+import { Mail, Phone, MapPin, GitBranch, Copy, Check, Send, CheckCircle2, AlertCircle, RefreshCw, ExternalLink } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,6 +13,12 @@ export default function ContactPage() {
     role: "",
     message: "",
   });
+
+  const [lastSubmission, setLastSubmission] = useState<{
+    name: string;
+    email: string;
+    message: string;
+  } | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -24,15 +30,19 @@ export default function ContactPage() {
 
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
+  const [copiedLinkedin, setCopiedLinkedin] = useState(false);
 
-  const handleCopy = (text: string, type: "email" | "phone") => {
+  const handleCopy = (text: string, type: "email" | "phone" | "linkedin") => {
     navigator.clipboard.writeText(text);
     if (type === "email") {
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2000);
-    } else {
+    } else if (type === "phone") {
       setCopiedPhone(true);
       setTimeout(() => setCopiedPhone(false), 2000);
+    } else {
+      setCopiedLinkedin(true);
+      setTimeout(() => setCopiedLinkedin(false), 2000);
     }
   };
 
@@ -55,6 +65,12 @@ export default function ContactPage() {
         setIsSubmitting(false);
         return;
       }
+
+      setLastSubmission({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      });
 
       setReceipt({
         receiptId: data.receiptId,
@@ -89,17 +105,17 @@ export default function ContactPage() {
 
         <div className="space-y-2">
           <h1 className="text-3xl sm:text-4xl font-bold font-heading text-zinc-900 tracking-tight">
-            Recruiter Inquiry &amp; Interview Scheduling
+            Recruiter Inquiry &amp; Technical Interview Scheduling
           </h1>
           <p className="text-sm sm:text-base text-zinc-600 max-w-2xl font-sans">
-            Available for Summer / Fall 2025 AI Systems, Deep Learning, and Full-Stack Engineering roles. Transmissions are validated, acknowledged with receipt codes, and stored securely.
+            Available for 2026 / 2027 AI Systems, Deep Learning, and Full-Stack Engineering Internships &amp; Roles. Transmissions are validated, acknowledged with receipt codes, and stored securely.
           </p>
         </div>
       </div>
 
       {/* Two Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Direct Contact Cards */}
+        {/* Left Column: Direct Contact Channels */}
         <div className="lg:col-span-5 space-y-5">
           <div className="p-6 sm:p-7 rounded-xl bg-white border border-zinc-200 shadow-xs space-y-5">
             <div>
@@ -107,7 +123,7 @@ export default function ContactPage() {
                 Direct Channels
               </h2>
               <p className="text-xs text-zinc-500 mt-0.5">
-                Reach out directly via email, phone, or schedule a technical discussion.
+                Reach out directly via email, LinkedIn, phone, or schedule a technical discussion.
               </p>
             </div>
 
@@ -129,6 +145,33 @@ export default function ContactPage() {
                   title="Copy email"
                 >
                   {copiedEmail ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                </button>
+              </div>
+
+              {/* LinkedIn */}
+              <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-md bg-white border border-zinc-200 text-cobalt-600">
+                    <ExternalLink className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] text-zinc-400 uppercase">LinkedIn Profile</div>
+                    <a
+                      href={CANDIDATE_PROFILE.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-cobalt-600 font-bold hover:underline"
+                    >
+                      linkedin.com/in/mohan-surendra
+                    </a>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleCopy(CANDIDATE_PROFILE.linkedin, "linkedin")}
+                  className="p-1.5 rounded-md hover:bg-zinc-200 text-zinc-500 hover:text-zinc-900 transition-colors cursor-pointer"
+                  title="Copy LinkedIn URL"
+                >
+                  {copiedLinkedin ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
 
@@ -187,10 +230,10 @@ export default function ContactPage() {
             <div className="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-xs font-sans text-emerald-900 space-y-1">
               <div className="font-bold flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>Immediate Engagement Scope</span>
+                <span>2026 / 2027 Engagement Scope</span>
               </div>
               <p className="text-xs text-zinc-600 leading-relaxed">
-                Currently open for AI/ML Research Internships, Systems Engineering Internships, and Full-Stack Architect positions.
+                Available for 2026 / 2027 AI Systems, Deep Learning, and Full-Stack Engineering Internships &amp; Roles.
               </p>
             </div>
           </div>
@@ -208,13 +251,14 @@ export default function ContactPage() {
             </div>
 
             {receipt ? (
-              <div className="p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-mono space-y-3">
+              <div className="p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-mono space-y-4">
                 <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                   <span>Message Recorded in System</span>
                 </div>
                 <p className="text-zinc-700 font-sans text-xs leading-relaxed">{receipt.message}</p>
-                <div className="p-3 rounded-lg bg-white border border-emerald-200 text-[11px] space-y-1">
+                
+                <div className="p-3.5 rounded-lg bg-white border border-emerald-200 text-[11px] space-y-1.5 font-mono">
                   <div>
                     <span className="text-zinc-500">Receipt Code:</span>{" "}
                     <strong className="text-emerald-700">{receipt.receiptId}</strong>
@@ -223,13 +267,29 @@ export default function ContactPage() {
                     <span className="text-zinc-500">Timestamp:</span>{" "}
                     <span className="text-zinc-700">{receipt.timestamp}</span>
                   </div>
+                  <div>
+                    <span className="text-zinc-500">Status:</span>{" "}
+                    <span className="text-emerald-600 font-medium">Delivered to Mohan&apos;s Review Queue</span>
+                  </div>
                 </div>
-                <button
-                  onClick={() => setReceipt(null)}
-                  className="px-4 py-1.5 rounded-md bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold transition-all cursor-pointer"
-                >
-                  Send Another Inquiry
-                </button>
+
+                {/* 1-Click Mailto Fallback Action Button */}
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <a
+                    href={`mailto:${CANDIDATE_PROFILE.email}?subject=Recruiter Inquiry from ${encodeURIComponent(lastSubmission?.name || "Recruiter")}&body=Receipt ID: ${receipt.receiptId}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(lastSubmission?.message || "")}`}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-cobalt-600 hover:bg-cobalt-700 text-white font-semibold text-xs transition-colors shadow-xs"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Open in Email Client (1-Click Fallback)</span>
+                  </a>
+
+                  <button
+                    onClick={() => setReceipt(null)}
+                    className="px-4 py-2 rounded-lg bg-white hover:bg-zinc-100 text-zinc-800 text-xs font-semibold border border-zinc-200 transition-all cursor-pointer"
+                  >
+                    Send Another Inquiry
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
@@ -304,7 +364,7 @@ export default function ContactPage() {
 
                 <div className="pt-2 flex items-center justify-between">
                   <span className="text-[11px] font-mono text-zinc-400">
-                    Encrypted client validation
+                    Direct SQLite &amp; Memory Logging
                   </span>
                   <button
                     type="submit"

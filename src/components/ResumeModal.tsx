@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { CANDIDATE_PROFILE, EXPERIENCE_ITEMS, EDUCATION_ITEMS, PROJECTS, SKILL_CATEGORIES } from "@/lib/data";
-import { X, Printer, Copy, Check, FileText } from "lucide-react";
+import { X, Printer, Copy, Check, FileText, Download } from "lucide-react";
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -71,6 +71,15 @@ ${CANDIDATE_PROFILE.summary}
           </div>
 
           <div className="flex items-center gap-2">
+            <a
+              href="/Mutyala_Mohan_Surendra_Resume.pdf"
+              download="Mutyala_Mohan_Surendra_Resume.pdf"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-mono shadow-xs transition-all cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download Official PDF</span>
+            </a>
+
             <button
               onClick={handleCopyMarkdown}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-zinc-100 text-zinc-700 text-xs font-mono border border-zinc-200 shadow-xs transition-all cursor-pointer"

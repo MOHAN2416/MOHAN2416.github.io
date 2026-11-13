@@ -1,20 +1,37 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { ResumeModal } from "./ResumeModal";
+import { CommandPalette } from "./CommandPalette";
 import { AiAssistantDrawer } from "./AiAssistantDrawer";
 import { Sparkles } from "lucide-react";
 
 export function GlobalShell({ children }: { children: React.ReactNode }) {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [aiAssistantOpen, setAiAssistantOpen] = useState(false);
+
+  // Global keyboard shortcut listener for ⌘K / Ctrl+K
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setCommandPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAFA] text-zinc-900 font-sans selection:bg-cobalt-100 selection:text-cobalt-900">
       {/* Persistent Sticky Navbar */}
-      <Navbar onOpenResume={() => setResumeModalOpen(true)} />
+      <Navbar
+        onOpenResume={() => setResumeModalOpen(true)}
+        onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+      />
 
       {/* Main Page Route Content */}
       <main className="flex-1">
@@ -23,6 +40,13 @@ export function GlobalShell({ children }: { children: React.ReactNode }) {
 
       {/* Clean Multi-Column Footer */}
       <Footer />
+
+      {/* Light-Themed Global Command Palette (⌘K) */}
+      <CommandPalette
+        isOpen={commandPaletteOpen}
+        onClose={() => setCommandPaletteOpen(false)}
+        onOpenResume={() => setResumeModalOpen(true)}
+      />
 
       {/* Floating AI Assistant Drawer */}
       <AiAssistantDrawer

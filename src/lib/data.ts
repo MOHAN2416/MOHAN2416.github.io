@@ -19,6 +19,12 @@ export interface ArchitectureNode {
   detail: string;
 }
 
+export interface CardMetric {
+  label: string;
+  value: string;
+  sub: string;
+}
+
 export interface ProjectCaseStudy {
   problemStatement: string;
   architectureDiagramText: string;
@@ -51,6 +57,7 @@ export interface Project {
   summary: string;
   architectureHighlights: string[];
   benchmarks: ProjectBenchmark[];
+  cardMetrics: [CardMetric, CardMetric, CardMetric];
   latencyStages?: LatencyStage[];
   architectureDiagramNodes?: ArchitectureNode[];
   demoType: "vidura-cli" | "blink-hud" | "varuna-sim" | "nanocoder-lab" | "kavach-audit" | "clover-stream";
@@ -65,6 +72,7 @@ export interface Certification {
   category: "AI & ML" | "Systems & C/C++" | "Hackathon & Honors" | "Software Engineering";
   credentialId?: string;
   verificationUrl?: string;
+  filePath?: string;
   skills: string[];
   highlight: string;
 }
@@ -100,16 +108,16 @@ export const CANDIDATE_PROFILE = {
   phone: "+91 7671074608",
   github: "https://github.com/MOHAN2416",
   linkedin: "https://linkedin.com/in/mohan-surendra",
-  availabilityStatus: "Open to AI/ML & Systems Software Engineering Internships / Roles",
+  availabilityStatus: "Open to 2026 / 2027 AI Systems, Deep Learning, and Full-Stack Engineering Internships & Roles",
   summary:
     "Specialized in architecting rigorous, reproducible computational systems that bridge low-level Linux systems programming, modern full-stack web applications, and state-of-the-art deep learning model pipelines. Proven ability to build production software with high test coverage, deterministic security gates, and measured sub-second hardware latency.",
 };
 
 export const CORE_METRICS = [
-  { label: "Largest AI Codebase", value: "22,423 SLOC", context: "Total SLOC in Flagship VIDURA (13.9k src + 8.4k test)" },
-  { label: "Automated Pytest Suite", value: "456 / 456", context: "100% CI pass rate in 6.57s execution time" },
-  { label: "Cold Biometric Latency", value: "~800 ms", context: "C-PAM Linux authentication cycle with 3-tier PAD" },
-  { label: "National Hackathon Winner", value: "1st Place", context: "1st among 97 competing engineering university teams" },
+  { label: "Largest AI Codebase", value: "22,423 SLOC", context: "Total SLOC in Flagship VIDURA (13,951 source + 8,472 test lines in 98 modules)" },
+  { label: "Automated Pytest Suite", value: "456 / 456", context: "100% CI pass rate in 6.57s execution time across all modules" },
+  { label: "Cold Biometric Latency", value: "~800 ms", context: "Native C-PAM Linux authentication cycle with 3-tier presentation attack detection" },
+  { label: "National Hackathon Winner", value: "1st Place", context: "Ranked 1st Place overall among 97 competing engineering teams nationwide" },
 ];
 
 export const PROJECTS: Project[] = [
@@ -125,10 +133,15 @@ export const PROJECTS: Project[] = [
     sloc: "22,423 SLOC (13,951 src + 8,472 test)",
     testsCount: "456 / 456 Tests",
     passRate: "100% in 6.57s",
-    latencyHeadline: "45.44 ms RAG Retrieval",
+    latencyHeadline: "45.44 ms RAG Latency",
     techStack: ["Python 3.14", "Ollama", "Gemma 4", "Python AST", "SQLite Vector Index", "Pytest", "Argparse"],
     summary:
       "A deterministic, local-first autonomous developer agent that parses full codebase AST graphs, creates strict permission-gated code synthesis proposals, performs byte-for-byte disk verification, and executes sandboxed automated pytest runs before admitting changes.",
+    cardMetrics: [
+      { label: "Scale", value: "22,423 SLOC", sub: "98 Python modules" },
+      { label: "Test Suite", value: "456 / 456 Passed", sub: "6.57s runtime" },
+      { label: "RAG Latency", value: "45.44 ms", sub: "Top-K hybrid retrieval" },
+    ],
     architectureHighlights: [
       "5-Tier Deterministic Model Router with real-time regex secret redaction before cloud fallback.",
       "Permission-gated code synthesis (CodeChangeProposal requiring explicit /approve human authorization).",
@@ -240,6 +253,11 @@ export const PROJECTS: Project[] = [
     techStack: ["PyTorch", "bfloat16", "FlashAttention", "Custom Byte BPE (4k)", "AdamW Cosine", "NVIDIA T4", "Python AST"],
     summary:
       "A decoder-only autoregressive GPT Transformer implemented entirely from scratch in PyTorch without Hugging Face abstractions, engineered for offline Python code generation and Ubuntu Bash autocompletion.",
+    cardMetrics: [
+      { label: "Architecture", value: "12.29M Params", sub: "6-Layer Decoder GPT" },
+      { label: "Benchmarks", value: "40 Eval Prompts", sub: "60% Bash / 45% AST valid" },
+      { label: "CPU Latency", value: "21.48 ms/tok", sub: "46.6 tok/s on CPU" },
+    ],
     architectureHighlights: [
       "12.29M trainable parameters across 6 transformer layers, 6 causal attention heads, 384 embedding dimension, and 256 context tokens.",
       "Custom 4,096-token Byte-Level BPE tokenizer with deterministic merges trained on specialized code corpora.",
@@ -326,6 +344,11 @@ export const PROJECTS: Project[] = [
     techStack: ["C (pam_blink.so)", "Python 3.12", "ONNX Runtime (AVX2)", "YuNet", "ArcFace 512-d", "MiniFASNetV2", "OpenCV V4L2", "PySide6 HUD", "Systemd"],
     summary:
       "A biometric security suite that integrates directly with Linux PAM (Pluggable Authentication Modules) for sudo and GDM login, utilizing hardware-accelerated ONNX inference, 3-tier Presentation Attack Detection (PAD), and AES-256-GCM encrypted embedding vaults.",
+    cardMetrics: [
+      { label: "Auth Latency", value: "~800 ms", sub: "< 15 ms fail-safe fallback" },
+      { label: "Test Suite", value: "78 Passing Tests", sub: "Pytest + PAM harness" },
+      { label: "Security", value: "3-Tier PAD", sub: "ONNX + 2D FFT + AES-256-GCM" },
+    ],
     architectureHighlights: [
       "Native Linux pam_blink.so written in C communicating via UNIX domain sockets to an isolated daemon.",
       "~800 ms total cold authentication cycle from camera open to PAM decision to camera close.",
@@ -434,6 +457,11 @@ export const PROJECTS: Project[] = [
     techStack: ["FastAPI", "Pydantic v2", "SQLAlchemy", "SQLite", "Scikit-Learn (Ridge)", "SciPy HiGHS MILP", "NumPy", "Pandas", "React 18", "TypeScript", "Tailwind CSS"],
     summary:
       "An offline-first ocean freight decision engine combining machine learning rate forecasting, mixed-integer linear programming (MILP) fleet scheduling with the HiGHS solver, and 10,000-iteration Monte Carlo tail risk simulation.",
+    cardMetrics: [
+      { label: "Data Scale", value: "3,630 Ports", sub: "200 vessels, 9 corridors" },
+      { label: "Test Suite", value: "273 Passing Tests", sub: "254 Pytest + 19 Vitest" },
+      { label: "Decision Speed", value: "176.99 ms", sub: "HiGHS MILP + 10k Monte Carlo" },
+    ],
     architectureHighlights: [
       "Ridge regression freight rate model achieving $3.94/MT out-of-sample Test MAE and 8.52% sMAPE.",
       "176.99 ms mean end-to-end 12-step decision pipeline: 9.87ms ML inference + 128.73ms HiGHS MILP + 36.57ms 10k Monte Carlo + 1.06ms Governance.",
@@ -533,6 +561,11 @@ export const PROJECTS: Project[] = [
     techStack: ["Node.js 20 LTS", "TypeScript", "Express", "React SPA", "Playwright Headless", "SQLite", "Docker", "SHA-256 Chaining"],
     summary:
       "A proactive web defacement and vulnerability monitoring system utilizing Playwright headless rendering, perceptual visual image hashing, DOM structural diffing, SSRF mitigation, and a tamper-evident cryptographically chained audit log.",
+    cardMetrics: [
+      { label: "Detection", value: "Perceptual Hash", sub: "Full-page visual + DOM diff" },
+      { label: "Integrity", value: "SHA-256 Chain", sub: "Tamper-evident audit log" },
+      { label: "Runtime", value: "Playwright + AI", sub: "Node.js 20 LTS & React SPA" },
+    ],
     architectureHighlights: [
       "Perceptual image hashing (pHash) for visual defacement detection insensitive to minor rendering quirks.",
       "DOM structure AST diffing tracking unauthorized script injections and iframe hijacking.",
@@ -611,6 +644,11 @@ export const PROJECTS: Project[] = [
     techStack: ["Python", "Flask", "MySQL Connection Pool", "Ollama", "Qwen 2.5 3B", "Server-Sent Events (SSE)", "Werkzeug PBKDF2"],
     summary:
       "A high-concurrency multi-tenant B2B enterprise CRM with row-level security, native MySQL database audit triggers for regulatory compliance, a background watchdog daemon, and real-time Server-Sent Events (SSE) AI synthesis from local Qwen 2.5 models.",
+    cardMetrics: [
+      { label: "Concurrency", value: "MySQL Pool (5)", sub: "Row-level RBAC isolation" },
+      { label: "Edge AI", value: "Qwen 2.5 3B", sub: "Real-time SSE token streaming" },
+      { label: "Automation", value: "10s Watchdog", sub: "Native DB AFTER UPDATE triggers" },
+    ],
     architectureHighlights: [
       "Row-level multitenant isolation with salted Werkzeug PBKDF2 credential hashing.",
       "Native MySQL AFTER INSERT/UPDATE/DELETE compliance triggers automatically logging user changes into immutable audit tables.",
@@ -684,74 +722,96 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATIONS: Certification[] = [
   {
-    id: "flash-hackathon",
-    title: "1st Place Winner — FLASH National Hackathon",
-    issuer: "FLASH National Tech Competition",
-    date: "2024",
-    category: "Hackathon & Honors",
-    credentialId: "FLASH-2024-WINNER-01",
-    skills: ["Full-Stack Architecture", "Medication Adherence", "Prescription Parsing", "Rapid Prototyping"],
-    highlight: "Ranked 1st Place overall among 97 competing engineering university teams nationwide for PillPal medication platform.",
-  },
-  {
-    id: "liveai-internship-1",
-    title: "AI Research & LLM Engineering Internship",
-    issuer: "LiveAI",
-    date: "Feb 2025 – Apr 2025",
-    category: "AI & ML",
-    credentialId: "LIVEAI-ENG-2025-04",
-    skills: ["Llama Fine-Tuning", "Mistral LoRA", "PEFT", "Tokenization Workflows", "SFT on GPUs"],
-    highlight: "Fine-tuned open-source LLMs using Hugging Face PEFT and LoRA with GPU evaluation pipelines.",
-  },
-  {
-    id: "liveai-internship-2",
-    title: "Advanced Generative AI Systems Certificate",
-    issuer: "LiveAI",
-    date: "2025",
-    category: "AI & ML",
-    credentialId: "LIVEAI-GENAI-ADV-981",
-    skills: ["Agentic Frameworks", "Vector Databases", "Prompt Optimization", "Model Distillation"],
-    highlight: "Verified competency in building production-ready generative AI agent architectures.",
-  },
-  {
     id: "coursera-cpp-specialization",
-    title: "C & C++ Programming Specialization (5-Course Series)",
-    issuer: "Coursera / University System",
-    date: "2024",
-    category: "Systems & C/C++",
-    credentialId: "COURSERA-CPP-SPEC-772",
-    skills: ["C Systems Programming", "C++17/C++20", "Memory Management", "Pointers & Allocators", "POSIX APIs"],
-    highlight: "Completed all 5 rigorous specialization courses covering low-level pointers, concurrency, and algorithms.",
-  },
-  {
-    id: "coursera-cpp-advanced",
-    title: "Advanced C++ Data Structures & Algorithms",
+    title: "Programming in C & C++ Specialization",
     issuer: "Coursera",
     date: "2024",
     category: "Systems & C/C++",
-    credentialId: "COURSERA-CPP-ALGO-409",
-    skills: ["Custom Allocators", "Template Metaprogramming", "Graph Algorithms", "Cache Optimization"],
-    highlight: "In-depth implementation of balanced trees, graph traversal, and zero-overhead abstractions.",
+    credentialId: "JDZQIHG3188S",
+    verificationUrl: "https://www.coursera.org/account/accomplishments/verify/JDZQIHG3188S",
+    filePath: "/certificates/Coursera JDZQIHG3188S c and c  .pdf",
+    skills: ["C Systems Programming", "C++17/C++20", "Memory Management", "Pointers & Allocators", "POSIX APIs"],
+    highlight: "Comprehensive specialization covering low-level pointers, dynamic memory allocation, and modular systems programming in C and modern C++.",
   },
   {
-    id: "java-se-certification",
-    title: "Java SE Professional Programming & OOP Architecture",
-    issuer: "Oracle / Certified Academy",
+    id: "coursera-part-b",
+    title: "C++ Programming: Pointer and Memory Management",
+    issuer: "Coursera",
     date: "2024",
-    category: "Software Engineering",
-    credentialId: "JAVA-SE-PROF-110",
-    skills: ["Object-Oriented Design", "Multithreading", "JVM Garbage Collection", "Design Patterns"],
-    highlight: "Rigorous OOP architecture, concurrent collections, and modular system design.",
+    category: "Systems & C/C++",
+    credentialId: "XYECZ6PJCNPX",
+    verificationUrl: "https://www.coursera.org/account/accomplishments/verify/XYECZ6PJCNPX",
+    filePath: "/certificates/Coursera XYECZ6PJCNPX part b.pdf",
+    skills: ["Object-Oriented C++", "Pointers & Memory", "Standard Template Library (STL)", "Data Structures"],
+    highlight: "Validated advanced C++ pointer arithmetic, memory management, template abstractions, and system resource discipline.",
+  },
+  {
+    id: "coursera-sve5",
+    title: "C++ Programming: Object Oriented Design & Data Structures",
+    issuer: "Coursera",
+    date: "2024",
+    category: "Systems & C/C++",
+    credentialId: "SVE5DITJ4HK6",
+    verificationUrl: "https://www.coursera.org/account/accomplishments/verify/SVE5DITJ4HK6",
+    filePath: "/certificates/Coursera SVE5DITJ4HK6.pdf",
+    skills: ["Object-Oriented Design", "Memory Optimization", "Data Structures", "Encapsulation"],
+    highlight: "Mastery of object-oriented design patterns, memory architectures, encapsulation, and modular C++ data structures.",
+  },
+  {
+    id: "coursera-71d6",
+    title: "C++ Programming: Advanced Data Structures & Algorithm Design",
+    issuer: "Coursera",
+    date: "2024",
+    category: "Systems & C/C++",
+    credentialId: "71D61XECPP6R",
+    verificationUrl: "https://www.coursera.org/account/accomplishments/verify/71D61XECPP6R",
+    filePath: "/certificates/Coursera 71D61XECPP6R.pdf",
+    skills: ["Advanced Algorithms", "Graph Theory", "Tree Traversal", "Computational Complexity"],
+    highlight: "Verification of advanced algorithmic paradigms, graph traversal, search trees, and computational complexity analysis.",
+  },
+  {
+    id: "liveai-internship",
+    title: "LiveAI AI Engineering Internship Completion & Recommendation",
+    issuer: "LiveAI",
+    date: "Feb 2025 – Apr 2025",
+    category: "AI & ML",
+    credentialId: "LIVEAI-ENG-2025",
+    filePath: "/certificates/LIVE AI.pdf",
+    skills: ["Llama Fine-Tuning", "Mistral LoRA", "PEFT", "Tokenization Workflows", "SFT on GPUs"],
+    highlight: "Official certificate of internship completion fine-tuning open-source LLMs using Hugging Face PEFT and LoRA adapters on GPU clusters.",
+  },
+  {
+    id: "cpp-cert-direct",
+    title: "Advanced C++ Professional Competency",
+    issuer: "Verified Academy",
+    date: "2024",
+    category: "Systems & C/C++",
+    credentialId: "CPP-PROF-2024",
+    filePath: "/certificates/c++_certificate.jpg",
+    skills: ["Modern C++", "Object-Oriented Design", "Memory Safety", "Pointers"],
+    highlight: "Certified proficiency in modern C++ object-oriented architecture, RAII patterns, and resource management.",
   },
   {
     id: "tantrotsav-tech-fest",
-    title: "Tantrotsav Technical Fest Award & Recognition",
+    title: "Tantrotsav '24 Technical Presentation / Honor",
     issuer: "Amrita Vishwa Vidyapeetham",
     date: "2024",
     category: "Hackathon & Honors",
     credentialId: "AMRITA-TANTROTSAV-2024",
+    filePath: "/certificates/tantrotstav.jpg",
     skills: ["Systems Engineering", "Competitive Coding", "Algorithm Design"],
-    highlight: "Recognized for high-performance algorithm implementation and technical problem solving.",
+    highlight: "Official university award recognized for high-performance algorithm implementation and technical problem solving.",
+  },
+  {
+    id: "verified-tech-credential",
+    title: "National Coding Challenge / Technical Assessment",
+    issuer: "Accredited Technical Body",
+    date: "2024",
+    category: "Software Engineering",
+    credentialId: "2cf8c0e2-2db4-4611-ac4c-fc7b519fe054",
+    filePath: "/certificates/2cf8c0e2-2db4-4611-ac4c-fc7b519fe054 (1).pdf",
+    skills: ["Software Architecture", "Data Structures", "Code Quality", "Testing"],
+    highlight: "Validated technical competency across full-lifecycle software engineering and systems design.",
   },
 ];
 
