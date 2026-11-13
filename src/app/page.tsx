@@ -2,10 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import { CANDIDATE_PROFILE, CORE_METRICS, ENGINEERING_PILLARS, PROJECTS } from "@/lib/data";
+import { CANDIDATE_PROFILE, ENGINEERING_PILLARS, PROJECTS } from "@/lib/data";
 import { ArrowRight, Terminal, Shield, Zap, BarChart3, GitBranch, ExternalLink, Trophy, Cpu } from "lucide-react";
 import { SpotlightCard } from "@/components/SpotlightCard";
-import { AnimatedMetricNumber } from "@/components/AnimatedMetricNumber";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -31,20 +30,8 @@ export default function HomePage() {
   return (
     <div className="space-y-16 sm:space-y-24 py-10 sm:py-16">
       {/* 1. HIGH-IMPACT FULL-WIDTH ARCHITECTURAL HERO */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl space-y-6 pt-2 sm:pt-4">
-          {/* Availability Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-emerald" />
-              {CANDIDATE_PROFILE.availabilityStatus}
-            </span>
-          </motion.div>
-
           {/* Main Title: Staggered Word-by-Word Motion Reveal */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-zinc-900 tracking-tight leading-[1.08]">
             {CANDIDATE_PROFILE.name.split(" ").map((word, i) => (
@@ -119,27 +106,6 @@ export default function HomePage() {
               <ExternalLink className="w-3 h-3 text-zinc-400" />
             </a>
           </motion.div>
-        </div>
-
-        {/* 4-Card Key Metrics Strip with Animated Count-Up Numbers & Mouse Spotlight */}
-        <div className="pt-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-            {CORE_METRICS.map((metric, idx) => (
-              <SpotlightCard key={idx} index={idx}>
-                <div className="p-5 sm:p-6 space-y-2">
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-                    {metric.label}
-                  </div>
-                  <div className="text-2xl sm:text-3xl font-bold font-mono text-zinc-900 tracking-tight">
-                    <AnimatedMetricNumber value={metric.value} />
-                  </div>
-                  <div className="text-xs text-zinc-500 font-sans leading-relaxed min-h-[2.5rem]">
-                    {metric.context}
-                  </div>
-                </div>
-              </SpotlightCard>
-            ))}
-          </div>
         </div>
       </section>
 
